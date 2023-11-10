@@ -38,9 +38,9 @@ $select->execute();
 
                 <!-- BEGIN Page Content -->
                 <main id="js-page-content" role="main" class="page-content">
+                    
                     <ol class="breadcrumb page-breadcrumb">
-                        <li class="breadcrumb-item active"> คอร์สเรียน </li>
-                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        <li class="breadcrumb-item active">คอร์สเรียน </li>
                     </ol>
 
                     <div class="row">
@@ -49,7 +49,7 @@ $select->execute();
                             <div id="panel-1" class="panel">
 
                                 <div class="panel-hdr">
-                                    <h2>
+                                    <h2 class="text-info">
                                         แสดงข้อมูล : คอร์สเรียน
                                     </h2>
                                     <div class="panel-toolbar">

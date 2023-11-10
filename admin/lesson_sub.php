@@ -49,10 +49,11 @@ $select_sls_lesson->execute();
 
                 <!-- BEGIN Page Content -->
                 <main id="js-page-content" role="main" class="page-content">
+                    
                     <ol class="breadcrumb page-breadcrumb">
-                        <li class="breadcrumb-item active"> บทเรียน -> <?= $row_ls_name['ls_name']; ?></li>
-                        <li class="breadcrumb-item active"> หัวข้อย่อย </li>
-                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        <li class="breadcrumb-item">บทเรียน</li>
+                        <li class="breadcrumb-item"><?= $row_ls_name['ls_name']; ?></li>
+                        <li class="breadcrumb-item active">หัวข้อย่อย</li>
                     </ol>
 
                     <div class="row">
@@ -61,7 +62,7 @@ $select_sls_lesson->execute();
                             <div id="panel-1" class="panel">
 
                                 <div class="panel-hdr">
-                                    <h2>
+                                    <h2 class="text-info">
                                         แสดงข้อมูล : หัวข้อย่อย
                                     </h2>
                                     <div class="panel-toolbar">

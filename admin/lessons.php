@@ -22,6 +22,20 @@ $select->execute();
 
     <link rel="stylesheet" media="screen, print" href="assets/dist/css/datagrid/datatables/datatables.bundle.css">
 
+    <style>
+            /* #container {
+                width: 1000px;
+                margin: 20px auto;
+            } */
+            .ck-editor__editable[role="textbox"] {
+                min-height: 200px;
+            }
+            /* .ck-content .image {
+                max-width: 80%;
+                margin: 20px auto;
+            } */
+        </style>
+
 </head>
 
 <body class="mod-bg-1 mod-nav-link ">
@@ -38,9 +52,9 @@ $select->execute();
 
                 <!-- BEGIN Page Content -->
                 <main id="js-page-content" role="main" class="page-content">
+                    
                     <ol class="breadcrumb page-breadcrumb">
-                        <li class="breadcrumb-item active"> บทเรียน </li>
-                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        <li class="breadcrumb-item active">บทเรียน</li>
                     </ol>
 
                     <div class="row">
@@ -49,7 +63,7 @@ $select->execute();
                             <div id="panel-1" class="panel">
 
                                 <div class="panel-hdr">
-                                    <h2>
+                                    <h2 class="text-info">
                                         แสดงข้อมูล : บทเรียน
                                     </h2>
                                     <div class="panel-toolbar">
@@ -86,9 +100,15 @@ $select->execute();
                                                     <div class="form-group row">
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
                                                         <div class="col-lg-9">
-                                                            <textarea id="editor" class="form-control" id="" name="ls_detail" rows="3"></textarea>
+                                                            <textarea id="editor1" class="form-control" id="" name="ls_detail" rows="3"></textarea>
                                                         </div>
                                                     </div>
+
+                                                    <!-- <div id="container">
+                                                        <div id="editor">
+                                                        </div>
+                                                    </div> -->
+                                                    
 
                                                 </div>
                                                 <div class="modal-footer">
@@ -174,7 +194,7 @@ $select->execute();
                                                                         <div class="form-group row">
                                                                             <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
                                                                             <div class="col-lg-9">
-                                                                                <textarea class="form-control" id="" name="ls_detail" rows="3"><?= $row['ls_detail']; ?></textarea>
+                                                                                <textarea id="editor2" class="form-control" id="" name="ls_detail" rows="3"><?= $row['ls_detail']; ?></textarea>
                                                                             </div>
                                                                         </div>
 
@@ -407,6 +427,7 @@ $select->execute();
 ?>
 
     <?php include('ckeditor.php'); ?>
+    
 
     <script src="assets/dist/js/vendors.bundle.js"></script>
     <script src="assets/dist/js/app.bundle.js"></script>
