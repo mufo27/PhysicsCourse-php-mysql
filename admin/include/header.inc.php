@@ -15,6 +15,5 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../img-test/logo-5.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../img-test/logo-5.png">
 <link rel="mask-icon" href="../img-test/logo-5.png" color="#5bbad5">
-<link rel="stylesheet" href="include/style.css">
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

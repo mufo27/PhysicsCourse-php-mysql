@@ -5,14 +5,20 @@
     box-sizing: border-box;
 }
 
+/* body {
+    font-family: "Kanit", sans-serif;
+    font-size: 16px;
+} */
+
+
+.ck-editor__editable[role="textbox"] {
+    min-height: 200px;
+}
+
 .form-check-input[type="checkbox"] {
     width: 30px;
     height: 30px;
     margin: center;
 }
 
-/* body {
-    font-family: "Kanit", sans-serif;
-    font-size: 16px;
-} */
 

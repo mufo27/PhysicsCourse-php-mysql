@@ -17,6 +17,8 @@ require_once('../config/con_db.php');
     </title>
 
     <?php include('include/header.inc.php') ?>
+    
+    <link rel="stylesheet" href="include/style.css">
 
 
 </head>
