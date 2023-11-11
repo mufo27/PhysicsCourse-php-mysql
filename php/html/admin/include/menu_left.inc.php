@@ -26,19 +26,19 @@
             <li class="nav-title"><h5>รายงานข้อมูล</h5></li>
 
              <li class="<?= $main; ?>">
-                <a href="main.php?main" title="" data-filter-tags="">
+                <a href="index.php?main" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">หน้าแรก</span>
                 </a>
             </li>
 
             <li class="<?= $summarys; ?>">
-                <a href="summarys.php?summarys" title="" data-filter-tags="">
+                <a href="index.php?summarys" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">รายงานผลการเรียน</span>
                 </a>
             </li>
 
             <li class="<?= $ques; ?>">
-                <a href="ques.php?ques" title="" data-filter-tags="">
+                <a href="index.php?ques" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">รายงานผลแบบสอบถาม</span>
                 </a>
             </li>
@@ -46,19 +46,19 @@
             <li class="nav-title"><h5>จัดการข้อมูล</h5></li>
 
             <li class="<?= $course; ?>">
-                <a href="course.php?course" title="" data-filter-tags="">
+                <a href="index.php?course" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">1. คอร์สเรียน</span>
                 </a>
             </li>
 
             <li class="<?= $lessons; ?>">
-                <a href="lessons.php?lessons" title="" data-filter-tags="">
+                <a href="index.php?lessons" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">2. บทเรียน</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="index.php?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">3. แบบทดสอบ</span>
                 </a>
             </li>
