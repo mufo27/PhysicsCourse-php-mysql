@@ -3,7 +3,7 @@
 <aside class="page-sidebar">
     <div class="page-logo">
         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-            <img src="../img-test/logo-5.png" alt="" aria-roledescription="logo">
+            <img src="../my-img/logo-5.png" alt="" aria-roledescription="logo">
             <span class="page-logo-text mr-1">Administrator</span>
             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
             <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
@@ -25,8 +25,8 @@
 
             <li class="nav-title"><h5>รายงานข้อมูล</h5></li>
 
-             <li class="<?= $index; ?>">
-                <a href="index.php?index" title="" data-filter-tags="">
+             <li class="<?= $main; ?>">
+                <a href="main.php?main" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">หน้าแรก</span>
                 </a>
             </li>

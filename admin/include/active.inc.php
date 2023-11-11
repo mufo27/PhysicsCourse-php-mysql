@@ -1,8 +1,8 @@
 <?php
 
-if (isset($_GET['index'])) {
+if (isset($_GET['main'])) {
 
-    $index = 'active';
+    $main = 'active';
 }
 
 
