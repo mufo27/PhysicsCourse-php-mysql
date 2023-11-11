@@ -2,14 +2,25 @@
 require_once('include/auth.inc.php');
 require_once('../config/con_db.php');
 
-$cs_id = $_GET['course_lesson'];
+$cs_id = isset($_GET['course_lesson']) ? $_GET['course_lesson'] : die('Invalid course lesson ID');
 
-$select_check_cs_name = $conn->prepare("SELECT cs_name FROM course c WHERE c.cs_id = '$cs_id'");
+// ตั้งค่าหน้าที่ต้องการแสดง
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$per_page = 10;
+$start_from = ($page - 1) * $per_page;
+
+// ดึงข้อมูลหน้าละ 2 รายการ
+$select_check_cs_name = $conn->prepare("SELECT cs_name FROM course c WHERE c.cs_id = :cs_id");
+$select_check_cs_name->bindParam(':cs_id', $cs_id, PDO::PARAM_INT);
 $select_check_cs_name->execute();
 $row_cs_name = $select_check_cs_name->fetch(PDO::FETCH_ASSOC);
 
-$select_cs_lesson  = $conn->prepare("SELECT csl_id, ls_id, (SELECT ls_name FROM lesson l WHERE l.ls_id = cl.ls_id) AS lesson_name FROM course_lesson cl WHERE cl.cs_id = '$cs_id'");                       
-$select_cs_lesson->execute();
+// นับจำนวนรายการทั้งหมด
+$total_records = $conn->prepare("SELECT COUNT(*) FROM course_lesson cl WHERE cl.cs_id = :cs_id");
+$total_records->bindParam(':cs_id', $cs_id, PDO::PARAM_INT);
+$total_records->execute();
+$total_records = $total_records->fetchColumn();
+$total_pages = ceil($total_records / $per_page);
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +36,13 @@ $select_cs_lesson->execute();
 
     <?php include('include/header.inc.php') ?>
 
-    <link rel="stylesheet" media="screen, print" href="assets/dist/css/datagrid/datatables/datatables.bundle.css">
+    <style>
+        .form-check-input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+            margin: center;
+        }
+    </style>
 
 </head>
 
@@ -45,10 +62,18 @@ $select_cs_lesson->execute();
                 <main id="js-page-content" role="main" class="page-content">
                     
                     <ol class="breadcrumb page-breadcrumb">
+                        <li class="breadcrumb-item">หน้าแรก</li>
                         <li class="breadcrumb-item">คอร์สเรียน</li>
-                        <li class="breadcrumb-item"><?= $row_cs_name['cs_name']; ?></li>
                         <li class="breadcrumb-item active">เพิ่มบทเรียน</li>
                     </ol>
+
+                    <!-- <div class="subheader">
+                        <h1 class="subheader-title">
+                            <i class='subheader-icon fal fa-home'></i> หน้าแรก
+                        </h1>
+                        <div class="subheader-block d-lg-flex align-items-center">
+                        </div>
+                    </div> -->
 
                     <div class="row">
 
@@ -56,133 +81,217 @@ $select_cs_lesson->execute();
                             <div id="panel-1" class="panel">
 
                                 <div class="panel-hdr">
-                                    <h2 class="text-info">
-                                        แสดงข้อมูล : คอร์สเรียน
-                                    </h2>
-                                    <div class="panel-toolbar">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-sm btn-success waves-effect waves-themed" data-toggle="modal" data-target="#add-modal"><span class="fal fa-plus mr-1"></span> เพิ่มข้อมูล</button>
-                                    </div>
-                                </div>
-
-
-                                <!-- Modal Add-->
-                                <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-
-                                            <form action="" method="post" enctype="multipart/form-data">
-
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">
-                                                        เพิ่มข้อมูล
-                                                    </h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body bg-faded">
-
-                                                    <div class="form-group row">
-                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">บทเรียน* : <span class="text-danger">*</span></label>
-                                                        <div class="col-lg-9">
-                                                            <select class="custom-select form-control" id="" name="ls_id" required>
-                                                            <option value="">-- เลือก --</option>
-                                                            <?php 
-                                                                $select_add = $conn->prepare("SELECT ls_id, ls_name FROM lesson");                       
-                                                                $select_add->execute();
-                                                            
-                                                                $i = 1;
-                                                                while($row_add = $select_add->fetch(PDO::FETCH_ASSOC))  { 
-                                                            ?>
-                                                            <option value="<?= $row_add['ls_id']; ?>"><?= $row_add['ls_name']; ?>
-                                                            </option>
-                                                            <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                                    <button type="submit" name="btn_save" value="<?= $cs_id; ?>" class="btn btn-success">บันทึกข้อมูล</button>
-                                                </div>
-                                            </form>
-
-                                        </div>
-                                    </div>
+                                    <h1>รายการบทเรียนใน <span class="fw-300 text-info"><i>คอร์สเรียน<?= $row_cs_name['cs_name']; ?></li></i></span></h1>
+                                    <div class="panel-toolbar"></div>
                                 </div>
 
                                 <div class="panel-container show">
                                     <div class="panel-content">
 
-                                        <!-- datatable start -->
-                                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
-                                            <thead class="bg-dark text-white">
-                                                <tr>
-                                                    <th style="width:5%; text-align: center; vertical-align: middle;">No.</th>
-                                                    <th style="width:30%; text-align: left; vertical-align: middle;">ชื่อบทเรียน</th>
-                                                    <th style="width:10%; text-align: center; vertical-align: middle;">จัดการ</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
+                                        <!-- START Button  -->
+                                        <div class="row mt-3">
+                                            <div class="col-sm-12 col-md-5">
+                                                <a href="course.php?course" class="btn btn-sm btn-secondary">
+                                                    <span class="fal fa-step-backward mr-1"></span> ย้อนกลับ
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7 ml-auto text-right">
+                                                <button type="button" class="btn btn-sm btn-success waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
+                                                    <span class="fal fa-plus mr-1"></span> เพิ่มข้อมูล
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- END Button  -->
 
-                                                    $i = 1;
-                                                    while($row_cs_lesson = $select_cs_lesson->fetch(PDO::FETCH_ASSOC))  { 
-                                                ?>
-                                                    <tr>
-                                                        <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
-                                                        <td style="text-align: left; vertical-align: middle;"><?= $row_cs_lesson['lesson_name']; ?></td>
-                                                        <td style="text-align: center; vertical-align: middle;">
-                                                            <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row_cs_lesson['csl_id']; ?>"><i class="fal fa-times"></i></button>
-                                                        </td>
-                                                    </tr>
+                                        <!-- START Table  -->
+                                        <div class="row mt-3">
+                                            <div class="col-sm-12">
+                                                <table id="" class="table table-bordered table-hover table-striped w-100">
+                                                    <thead class="bg-dark text-white">
+                                                        <tr>
+                                                            <th style="width:10%; text-align: center; vertical-align: middle;">ลำดับ</th>
+                                                            <th style="width:80%; text-align: left; vertical-align: middle;">ชื่อบทเรียน</th>
+                                                            <th style="width:10%; text-align: center; vertical-align: middle;">จัดการ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+
+                                                            $select_cs_lesson = $conn->prepare("SELECT csl_id, ls_id, (SELECT ls_name FROM lesson l WHERE l.ls_id = cl.ls_id) AS lesson_name 
+                                                                                                FROM course_lesson cl 
+                                                                                                WHERE cl.cs_id = :cs_id LIMIT :start_from, :per_page");
+                                                            $select_cs_lesson->bindParam(':cs_id', $cs_id, PDO::PARAM_INT);
+                                                            $select_cs_lesson->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+                                                            $select_cs_lesson->bindParam(':per_page', $per_page, PDO::PARAM_INT);
+                                                            $select_cs_lesson->execute();
+
+                                                            $i = 1;
+                                                            while($row_cs_lesson = $select_cs_lesson->fetch(PDO::FETCH_ASSOC))  { 
+                                                        ?>
+                                                            <tr>
+                                                                <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
+                                                                <td style="text-align: left; vertical-align: middle;"><?= $row_cs_lesson['lesson_name']; ?></td>
+                                                                <td style="text-align: center; vertical-align: middle;">
+                                                                    <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row_cs_lesson['csl_id']; ?>"><i class="fal fa-times"></i></button>
+                                                                </td>
+                                                            </tr>
 
 
-                                                    <!-- Modal Alert Delete -->
-                                                    <div class="modal fade" id="del-modal<?= $row_cs_lesson['csl_id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <form action="" method="post" enctype="multipart/form-data">
+                                                            <!-- Modal Alert Delete -->
+                                                            <div class="modal fade" id="del-modal<?= $row_cs_lesson['csl_id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <form action="" method="post" enctype="multipart/form-data">
 
-                                                                    <input type="hidden" name="cs_id" value="<?= $cs_id; ?>">
-                                                                    <div class="modal-header">
-                                                                        <h4 class="modal-title">
-                                                                            ลบข้อมูล
-                                                                        </h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                                                                        </button>
+                                                                            <input type="hidden" name="cs_id" value="<?= $cs_id; ?>">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">
+                                                                                    ลบข้อมูล
+                                                                                </h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="modal-body bg-faded">
+                                                                                <h4>คุณแน่ใจใช่มั้ย ว่าต้องการลบข้อมูลนี้</h4>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                                                                <button type="submit" name="btn_del" value="<?= $row_cs_lesson['csl_id']; ?>" class="btn btn-danger"><i class="fal fa-times"></i> ยันยันลบข้อมูล</button>
+                                                                            </div>
+                                                                        </form>
+
                                                                     </div>
-                                                                    <div class="modal-body bg-faded">
-                                                                        <h4>คุณแน่ใจใช่มั้ย ว่าต้องการลบข้อมูลนี้</h4>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                                                        <button type="submit" name="btn_del" value="<?= $row_cs_lesson['csl_id']; ?>" class="btn btn-danger"><i class="fal fa-times"></i> ยันยันลบข้อมูล</button>
-                                                                    </div>
-                                                                </form>
-
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
 
 
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                        <!-- datatable end -->
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- END Table -->
+                                        
+                                         <!-- START Pagination -->
+                                        <div class="row mt-3">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info">
+                                                    กำลังแสดง <?= (($page - 1) * $per_page) + 1 ?> ถึง <?= min($page * $per_page, $total_records) ?> จาก <?= $total_records ?> รายการ
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-7">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination justify-content-end">
+                                                        <?php if ($page > 1) : ?>
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="?course_lesson=<?= $cs_id ?>&page=<?= $page - 1 ?>" tabindex="-1" aria-disabled="true">ก่อนหน้า</a>
+                                                            </li>
+                                                        <?php else : ?>
+                                                            <li class="page-item disabled">
+                                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">ก่อนหน้า</a>
+                                                            </li>
+                                                        <?php endif; ?>
 
+                                                        <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                                                            <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                                                                <a class="page-link" href="?course_lesson=<?= $cs_id ?>&page=<?= $i ?>">
+                                                                    <?= $i ?>
+                                                                    <?php if ($i == $page) : ?>
+                                                                        <span class="sr-only">(current)</span>
+                                                                    <?php endif; ?>
+                                                                </a>
+                                                            </li>
+                                                        <?php endfor; ?>
+
+                                                        <?php if ($page < $total_pages) : ?>
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="?course_lesson=<?= $cs_id ?>&page=<?= $page + 1 ?>">ถัดไป</a>
+                                                            </li>
+                                                        <?php else : ?>
+                                                            <li class="page-item disabled">
+                                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">ถัดไป</a>
+                                                            </li>
+                                                        <?php endif; ?>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                         <!-- END Pagination -->
+      
                                     </div>
                                 </div>
-
+                                
                             </div>
                         </div>
 
                         <div class="col-xl-12">
-                                <a href="course.php?course" class="btn btn-sm btn-danger"><span class="fal fa-step-backward mr-1"></span> ย้อนกลับ</a>
+                        </div>
+                    </div>
+
+                    <!-- Modal Add-->
+                    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+
+                                <form action="" method="post" enctype="multipart/form-data">
+
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            เพิ่มข้อมูล
+                                        </h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body bg-faded">
+
+                                        <table id="" class="table table-bordered table-striped w-100">
+                                            <thead class="bg-primary text-white">
+                                                <tr>
+                                                    <th style="width:10%; text-align: left; vertical-align: middle;">ลำดับ</th>
+                                                    <th style="width:80%; text-align: left; vertical-align: middle;">บทเรียน</th>
+                                                    <th style="width:10%; text-align: center; vertical-align: middle;">เลือก</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+
+                                                    $select_add = $conn->prepare("SELECT l.ls_id, l.ls_name 
+                                                                                FROM lesson l
+                                                                                LEFT JOIN course_lesson cl ON l.ls_id = cl.ls_id AND cl.cs_id = :cs_id
+                                                                                WHERE cl.ls_id IS NULL");
+                                                    $select_add->bindParam(':cs_id', $cs_id, PDO::PARAM_INT);             
+                                                    $select_add->execute();
+                                                
+                                                    $ch = 0;
+                                                    $k = 1;
+                                                    while($row_add = $select_add->fetch(PDO::FETCH_ASSOC))  { 
+                                                ?>
+                                                    <tr>
+                                                        <td style="text-align: center; vertical-align: middle;"><?= $k++; ?></td>
+                                                        <td style="text-align: left; vertical-align: middle;"><?= $row_add['ls_name']; ?></td>
+                                                        <td style="text-align: center; vertical-align: middle;">
+                                                            <div class="form-check">
+                                                                <input type="hidden" name="ls_id[]" value="<?= $row_add['ls_id']; ?>">
+                                                                <input type="checkbox" class="form-check-input position-static" name="check[]" value="<?= $ch++; ?>">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                                        <button type="submit" name="btn_save" value="<?= $cs_id; ?>" class="btn btn-success">บันทึกข้อมูล</button>
+                                    </div>
+                                </form>
+
                             </div>
+                        </div>
                     </div>
 
                 </main>
@@ -200,27 +309,19 @@ $select_cs_lesson->execute();
 
     if(isset($_POST['btn_save'])){
 
+        $check = $_POST['check'];
         $check_cs_id = $_POST['btn_save'];
-        $check_ls_id      = $_POST['ls_id'];
-        $save_date  =  date('d-m-Y');
+        $check_ls_id = $_POST['ls_id'];
 
-        $select = $conn->prepare("SELECT count(*) AS check_num FROM course_lesson WHERE cs_id = :cs_id AND ls_id = :ls_id");
-        $select->bindParam(':cs_id'     ,  $check_cs_id); 
-        $select->bindParam(':ls_id'     ,  $check_ls_id); 
-        $select->execute();
-        $row = $select->fetch(PDO::FETCH_ASSOC);
-
-        if ($row['check_num'] > 0) {
-
+        if (empty($check) || $check == 0) {
 
             echo '<script type="text/javascript">
                     Swal.fire({
-                        icon: "error",
-                        title: "**ซ้ำ** มีข้อมูลอยู่ในระบบแล้ว..!!", 
-                        showConfirmButton: false,
-                        timer: 2000
+                    icon: "error",
+                    title: "ล้มเหลว",
+                    text: "โปรด ต้องเลือกอย่างน้อย 1 รายการ"
                     });
-                    </script>';
+                </script>';
             echo "<meta http-equiv=\"refresh\" content=\"2; URL=course_lesson.php?course_lesson=$check_cs_id\">";
             exit;
 
@@ -228,12 +329,12 @@ $select_cs_lesson->execute();
 
             try {
                 
-                $insert = $conn->prepare("INSERT INTO course_lesson (cs_id, ls_id, save_date) VALUES (:cs_id, :ls_id, :save_date)");
-                $insert->bindParam(':cs_id'     ,  $check_cs_id); 
-                $insert->bindParam(':ls_id'     ,  $check_ls_id); 
-                $insert->bindParam(':save_date' ,  $save_date); 
-                $insert->execute();
-
+                foreach ($check as $key) {
+                    $insert = $conn->prepare("INSERT INTO course_lesson (cs_id, ls_id) VALUES (:cs_id, :ls_id)");
+                    $insert->bindParam(':cs_id'     ,  $check_cs_id); 
+                    $insert->bindParam(':ls_id'     ,  $check_ls_id[$key]); 
+                    $insert->execute();
+                }
                 if ($insert) {
 
                     echo '<script type="text/javascript">
@@ -323,17 +424,6 @@ $select_cs_lesson->execute();
     <script src="assets/dist/js/vendors.bundle.js"></script>
     <script src="assets/dist/js/app.bundle.js"></script>
 
-    <script src="assets/dist/js/datagrid/datatables/datatables.bundle.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#dt-basic-example').dataTable({
-                responsive: true
-            });
-
-
-        });
-        
-    </script>
 </body>
 <!-- END Body -->
 

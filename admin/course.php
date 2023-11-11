@@ -22,6 +22,20 @@ $select->execute();
 
     <link rel="stylesheet" media="screen, print" href="assets/dist/css/datagrid/datatables/datatables.bundle.css">
 
+    <style>
+        /* #container {
+            width: 1000px;
+            margin: 20px auto;
+        } */
+        .ck-editor__editable[role="textbox"] {
+            min-height: 200px;
+        }
+        /* .ck-content .image {
+            max-width: 80%;
+            margin: 20px auto;
+        } */
+    </style>
+
 </head>
 
 <body class="mod-bg-1 mod-nav-link ">
@@ -79,21 +93,21 @@ $select->execute();
                                                     <div class="form-group row">
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัสคอร์สเรียน : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-9">
-                                                            <input type="text" id="" name="cs_code" class="form-control" value="" required>
+                                                            <input type="text" id="" name="cs_code" class="form-control" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">คอร์สเรียน : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-9">
-                                                            <input type="text" id="" name="cs_name" class="form-control" value="" required>
+                                                            <input type="text" id="" name="cs_name" class="form-control" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
                                                         <div class="col-lg-9">
-                                                            <textarea class="form-control" id="" name="cs_detail" rows="3"></textarea>
+                                                            <textarea class="form-control" id="editor1" name="cs_detail" rows="3"></textarea>
                                                         </div>
                                                     </div>
 
@@ -101,21 +115,21 @@ $select->execute();
 
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ระยะเวลาเรียน ชั่วโมง : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-3">
-                                                            <input type="number" id="" name="k_hour" class="form-control" value="" min="0" max="999" required>
+                                                            <input type="number" id="" name="k_hour" class="form-control" min="0" max="999" required>
                                                         </div>
 
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">นาที : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-3">
-                                                            <input type="number" id="" name="k_minute" class="form-control" value="" min="0" max="59" required>
+                                                            <input type="number" id="" name="k_minute" class="form-control" min="0" max="59" required>
                                                         </div>
 
                                                     </div>
 
                                                     <div class="form-group row">
 
-                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ค่าธรรมเนียม* : <span class="text-danger">*</span></label>
+                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ค่าธรรมเนียม : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-3">
-                                                            <select class="custom-select form-control" id="" name="cs_pay_status" required>
+                                                            <select class="custom-select form-control"  id="cs_pay_status1" name="cs_pay_status" required>
                                                                 <option value="">-- เลือก --</option>
                                                                 <option value="0">ฟรี</option>
                                                                 <option value="1">ไม่ฟรี</option>
@@ -124,14 +138,14 @@ $select->execute();
 
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">จำนวนเงิน : <span class="text-danger">(กรณีไม่ฟรี)</span></label>
                                                         <div class="col-lg-3">
-                                                            <input type="number" id="" name="cs_pay_num" class="form-control" min="0" max="999999" value="">
+                                                            <input type="number" id="cs_pay_num1" name="cs_pay_num" class="form-control" min="0" max="999999" disabled>
                                                         </div>
 
                                                     </div>
 
                                                     <div class="form-group row">
 
-                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">เหมาะสำหรับ* : <span class="text-danger">*</span></label>
+                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">เหมาะสำหรับ : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-3">
                                                             <select class="custom-select form-control" id="" name="cs_for" required>
                                                                 <option value="">-- เลือก --</option>
@@ -146,7 +160,7 @@ $select->execute();
                                                             </select>
                                                         </div>
 
-                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">สถานะ เปิด/ปิด* : <span class="text-danger">*</span></label>
+                                                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">สถานะ เปิด/ปิด : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-3">
                                                             <select class="custom-select form-control" id="" name="cs_status" required>
                                                                 <option value="">-- เลือก --</option>
@@ -160,14 +174,14 @@ $select->execute();
                                                     <div class="form-group row">
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดรูปภาพ : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-9">
-                                                            <input type="file" id="" name="cs_img" class="form-control" value="" required>
+                                                            <input type="file" id="" name="cs_img" class="form-control" required>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดใบเกียรติบัตร : <span class="text-danger">*</span></label>
                                                         <div class="col-lg-9">
-                                                            <input type="file" id="" name="cs_cer" class="form-control" value="" required>
+                                                            <input type="file" id="" name="cs_cer" class="form-control" required>
                                                         </div>
                                                     </div>
 
@@ -248,7 +262,7 @@ $select->execute();
                                                         </td>
                                                         <td style="text-align: left; vertical-align: middle;"><?= $row['cs_detail']; ?></td>
                                                         <td style="text-align: center; vertical-align: middle;">
-                                                            <a href="course_lesson.php?course_lesson=<?= $row['cs_id']; ?>" class="btn btn-sm btn-info waves-effect waves-themed">
+                                                            <a href="course_lesson.php?course_lesson=<?= $row['cs_id']; ?>&page=1" class="btn btn-sm btn-info waves-effect waves-themed">
                                                                 <span class="fal fa-plus mr-1"></span>
                                                                 เพิ่ม (<?= $row['cl_count']; ?>)
                                                                 </ฟ>
@@ -316,7 +330,7 @@ $select->execute();
                                                                         <div class="form-group row">
                                                                             <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
                                                                             <div class="col-lg-9">
-                                                                                <textarea class="form-control" id="" name="cs_detail" rows="3"><?= $row['cs_detail']; ?></textarea>
+                                                                                <textarea class="form-control" id="editor2" name="cs_detail" rows="3"><?= $row['cs_detail']; ?></textarea>
                                                                             </div>
                                                                         </div>
 
@@ -336,9 +350,9 @@ $select->execute();
 
                                                                         <div class="form-group row">
 
-                                                                            <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ค่าธรรมเนียม* : <span class="text-danger">*</span></label>
+                                                                            <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ค่าธรรมเนียม : <span class="text-danger">*</span></label>
                                                                             <div class="col-lg-3">
-                                                                                <select class="custom-select form-control" id="" name="cs_pay_status" required>
+                                                                                <select class="custom-select form-control" id="cs_pay_status2" name="cs_pay_status" required>
                                                                                     <option value="<?= $row['cs_pay_status']; ?>">-- <?= $show_cs_pay_status; ?> --</option>
                                                                                     <option value="0">ฟรี</option>
                                                                                     <option value="1">ไม่ฟรี</option>
@@ -347,14 +361,14 @@ $select->execute();
 
                                                                             <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">จำนวนเงิน : <span class="text-danger">(กรณีไม่ฟรี)</span></label>
                                                                             <div class="col-lg-3">
-                                                                                <input type="number" id="" name="cs_pay_num" class="form-control" min="0" max="999999" value="<?= $row['cs_pay_num']; ?>">
+                                                                                <input type="number" id="cs_pay_num2" name="cs_pay_num" class="form-control" min="0" max="999999" value="<?= $row['cs_pay_num']; ?>" disabled>
                                                                             </div>
 
                                                                         </div>
 
                                                                         <div class="form-group row">
 
-                                                                            <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">เหมาะสำหรับ* : <span class="text-danger">*</span></label>
+                                                                            <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">เหมาะสำหรับ : <span class="text-danger">*</span></label>
                                                                             <div class="col-lg-3">
                                                                                 <select class="custom-select form-control" id="" name="cs_for" required>
                                                                                     <option value="<?= $row['cs_for']; ?> ">-- <?= $txt_for; ?> --</option>
@@ -369,7 +383,7 @@ $select->execute();
                                                                                 </select>
                                                                             </div>
 
-                                                                            <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">สถานะ เปิด/ปิด* : <span class="text-danger">*</span></label>
+                                                                            <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">สถานะ เปิด/ปิด : <span class="text-danger">*</span></label>
                                                                             <div class="col-lg-3">
                                                                                 <select class="custom-select form-control" id="" name="cs_status" required>
                                                                                     <option value="<?= $row['cs_status']; ?>">-- <?= $show_status; ?> --</option>
@@ -796,10 +810,12 @@ $select->execute();
     }
     ?>
 
+    <?php include('ckeditor.php'); ?>
+
     <script src="assets/dist/js/vendors.bundle.js"></script>
     <script src="assets/dist/js/app.bundle.js"></script>
-
     <script src="assets/dist/js/datagrid/datatables/datatables.bundle.js"></script>
+    
     <script>
         $(document).ready(function() {
             $('#dt-basic-example').dataTable({
@@ -808,6 +824,26 @@ $select->execute();
 
 
         });
+ 
+        
+        function checkPaymentStatus(index) {
+            var paymentStatusDropdown = document.getElementById(`cs_pay_status${index}`);
+            var amountField = document.getElementById(`cs_pay_num${index}`);
+
+            paymentStatusDropdown.addEventListener("change", function() {
+                amountField.disabled = (paymentStatusDropdown.value !== "1");
+            });
+
+            paymentStatusDropdown.dispatchEvent(new Event("change"));
+        }
+
+        let index = 1;
+        while (document.getElementById(`cs_pay_status${index}`)) {
+            checkPaymentStatus(index);
+            index++;
+        }
+
+
     </script>
 </body>
 <!-- END Body -->
