@@ -37,7 +37,7 @@ if(isset($_POST['btn_save'])){
                 text: "โปรด ต้องเลือกอย่างน้อย 1 รายการ"
                 });
             </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=course_lesson.php?course_lesson=$check_cs_id\">";
+        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
         exit;
 
     } else {
@@ -60,7 +60,7 @@ if(isset($_POST['btn_save'])){
                             timer: 2000
                         });
                         </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=course_lesson.php?course_lesson=$check_cs_id\">";
+                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
                 exit;
 
             } else {
@@ -73,7 +73,7 @@ if(isset($_POST['btn_save'])){
                             timer: 2000
                         });
                         </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=course_lesson.php?course_lesson=$check_cs_id\">";
+                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
                 exit;
 
             }  
@@ -109,7 +109,7 @@ if (isset($_POST['btn_del'])) {
                         timer: 2000
                     });
                     </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=course_lesson.php?course_lesson=$check_cs_id\">";
+            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
             exit;
 
         } else {
@@ -121,7 +121,7 @@ if (isset($_POST['btn_del'])) {
                     text: "โปรด ลองใหม่อีกครั้ง..!!"
                     });
                 </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=course_lesson.php?course_lesson=$check_cs_id\">";
+            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
             exit;
 
         }
@@ -143,14 +143,6 @@ if (isset($_POST['btn_del'])) {
     <li class="breadcrumb-item active">เพิ่มบทเรียน</li>
 </ol>
 
-<!-- <div class="subheader">
-    <h1 class="subheader-title">
-        <i class='subheader-icon fal fa-home'></i> หน้าแรก
-    </h1>
-    <div class="subheader-block d-lg-flex align-items-center">
-    </div>
-</div> -->
-
 <div class="row">
 
     <div class="col-xl-12">
@@ -167,7 +159,7 @@ if (isset($_POST['btn_del'])) {
                     <!-- START Button  -->
                     <div class="row mt-3">
                         <div class="col-sm-12 col-md-5">
-                            <a href="course.php?course" class="btn btn-sm btn-secondary">
+                            <a href="?course" class="btn btn-sm btn-secondary">
                                 <span class="fal fa-step-backward mr-1"></span> ย้อนกลับ
                             </a>
                         </div>
@@ -182,11 +174,12 @@ if (isset($_POST['btn_del'])) {
                     <!-- START Table  -->
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <table id="" class="table table-bordered table-hover table-striped w-100">
+                            <table id="" class="table table-bordered table-striped w-100">
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th style="width:10%; text-align: center; vertical-align: middle;">ลำดับ</th>
-                                        <th style="width:80%; text-align: left; vertical-align: middle;">ชื่อบทเรียน</th>
+                                        <th style="width:80%; text-align: center; vertical-align: middle;">รหัส</th>
+                                        <th style="width:80%; text-align: left; vertical-align: middle;">บทเรียน</th>
                                         <th style="width:10%; text-align: center; vertical-align: middle;">จัดการ</th>
                                     </tr>
                                 </thead>
@@ -212,7 +205,6 @@ if (isset($_POST['btn_del'])) {
                                                 <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row_cs_lesson['csl_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
-
 
                                         <!-- Modal Alert Delete -->
                                         <div class="modal fade" id="del-modal<?= $row_cs_lesson['csl_id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">

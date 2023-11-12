@@ -1,5 +1,5 @@
 <?php
-
+$_SESSION['id'] = 1;
 require_once 'include/auth.inc.php';
 require_once '../config/con_db.php';
 
@@ -17,7 +17,7 @@ require_once '../config/con_db.php';
 
     <!-- <title>เพิ่มบทเรียน | ระบบจัดการข้อมูลคอร์สเรียนฟิสิกส์</title> -->
 
-    <?php require_once 'include/header.inc.php'; ?>
+    <?php include 'include/header.inc.php'; ?>
 
 </head>
 
@@ -26,52 +26,35 @@ require_once '../config/con_db.php';
     <div class="page-wrapper">
         <div class="page-inner">
 
-            <?php require_once 'include/menu_left.inc.php'; ?>
+            <?php include 'include/menu_left.inc.php'; ?>
 
             <div class="page-content-wrapper">
 
-                <?php require_once 'include/menu_top.inc.php'; ?>
+                <?php include 'include/menu_top.inc.php'; ?>
 
                 <main id="js-page-content" role="main" class="page-content">
 
                     <?php
                     if (empty($_GET) || isset($_GET['main'])) {
-                        require_once 'r1_main/main.php';
+                        include 'r1_main/main.php';
                     } elseif (isset($_GET['course'])) {
-                        require_once 'm1_course/course.php';
+                        include 'm1_course/course.php';
                     } elseif (isset($_GET['course_lesson'])) {
-                        require_once 'm1_course/course_lesson.php';
+                        include 'm1_course/course_lesson.php';
                     }
                     ?>
 
                 </main>
 
-                <?php require_once 'include/footer.inc.php'; ?>
+                <?php include 'include/footer.inc.php'; ?>
 
             </div>
         </div>
     </div>
 
-    <?php require_once 'include/script.inc.php'; ?>
+    <?php include 'include/script.inc.php'; ?>
 
-    <script>
-        function checkPaymentStatus(index) {
-            var paymentStatusDropdown = document.getElementById(`cs_pay_status${index}`);
-            var amountField = document.getElementById(`cs_pay_num${index}`);
-
-            paymentStatusDropdown.addEventListener("change", function() {
-                amountField.disabled = (paymentStatusDropdown.value !== "1");
-            });
-
-            paymentStatusDropdown.dispatchEvent(new Event("change"));
-        }
-
-        let index = 1;
-        while (document.getElementById(`cs_pay_status${index}`)) {
-            checkPaymentStatus(index);
-            index++;
-        }
-    </script>
+    
 
 </body>
 

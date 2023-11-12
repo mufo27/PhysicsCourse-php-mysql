@@ -26,51 +26,45 @@
             <li class="nav-title"><h5>รายงานข้อมูล</h5></li>
 
              <li class="<?= $main; ?>">
-                <a href="index.php?main" title="" data-filter-tags="">
+                <a href="?main" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">หน้าแรก</span>
                 </a>
             </li>
 
             <li class="<?= $summarys; ?>">
-                <a href="index.php?summarys" title="" data-filter-tags="">
+                <a href="?summarys" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">รายงานผลการเรียน</span>
-                </a>
-            </li>
-
-            <li class="<?= $ques; ?>">
-                <a href="index.php?ques" title="" data-filter-tags="">
-                    <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">รายงานผลแบบสอบถาม</span>
                 </a>
             </li>
 
             <li class="nav-title"><h5>จัดการข้อมูล</h5></li>
 
             <li class="<?= $course; ?>">
-                <a href="index.php?course" title="" data-filter-tags="">
+                <a href="?course" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">1. คอร์สเรียน</span>
                 </a>
             </li>
 
             <li class="<?= $lessons; ?>">
-                <a href="index.php?lessons" title="" data-filter-tags="">
+                <a href="?lessons" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">2. บทเรียน</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="index.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">3. แบบทดสอบ</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">4. แบบฝึกหัด</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">5. ห้องเรียน</span>
                 </a>
             </li>
@@ -91,38 +85,36 @@
                             <span class="nav-link-text" data-i18n="">สมาชิก (บุคคลทั่วไป)</span>
                         </a>
                     </li>
-                    
-                   
                 </ul>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">7. ประชาสัมพันธ์</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">8. แนะนำคอร์สเรียน</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">9. คำร้องขอลงทะเบียนใหม่</span>
                 </a>
             </li>
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">10. คำร้องขอรหัสผ่านใหม่</span>
                 </a>
             </li>
 
 
             <li class="<?= $c_order; ?>">
-                <a href="c_order.php?c_order" title="" data-filter-tags="">
+                <a href="?c_order" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">10. การตั้งค่าเว็บไซต์</span>
                 </a>
             </li>
@@ -134,27 +126,27 @@
                 </a>
                 <ul>
                     <li class="<?= $account_student; ?>">
-                        <a href="student.php?student" title="" data-filter-tags="">
+                        <a href="?student" title="" data-filter-tags="">
                             <span class="nav-link-text" data-i18n="">ชื่อเว็บ & โลโก้เว็บ</span>
                         </a>
                     </li>
                     <li class="<?= $account_member; ?>">
-                        <a href="member.php?member" title="" data-filter-tags="">
+                        <a href="?member" title="" data-filter-tags="">
                             <span class="nav-link-text" data-i18n="">เมนูอื่นๆ</span>
                         </a>
                     </li>
                     <li class="<?= $account_student; ?>">
-                        <a href="student.php?student" title="" data-filter-tags="">
+                        <a href="?student" title="" data-filter-tags="">
                             <span class="nav-link-text" data-i18n="">ภาพสไลด์</span>
                         </a>
                     </li>
                     <li class="<?= $account_member; ?>">
-                        <a href="member.php?member" title="" data-filter-tags="">
+                        <a href="?member" title="" data-filter-tags="">
                             <span class="nav-link-text" data-i18n="">วัตถุประสงค์</span>
                         </a>
                     </li>
                     <li class="<?= $account_student; ?>">
-                        <a href="student.php?student" title="" data-filter-tags="">
+                        <a href="?student" title="" data-filter-tags="">
                             <span class="nav-link-text" data-i18n="">ช่องทางการติดต่อ</span>
                         </a>
                     </li>
