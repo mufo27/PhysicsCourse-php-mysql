@@ -40,10 +40,10 @@ require_once '../config/con_db.php';
                             include 'm1_course/course_lesson.php';
                             break;
                         case isset($_GET['lesson']):
-                            include 'm2_course/lesson.php';
+                            include 'm2_lesson/lesson.php';
                             break;
                         case isset($_GET['lesson_sub']):
-                            include 'm2_course/lesson_sub.php';
+                            include 'm2_lesson/lesson_sub.php';
                             break;
                         default:
                             echo 'error: Include Page';

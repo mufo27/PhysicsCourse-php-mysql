@@ -36,7 +36,7 @@ include 'c_modal_add.inc.php'
                         <div class="col-sm-12">
 
                             <!-- START Filter Data  -->
-                            <?php require_once 'c_filter_data.inc.php' ?>
+                            <?php include 'c_filter_data.inc.php' ?>
                             <!-- END Filter Data  -->
 
                         </div>
@@ -149,7 +149,7 @@ include 'c_modal_add.inc.php'
                     <!-- END Table -->
 
                     <!-- START Pagination -->
-                    <?php require_once 'c_pagination.inc.php' ?>
+                    <?php include 'c_pagination.inc.php' ?>
                     <!-- END Pagination -->
 
                 </div>

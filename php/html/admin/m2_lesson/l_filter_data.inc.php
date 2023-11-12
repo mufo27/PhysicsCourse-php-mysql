@@ -19,8 +19,8 @@
 
                 <form action="" method="GET" enctype="multipart/form-data">
 
-                    <input type="hidden" id="" name='active' value="course">
-                    <input type="hidden" id="" name='course_lesson' value="<?= $cs_id; ?>">
+                    <input type="hidden" id="" name='active' value="lesson">
+                    <input type="hidden" id="" name='lesson'>
 
                     <div class="form-row">
 

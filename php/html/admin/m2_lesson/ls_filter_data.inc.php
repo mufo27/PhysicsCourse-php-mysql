@@ -19,9 +19,7 @@
 
                 <form action="" method="GET" enctype="multipart/form-data">
 
-                    <input type="hidden" id="" name='active' value="course">
-                    <input type="hidden" id="" name='course' value="">
-
+                    <input type="hidden" id="" name='course'>
                     <div class="form-row">
 
                         <div class="col-md-3 mb-3">
