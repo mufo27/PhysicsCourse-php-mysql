@@ -11,11 +11,27 @@ require_once '../config/con_db.php';
 <head>
     <meta charset="utf-8">
 
-    <!-- <title>หน้าแรก | ระบบจัดการข้อมูลคอร์สเรียนฟิสิกส์</title> -->
+    <?php
 
-    <title>คอร์สเรียน | ระบบจัดการข้อมูลคอร์สเรียนฟิสิกส์</title>
+    $title = "ระบบจัดการข้อมูลคอร์สเรียนฟิสิกส์";
 
-    <!-- <title>เพิ่มบทเรียน | ระบบจัดการข้อมูลคอร์สเรียนฟิสิกส์</title> -->
+    if (empty($_GET) || isset($_GET['main'])) {
+        $show_title = 'หน้าแรก | ' . $title;
+    } else if (isset($_GET['course'])) {
+        $show_title = 'คอร์สเรียน  | ' . $title;
+    } else if (isset($_GET['course_lesson'])) {
+        $show_title = 'เพิ่มบทเรียน | ' . $title;
+    } else if (isset($_GET['lesson'])) {
+        $show_title = 'บทเรียน | ' . $title;
+    } else if (isset($_GET['lesson_sub'])) {
+        $show_title = 'บทเรียนย่อย | ' . $title;
+    }else {
+        echo 'error';
+    }
+
+    ?>
+
+    <title><?= $show_title ?></title>
 
     <?php include 'include/header.inc.php'; ?>
 
@@ -37,14 +53,17 @@ require_once '../config/con_db.php';
                     <?php
                     if (empty($_GET) || isset($_GET['main'])) {
                         include 'r1_main/main.php';
-                    } 
-                        if (isset($_GET['course'])) {
-                            include 'm1_course/course.php';
-                        } 
-                        
-                        if (isset($_GET['course_lesson'])) {
-                            include 'm1_course/course_lesson.php';
-                        }
+                    } else if (isset($_GET['course'])) {
+                        include 'm1_course/course.php';
+                    } else if (isset($_GET['course_lesson'])) {
+                        include 'm1_course/course_lesson.php';
+                    } else if (isset($_GET['lesson'])) {
+                        include 'm2_course/lesson.php';
+                    } else if (isset($_GET['lesson_sub'])) {
+                        include 'm2_course/lesson_sub.php';
+                    } else {
+                        echo 'error';
+                    }
                     ?>
 
                 </main>
@@ -57,7 +76,7 @@ require_once '../config/con_db.php';
 
     <?php include 'include/script.inc.php'; ?>
 
-    
+
 
 </body>
 

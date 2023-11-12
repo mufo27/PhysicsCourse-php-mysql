@@ -45,26 +45,26 @@
                 </a>
             </li>
 
-            <li class="<?= $lessons; ?>">
-                <a href="?lessons" title="" data-filter-tags="">
+            <li class="<?= $lesson; ?>">
+                <a href="?lesson" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">2. บทเรียน</span>
                 </a>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li class="<?= $quiz; ?>">
+                <a href="?quiz" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">3. แบบทดสอบ</span>
                 </a>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li class="<?= $exe; ?>">
+                <a href="?exe" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">4. แบบฝึกหัด</span>
                 </a>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li class="<?= $class_room; ?>">
+                <a href="?class_room" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">5. ห้องเรียน</span>
                 </a>
             </li>

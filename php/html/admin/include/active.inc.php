@@ -11,7 +11,7 @@ if (isset($_GET['course']) || isset($_GET['course_lesson'])) {
     $course = 'active';
 }
 
-if (isset($_GET['lessons']) || isset($_GET['lesson_sub'])) {
+if (isset($_GET['lesson']) || isset($_GET['lesson_sub'])) {
 
     $lessons = 'active';
 }
