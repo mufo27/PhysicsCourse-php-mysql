@@ -37,11 +37,14 @@ require_once '../config/con_db.php';
                     <?php
                     if (empty($_GET) || isset($_GET['main'])) {
                         include 'r1_main/main.php';
-                    } elseif (isset($_GET['course'])) {
-                        include 'm1_course/course.php';
-                    } elseif (isset($_GET['course_lesson'])) {
-                        include 'm1_course/course_lesson.php';
-                    }
+                    } 
+                        if (isset($_GET['course'])) {
+                            include 'm1_course/course.php';
+                        } 
+                        
+                        if (isset($_GET['course_lesson'])) {
+                            include 'm1_course/course_lesson.php';
+                        }
                     ?>
 
                 </main>

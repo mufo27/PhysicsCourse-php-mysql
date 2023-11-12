@@ -104,10 +104,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                             <button class="btn btn-outline-info btn-block waves-effect waves-themed" type="submit" name="btn_filter">ยืนยันข้อมูล</button>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-1 mb-3">
                             <button class="btn btn-outline-warning btn-block waves-effect waves-themed" type="reset" name="btn_filter">ล้างข้อมูล</button>
                         </div>
                     </div>

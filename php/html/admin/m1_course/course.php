@@ -2,11 +2,11 @@
 // Inclue File Logic & Select Data
 require_once 'c_logic.inc.php';
 
-// Inclue File Add DB
+// Include File Add DB
 require_once 'c_db_add.inc.php';
-// Inclue File Edit DB
+// Include File Edit DB
 require_once 'c_db_edit.inc.php';
-// Inclue File Del DB
+// Include File Del DB
 require_once 'c_db_del.inc.php';
 
 // Modal Add
@@ -154,8 +154,6 @@ include 'c_modal_add.inc.php'
 
                 </div>
             </div>
-
-
 
         </div>
     </div>

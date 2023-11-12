@@ -3,7 +3,6 @@ $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 
 if (isset($_GET['btn_filter'])) {
 
-
     if ($_GET['fd_cs_code'] === '' && $_GET['fd_cs_name'] === '' && $_GET['fd_cs_for'] === '' && $_GET['fd_cs_pay_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_per_page'] === '') {
 
         echo '<script type="text/javascript">
@@ -31,14 +30,18 @@ if (isset($_GET['btn_filter'])) {
 
         $start_from = ($page - 1) * $per_page;
 
-        $sql_all = "SELECT COUNT(*) FROM course c WHERE c.cs_id IS NOT NULL";
-        $sql = "SELECT c.* ,(SELECT count(cs_id) FROM course_lesson WHERE cs_id = c.cs_id) AS cl_count FROM course c WHERE c.cs_id IS NOT NULL";
+        $sql_all = "SELECT COUNT(*) FROM course c 
+                    WHERE 1=1";
 
-        if ($_GET['fd_cs_code'] !== '' && $_GET['fd_cs_code'] !== 'all') {
+        $sql = "SELECT c.* ,(SELECT count(cs_id) FROM course_lesson WHERE cs_id = c.cs_id) AS cl_count 
+                FROM course c 
+                WHERE 1=1";
+
+        if ($_GET['fd_cs_code'] !== '') {
             $sql_all .= " AND c.cs_code LIKE :fd_cs_code ";
             $sql .= " AND c.cs_code LIKE :fd_cs_code ";
         }
-        if ($_GET['fd_cs_name'] !== '' && $_GET['fd_cs_name'] !== 'all') {
+        if ($_GET['fd_cs_name'] !== '') {
             $sql_all .= " AND c.cs_name LIKE :fd_cs_name ";
             $sql .= " AND c.cs_name LIKE :fd_cs_name ";
         }
@@ -60,12 +63,12 @@ if (isset($_GET['btn_filter'])) {
         $select_all = $conn->prepare($sql_all);
         $select = $conn->prepare($sql);
 
-        if ($_GET['fd_cs_code'] !== '' && $_GET['fd_cs_code'] !== 'all') {
+        if ($_GET['fd_cs_code'] !== '') {
             $fd_cs_code = '%' . $_GET['fd_cs_code'] . '%';
             $select_all->bindParam(':fd_cs_code', $fd_cs_code, PDO::PARAM_STR);
             $select->bindParam(':fd_cs_code', $fd_cs_code, PDO::PARAM_STR);
         }
-        if ($_GET['fd_cs_name'] !== '' && $_GET['fd_cs_name'] !== 'all') {
+        if ($_GET['fd_cs_name'] !== '') {
             $fd_cs_name = '%' . $_GET['fd_cs_name'] . '%';
             $select_all->bindParam(':fd_cs_name', $fd_cs_name, PDO::PARAM_STR);
             $select->bindParam(':fd_cs_name', $fd_cs_name, PDO::PARAM_STR);
@@ -83,13 +86,14 @@ if (isset($_GET['btn_filter'])) {
             $select->bindParam(':fd_cs_status', $_GET['fd_cs_status'], PDO::PARAM_INT);
         }
 
-        $select_all->execute();
-        $total_records = $select_all->fetchColumn();
-        $total_pages = ceil($total_records / $per_page);
-
         $select->bindParam(':start_from', $start_from, PDO::PARAM_INT);
         $select->bindParam(':per_page', $per_page, PDO::PARAM_INT);
+
+        $select_all->execute();
         $select->execute();
+
+        $total_records = $select_all->fetchColumn();
+        $total_pages = ceil($total_records / $per_page);
 
         
         if ($_GET['fd_per_page'] === '') {
@@ -104,18 +108,14 @@ if (isset($_GET['btn_filter'])) {
         }
 
         if ($_GET['fd_cs_code'] === '') {
-            $s_cs_code = '';
             $v_cs_code = '';
         } else {
-            $s_cs_code = $_GET['fd_cs_code'];
             $v_cs_code = $_GET['fd_cs_code'];
         }
 
         if ($_GET['fd_cs_name'] === '') {
-            // $s_cs_name = '';
             $v_cs_name = '';
         } else {
-            // $s_cs_name = $_GET['fd_cs_name'];
             $v_cs_name = $_GET['fd_cs_name'];
         }
 
@@ -137,7 +137,7 @@ if (isset($_GET['btn_filter'])) {
             $s_cs_pay_status = 'ทั้งหมด';
             $v_cs_pay_status = 'all';
         }else {
-            $s_cs_pay_status = $_GET['fd_cs_pay_status'];
+            $s_cs_pay_status = getPayStatusText($_GET['fd_cs_pay_status']);
             $v_cs_pay_status = $_GET['fd_cs_pay_status'];
         }
 
@@ -148,7 +148,7 @@ if (isset($_GET['btn_filter'])) {
              $s_cs_status = 'ทั้งหมด';
              $v_cs_status = 'all';
         }else {
-            $s_cs_status = $_GET['fd_cs_status'];
+            $s_cs_status = getStatusText($_GET['fd_cs_status']);
             $v_cs_status = $_GET['fd_cs_status'];
         }
 
@@ -167,7 +167,7 @@ if (isset($_GET['btn_filter'])) {
     $total_pages = ceil($total_records / $per_page);
 
     $select = $conn->prepare("SELECT c.* ,(SELECT count(cs_id) FROM course_lesson WHERE cs_id = c.cs_id) AS cl_count 
-                            FROM course c WHERE c.cs_id IS NOT NULL
+                            FROM course c
                             LIMIT :start_from, :per_page");
     $select->bindParam(':start_from', $start_from, PDO::PARAM_INT);
     $select->bindParam(':per_page', $per_page, PDO::PARAM_INT);
@@ -177,10 +177,8 @@ if (isset($_GET['btn_filter'])) {
     $s_per_page = '-- เลือก --';
     $v_per_page = '';
 
-    // $s_cs_code = '';
     $v_cs_code = '';
 
-    // $s_cs_name = '';
     $v_cs_name = '';
     
     $s_cs_for = '-- เลือก --';
