@@ -1,7 +1,7 @@
 <div class="accordion accordion-hover" id="js_demo_accordion-5">
     <div class="card">
         <div class="card-header">
-            <a href="javascript:void(0);" class="card-title" data-toggle="collapse" data-target="#js_demo_accordion-5a" aria-expanded="true">
+            <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#js_demo_accordion-5a" aria-expanded="false">
                 <i class="fal fa-filter width-2 fs-xl"></i>
                 กรองข้อมูล
                 <span class="ml-auto">
@@ -14,7 +14,7 @@
                 </span>
             </a>
         </div>
-        <div id="js_demo_accordion-5a" class="collapse show" data-parent="#js_demo_accordion-5">
+        <div id="js_demo_accordion-5a" class="collapse" data-parent="#js_demo_accordion-5">
             <div class="card-body">
 
                 <form action="" method="GET" enctype="multipart/form-data">
