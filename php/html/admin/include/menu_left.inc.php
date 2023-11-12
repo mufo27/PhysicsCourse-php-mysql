@@ -25,46 +25,46 @@
 
             <li class="nav-title"><h5>รายงานข้อมูล</h5></li>
 
-             <li class="<?= $main; ?>">
-                <a href="?main" title="" data-filter-tags="">
+             <li id="main" class="nav-item">
+                <a href="?active=main&main" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">หน้าแรก</span>
                 </a>
             </li>
 
-            <li class="<?= $summarys; ?>">
-                <a href="?summarys" title="" data-filter-tags="">
+            <li id="summarys" class="nav-item">
+                <a href="?active=summarys&summarys" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">รายงานผลการเรียน</span>
                 </a>
             </li>
 
             <li class="nav-title"><h5>จัดการข้อมูล</h5></li>
 
-            <li class="<?= $course; ?>">
-                <a href="?course" title="" data-filter-tags="">
+            <li id="course" class="nav-item">
+                <a href="?active=course&course" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">1. คอร์สเรียน</span>
                 </a>
             </li>
 
-            <li class="<?= $lesson; ?>">
-                <a href="?lesson" title="" data-filter-tags="">
+            <li id="lesson" class="nav-item">
+                <a href="?active=lesson&lesson" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">2. บทเรียน</span>
                 </a>
             </li>
 
-            <li class="<?= $quiz; ?>">
-                <a href="?quiz" title="" data-filter-tags="">
+            <li id="quiz" class="nav-item">
+                <a href="?active=quiz&quiz" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">3. แบบทดสอบ</span>
                 </a>
             </li>
 
-            <li class="<?= $exe; ?>">
-                <a href="?exe" title="" data-filter-tags="">
+            <li id="exe" class="nav-item">
+                <a href="?active=exe&exe" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">4. แบบฝึกหัด</span>
                 </a>
             </li>
 
-            <li class="<?= $class_room; ?>">
-                <a href="?class_room" title="" data-filter-tags="">
+            <li id="class_room" class="nav-item">
+                <a href="?active=class_room&class_room" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">5. ห้องเรียน</span>
                 </a>
             </li>

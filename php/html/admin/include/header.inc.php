@@ -1,3 +1,7 @@
+<meta charset="utf-8">
+
+<!-- <title></title> -->
+
 <meta name="description" content="Basic">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -18,6 +22,10 @@
 
 <link rel="stylesheet" media="screen, print" href="../assets/dist/css/fa-brands.css">
 <link rel="stylesheet" media="screen, print" href="../assets/dist/css/fa-solid.css">
+
+<!-- <link rel="stylesheet" media="screen, print" href="../assets/dist/css/notifications/sweetalert2/sweetalert2.bundle.css">
+<link rel="stylesheet" media="screen, print" href="../assets/dist/css/theme-demo.css"> -->
+
 <link rel="stylesheet" href="include/style.css">
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -93,7 +93,7 @@ if (isset($_POST['btn_update'])) {
                         timer: 2000
                     });
                     </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course\">";
+            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
             exit;
         } else {
             echo '<script type="text/javascript">
@@ -103,7 +103,7 @@ if (isset($_POST['btn_update'])) {
                     text: "โปรด ลองใหม่อีกครั้ง..!!"
                     });
                 </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course\">";
+            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
             exit;
         }
     } catch (PDOException $e) {

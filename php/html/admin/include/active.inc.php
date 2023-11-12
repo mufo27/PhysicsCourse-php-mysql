@@ -1,20 +1,35 @@
 <?php
 
-if (isset($_GET['main'])) {
+// if (isset($_GET['main'])) {
 
-    $main = 'active';
-}
+//     $main = 'active';
+// } else if (isset($_GET['course']) || isset($_GET['course_lesson'])) {
 
+//     $course = 'active';
+// }
 
-if (isset($_GET['course']) || isset($_GET['course_lesson'])) {
+// else if (isset($_GET['lesson']) || isset($_GET['lesson_sub'])) {
 
-    $course = 'active';
-}
+//     $lessons = 'active';
+// } else {
+//     echo 'error: Active';
+// }
 
-if (isset($_GET['lesson']) || isset($_GET['lesson_sub'])) {
+// $active = '';
 
-    $lessons = 'active';
-}
+// switch (true) {
+//     case isset($_GET['main']):
+//         $active = 'main';
+//         break;
+//     case isset($_GET['course']) || isset($_GET['course_lesson']):
+//         $active = 'course';
+//         break;
+//     case isset($_GET['lesson']) || isset($_GET['lesson_sub']):
+//         $active = 'lesson';
+//         break;
+//     default:
+//         echo 'error: Active';
+// }
 
 // if (
 //     isset($_GET['manage_category']) ||

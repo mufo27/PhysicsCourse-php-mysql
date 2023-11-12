@@ -20,7 +20,7 @@ if (isset($_POST['btn_del'])) {
                         timer: 2000
                     });
                     </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
+            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
             exit;
 
         } else {
@@ -32,7 +32,7 @@ if (isset($_POST['btn_del'])) {
                     text: "โปรด ลองใหม่อีกครั้ง..!!"
                     });
                 </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
+            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
             exit;
 
         }

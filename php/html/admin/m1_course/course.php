@@ -94,7 +94,7 @@ include 'c_modal_add.inc.php'
                                             </td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['cs_detail']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="index.php?course_lesson=<?= $row['cs_id']; ?>" class="btn btn-sm btn-info waves-effect waves-themed">
+                                                <a href="?active=course&course_lesson=<?= $row['cs_id']; ?>" class="btn btn-sm btn-info waves-effect waves-themed">
                                                     <span class="fal fa-plus mr-1"></span>
                                                     เพิ่ม (<?= $row['cl_count']; ?>)
                                                     </ฟ>

@@ -14,7 +14,7 @@ if(isset($_POST['btn_save'])){
                 text: "โปรด ต้องเลือกอย่างน้อย 1 รายการ"
                 });
             </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
+        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
         exit;
 
     } else {
@@ -37,7 +37,7 @@ if(isset($_POST['btn_save'])){
                             timer: 2000
                         });
                         </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
+                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
                 exit;
 
             } else {
@@ -50,7 +50,7 @@ if(isset($_POST['btn_save'])){
                             timer: 2000
                         });
                         </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$check_cs_id\">";
+                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
                 exit;
 
             }  

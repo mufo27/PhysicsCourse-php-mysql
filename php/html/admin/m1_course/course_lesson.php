@@ -44,7 +44,7 @@ include 'cl_modal_add.inc.php'
                     <!-- START Button Add-->
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-2">
-                            <a href="?course" class="btn btn-warning btn-block waves-effect waves-themed">
+                            <a href="?active=course&course" class="btn btn-warning btn-block waves-effect waves-themed">
                                 <span class="fal fa-step-backward mr-1"></span> ย้อนกลับ
                             </a>
                         </div>
