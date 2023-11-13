@@ -74,23 +74,23 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดรูปภาพ : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดรูปภาพ :</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_img" class="form-control" required>
+                            <input type="file" id="" name="sls_img" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์แบบฝึกหัด : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์แบบฝึกหัด :</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_sheet" class="form-control" required>
+                            <input type="file" id="" name="sls_sheet" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์เฉลยแบบฝึกหัด : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์เฉลยแบบฝึกหัด :</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_answer" class="form-control" required>
+                            <input type="file" id="" name="sls_answer" class="form-control">
                         </div>
                     </div>
 
