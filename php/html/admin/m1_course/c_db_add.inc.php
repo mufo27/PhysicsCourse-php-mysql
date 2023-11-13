@@ -1,8 +1,8 @@
 <?php
 if (isset($_POST['btn_save'])) {
 
-    $cs_code       = $_POST['cs_code'];
-    $cs_name       = $_POST['cs_name'];
+    $cs_code       = trim($_POST['cs_code']);
+    $cs_name       = trim($_POST['cs_name']);
     $cs_detail     = $_POST['cs_detail'];
     $k_hour        = $_POST['k_hour'];
     $k_minute      = $_POST['k_minute'];
@@ -11,31 +11,34 @@ if (isset($_POST['btn_save'])) {
     $cs_for        = $_POST['cs_for'];
     $cs_status     = $_POST['cs_status'];
 
-    // if (isset($_POST['cs_pay_num'])) {
-    //     $cs_pay_num    = $_POST['cs_pay_num'];
-    // } else {
-    //     $cs_pay_num    = null;
-    // }
+    $select_check = $conn->prepare("SELECT 
+                                        (SELECT COUNT(*) FROM course WHERE cs_code = :cs_code) AS num_code,
+                                        (SELECT COUNT(*) FROM course WHERE cs_name = :cs_name) AS num_name");
+    $select_check->bindParam(':cs_code', $cs_code);
+    $select_check->bindParam(':cs_name', $cs_name);
+    $select_check->execute();
+    $row_check = $select_check->fetch(PDO::FETCH_ASSOC);
 
-    //ตรวจสอบรหััสคอร์สเรียนซ้ำ หรือ ชื่อคอร์สเรียนซ้ำ
-    $select = $conn->prepare("SELECT count(*) AS check_num FROM course WHERE cs_code=:cs_code OR cs_name=:cs_name");
-    $select->bindParam(':cs_code', $cs_code);
-    $select->bindParam(':cs_name', $cs_name);
-    $select->execute();
-    $row = $select->fetch(PDO::FETCH_ASSOC);
-
-    if ($row['check_num'] > 0) {
-        
+    if ($row_check['num_code'] > 0) {
         echo '<script type="text/javascript">
                 Swal.fire({
                 icon: "error",
                 title: "ล้มเหลว",
-                text: "**ซ้ำ** มีข้อมูลอยู่ในระบบแล้ว..!!"
+                text: "**ซ้ำ** มีรหัสคอร์สเรียนอยู่ในระบบแล้ว..!!"
                 });
             </script>';
         echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
         exit;
-
+    } else if ($row_check['num_name'] > 0) {
+        echo '<script type="text/javascript">
+                Swal.fire({
+                icon: "error",
+                title: "ล้มเหลว",
+                text: "**ซ้ำ** มีชื่อคอร์สเรียนอยู่ในระบบแล้ว..!!"
+                });
+            </script>';
+        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+        exit;
     } else {
 
         try {

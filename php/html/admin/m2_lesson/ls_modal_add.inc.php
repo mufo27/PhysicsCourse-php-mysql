@@ -4,6 +4,8 @@
 
             <form action="" method="post" enctype="multipart/form-data">
 
+                <input type="hidden" id="" name="ls_id" value="<?= $ls_id?>">
+
                 <div class="modal-header">
                     <h4 class="modal-title">
                         แบบฟอร์ม เพิ่มหัวข้อย่อยในบทเรียน
@@ -13,13 +15,6 @@
                     </button>
                 </div>
                 <div class="modal-body bg-faded">
-
-                    <!-- <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัสคอร์สเรียน : <span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
-                            <input type="text" id="" name="cs_code" class="form-control" required>
-                        </div>
-                    </div> -->
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">หัวข้อย่อย : <span class="text-danger">*</span></label>
@@ -45,31 +40,33 @@
                     <div class="form-group row">
 
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">แบบฝึกหัด : <span class="text-danger">*</span></label>
-                        <div class="col-lg-3">
-                            <select class="custom-select form-control" id="" name="cs_for" required>
+                        <div class="col-lg-9">
+                            <select class="custom-select form-control" id="" name="ex_id" required>
                                 <option value="">-- เลือก --</option>
                                 <?php
                                 $sql_ex = $conn->prepare("SELECT ex_id, ex_name FROM exercises ORDER BY ex_name ASC");
                                 $sql_ex->execute();
                                 while ($row_ex = $sql_ex->fetch(PDO::FETCH_ASSOC)) {
                                 ?>
-                                    <option value="<?= $row_ex['ex_id']; ?>"> <?= $row_ex['ex_name']; ?>
-                                    </option>
+                                    <option value="<?= $row_ex['ex_id']; ?>"><?= $row_ex['ex_name']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
 
+                    </div>
+
+                    <div class="form-group row">
+
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">แบบทดสอบ : <span class="text-danger">*</span></label>
-                        <div class="col-lg-3">
-                            <select class="custom-select form-control" id="" name="cs_status" required>
+                        <div class="col-lg-9">
+                            <select class="custom-select form-control" id="" name="z_id" required>
                                 <option value="">-- เลือก --</option>
                                 <?php
                                 $sql_qz = $conn->prepare("SELECT z_id, z_name FROM quiz ORDER BY z_name ASC");
                                 $sql_qz->execute();
                                 while ($row_qz = $sql_qz->fetch(PDO::FETCH_ASSOC)) {
                                 ?>
-                                    <option value="<?= $row_qz['z_id']; ?>"> <?= $row_qz['z_name']; ?>
-                                    </option>
+                                    <option value="<?= $row_qz['z_id']; ?>"><?= $row_qz['z_name']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -79,21 +76,21 @@
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดรูปภาพ : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="cs_img" class="form-control" required>
+                            <input type="file" id="" name="sls_img" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์แบบฝึกหัด : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="cs_cer" class="form-control" required>
+                            <input type="file" id="" name="sls_sheet" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์เฉลยแบบฝึกหัด : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="cs_cer" class="form-control" required>
+                            <input type="file" id="" name="sls_answer" class="form-control" required>
                         </div>
                     </div>
 

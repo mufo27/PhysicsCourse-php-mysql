@@ -2,35 +2,41 @@
 
 if (isset($_POST['btn_save'])) {
 
-    $sls_name      = $_POST['sls_name'];
+    $sls_name      = trim($_POST['sls_name']);
     $sls_detail    = $_POST['sls_detail'];
-    $sls_youtube   = $_POST['sls_youtube'];
-    $sls_refer     = $_POST['sls_refer'];
-    $ls_id         = $_POST['btn_save'];
+    $sls_youtube   = trim($_POST['sls_youtube']);
+    $sls_refer     = trim($_POST['sls_refer']);
+    $ls_id         = $_POST['ls_id'];
     $ex_id         = $_POST['ex_id'];
     $z_id          = $_POST['z_id'];
 
 
-    $select = $conn->prepare("SELECT count(*) AS check_num FROM sub_lesson WHERE z_id=:z_id AND sls_name=:sls_name");
-    $select->bindParam(':z_id', $z_id);
+    $select = $conn->prepare("SELECT count(*) AS check_num FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
+    $select->bindParam(':ls_id', $ls_id);
     $select->bindParam(':sls_name', $sls_name);
     $select->execute();
     $row = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($row['check_num'] > 0) {
 
-        echo "<script>alert('**ซ้ำ** มีข้อมูลอยู่ในระบบแล้ว..!!')</script>";
-        echo "<script>window.location='javascript:history.back(-1)';</script>";
+        echo '<script type="text/javascript">
+                Swal.fire({
+                    icon: "error",
+                    title: "ล้มเหลว",
+                    text: "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!"
+                    });
+                </script>';
+        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
         exit;
+
     } else {
 
         try {
 
-            $file_location = "sub-lessons/upload/";
+            $file_location = "upload/lesson_sub/";
 
             // ใบความรู้รูปภาพ
             if ($_FILES['sls_img']['tmp_name'] == "") {
-
                 $newfilename_img   = "";
             } else {
 
@@ -49,7 +55,6 @@ if (isset($_POST['btn_save'])) {
 
                 $newfilename_sheet = "";
             } else {
-
                 $allowedExts_sheet    =   array("pdf,docx");
                 $temp_sheet           =   explode(".", $_FILES["sls_sheet"]["name"]);
                 $source_file_sheet    =   $_FILES['sls_sheet']['tmp_name'];
@@ -60,9 +65,8 @@ if (isset($_POST['btn_save'])) {
                 move_uploaded_file($source_file_sheet, $file_location . $newfilename_sheet);
             }
 
-            //ใบความรู้แบบฝึกหัด
+            //ใบความรู้เฉลยแบบฝึกหัด
             if ($_FILES['sls_answer']['tmp_name'] == "") {
-
                 $newfilename_answer = "";
             } else {
 
@@ -96,18 +100,24 @@ if (isset($_POST['btn_save'])) {
 
                 echo '<script type="text/javascript">
                             Swal.fire({
-                                title: "สร้างหัวข้อย่อย เรียบร้อย...!!", 
                                 icon: "success",
+                                title: "บันทึกข้อมูล เรียบร้อย...!!", 
                                 showConfirmButton: false,
                                 timer: 2000
                             });
                             </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=index.php?sub_lesson=$check_id&ls_name=$ls_name\">";
+                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
                 exit;
             } else {
 
-                echo "<script>alert('error..!!')</script>";
-                echo "<script>window.location='javascript:history.back(-1)';</script>";
+                echo '<script type="text/javascript">
+                        Swal.fire({
+                            icon: "error",
+                            title: "ล้มเหลว",
+                            text: "โปรด ลองใหม่อีกครั้ง..!!"
+                            });
+                        </script>';
+                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
                 exit;
             }
         } catch (PDOException $e) {

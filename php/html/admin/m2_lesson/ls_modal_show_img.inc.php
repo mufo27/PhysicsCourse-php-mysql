@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body bg-faded">
-                <img src="upload/sub-lessons/<?= $row_sls_lesson['sls_img'];  ?>" alt="Image" class="img-fluid">
+                <img src="upload/lesson_sub/<?= $row_sls_lesson['sls_img'];  ?>" alt="Image" class="img-fluid">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>

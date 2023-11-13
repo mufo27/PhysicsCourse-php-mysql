@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body bg-faded">
                 <?php if ($row_sls_lesson['sls_sheet'] != null) { ?>
-                    <iframe src="upload/sub-lessons/<?= $row_sls_lesson['sls_sheet'];  ?>" width="100%" height="600px"></iframe>
+                    <iframe src="upload/lesson_sub/<?= $row_sls_lesson['sls_sheet'];  ?>" width="100%" height="600px"></iframe>
                 <?php } else { ?>
                     <h4>ไม่มีไฟล์</h4>
                 <?php } ?>

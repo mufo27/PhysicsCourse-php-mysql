@@ -4,6 +4,8 @@
 
             <form action="" method="post" enctype="multipart/form-data">
 
+                <input type="hidden" id="" name="check_ls_name" value="<?= $row['ls_name']; ?>">
+
                 <div class="modal-header">
                     <h4 class="modal-title">
                         แบบฟอร์ม แก้ไขบทเรียน

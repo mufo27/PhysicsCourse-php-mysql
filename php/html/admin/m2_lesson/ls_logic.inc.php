@@ -58,26 +58,26 @@ if (isset($_GET['btn_filter'])) {
         $sql .= " LIMIT :start_from, :per_page ";
 
         $select_all = $conn->prepare($sql_all);
-        $select_sls_lesson = $conn->prepare($sql);
+        $select = $conn->prepare($sql);
 
         if ($_GET['fd_sls_id'] !== '') {
             $fd_sls_id = '%' . $_GET['fd_sls_id'] . '%';
             $select_all->bindParam(':fd_sls_id', $fd_sls_id, PDO::PARAM_STR);
-            $select_sls_lesson->bindParam(':fd_sls_id', $fd_sls_id, PDO::PARAM_STR);
+            $select->bindParam(':fd_sls_id', $fd_sls_id, PDO::PARAM_STR);
         }
         if ($_GET['fd_sls_name'] !== '') {
             $fd_sls_name = '%' . $_GET['fd_sls_name'] . '%';
             $select_all->bindParam(':fd_sls_name', $fd_sls_name, PDO::PARAM_STR);
-            $select_sls_lesson->bindParam(':fd_sls_name', $fd_sls_name, PDO::PARAM_STR);
+            $select->bindParam(':fd_sls_name', $fd_sls_name, PDO::PARAM_STR);
         }
 
         $select_all->bindParam(':ls_id', $ls_id, PDO::PARAM_INT);
-        $select_sls_lesson->bindParam(':ls_id', $ls_id, PDO::PARAM_INT);
-        $select_sls_lesson->bindParam(':start_from', $start_from, PDO::PARAM_INT);
-        $select_sls_lesson->bindParam(':per_page', $per_page, PDO::PARAM_INT);
+        $select->bindParam(':ls_id', $ls_id, PDO::PARAM_INT);
+        $select->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+        $select->bindParam(':per_page', $per_page, PDO::PARAM_INT);
 
         $select_all->execute();
-        $select_sls_lesson->execute();
+        $select->execute();
 
         $total_records = $select_all->fetchColumn();
         $total_pages = ceil($total_records / $per_page);
@@ -122,16 +122,16 @@ if (isset($_GET['btn_filter'])) {
 
     $total_pages = ceil($total_records / $per_page);
 
-    $select_sls_lesson = $conn->prepare("SELECT sls.*, ex.ex_name AS exe_name, qz.z_name AS qz_name  
+    $select = $conn->prepare("SELECT sls.*, ex.ex_name AS exe_name, qz.z_name AS qz_name  
                                         FROM sub_lesson sls 
                                             INNER JOIN exercises ex ON sls.ex_id = ex.ex_id 
                                             INNER JOIN quiz qz ON sls.z_id = qz.z_id 
                                         WHERE sls.ls_id = :ls_id 
                                         LIMIT :start_from, :per_page");
-    $select_sls_lesson->bindParam(':ls_id', $ls_id, PDO::PARAM_INT);
-    $select_sls_lesson->bindParam(':start_from', $start_from, PDO::PARAM_INT);
-    $select_sls_lesson->bindParam(':per_page', $per_page, PDO::PARAM_INT);
-    $select_sls_lesson->execute();
+    $select->bindParam(':ls_id', $ls_id, PDO::PARAM_INT);
+    $select->bindParam(':start_from', $start_from, PDO::PARAM_INT);
+    $select->bindParam(':per_page', $per_page, PDO::PARAM_INT);
+    $select->execute();
 
     $s_per_page = '-- เลือก --';
     $v_per_page = '';

@@ -4,6 +4,10 @@
 
             <form action="" method="post" enctype="multipart/form-data">
 
+                <input type="hidden" id="" name="cs_id" value="<?= $row['cs_id']; ?>">
+                <input type="hidden" id="" name="check_cs_code" value="<?= $row['cs_code']; ?>">
+                <input type="hidden" id="" name="check_cs_name" value="<?= $row['cs_name']; ?>">
+                
                 <div class="modal-header">
                     <h4 class="modal-title">
                         แบบฟอร์ม แก้ไขคอร์สเรียน
@@ -62,7 +66,6 @@
 
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">จำนวนเงิน : <span class="text-danger">(กรณีไม่ฟรี)</span></label>
                         <div class="col-lg-3">
-                            <!-- <input type="number" id="cs_pay_num2" name="cs_pay_num" class="form-control" min="0" max="999999" value="<?= $row['cs_pay_num']; ?>" disabled> -->
                             <input type="number" id="cs_pay_num2" name="cs_pay_num" class="form-control" min="0" max="999999" value="<?= $row['cs_pay_num']; ?>">
                         </div>
 
@@ -128,7 +131,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                    <button type="submit" name="btn_update" value="<?= $row['cs_id']; ?>" class="btn btn-warning">อัพเดทข้อมูล</button>
+                    <button type="submit" name="btn_update" class="btn btn-warning">อัพเดทข้อมูล</button>
                 </div>
             </form>
 

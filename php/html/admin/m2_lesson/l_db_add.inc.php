@@ -2,10 +2,11 @@
 
 if (isset($_POST['btn_save'])) {
 
-    $ls_name   = $_POST['ls_name'];
+    $ls_name   = trim($_POST['ls_name']);
     $ls_detail = $_POST['ls_detail'];
 
-    $select = $conn->prepare("SELECT count(*) AS check_num FROM lesson WHERE ls_name = '$ls_name'");
+    $select = $conn->prepare("SELECT count(*) AS check_num FROM lesson WHERE ls_name = :ls_name");
+    $select->bindParam(':ls_name', $ls_name);
     $select->execute();
     $row = $select->fetch(PDO::FETCH_ASSOC);
 
@@ -15,7 +16,7 @@ if (isset($_POST['btn_save'])) {
                 Swal.fire({
                     icon: "error",
                     title: "ล้มเหลว",
-                    text: "**ซ้ำ** มีข้อมูลอยู่ในระบบแล้ว..!!"
+                    text: "**ซ้ำ** มีบทเรียนอยู่ในระบบแล้ว..!!"
                     });
                 </script>';
         echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson\">";

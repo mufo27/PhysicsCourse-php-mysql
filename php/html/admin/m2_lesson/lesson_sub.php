@@ -78,30 +78,37 @@ include 'ls_modal_add.inc.php'
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     <?php
                                     $i = 1;
-                                    while ($row_sls_lesson = $select_sls_lesson->fetch(PDO::FETCH_ASSOC)) {
+                                    while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
                                     ?>
                                         <tr>
                                             <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
-                                            <td style="text-align: center; vertical-align: middle;"><?= $row_sls_lesson['sls_id']; ?></td>
+                                            <td style="text-align: center; vertical-align: middle;"><?= $row['sls_id']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;">
-                                                <?= $row_sls_lesson['sls_name']; ?>
+                                                <?= $row['sls_name']; ?>
                                                 <hr>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show1-modal<?= $row_sls_lesson['sls_id']; ?>"><i class="fal fa-image"></i> รูปภาพ</button>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show2-modal<?= $row_sls_lesson['sls_id']; ?>"><i class="fal fa-video"></i> คลิปวิดิโอ</button>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show3-modal<?= $row_sls_lesson['sls_id']; ?>"><i class="fal fa-file-pdf"></i> ไฟล์แบบฝึกหัด</button>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show4-modal<?= $row_sls_lesson['sls_id']; ?>"><i class="fal fa-file-check"></i> ไฟล์เฉลย</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show1-modal<?= $row['sls_id']; ?>"><i class="fal fa-image"></i> รูปภาพ</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show2-modal<?= $row['sls_id']; ?>"><i class="fal fa-video"></i> คลิปวิดิโอ</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show3-modal<?= $row['sls_id']; ?>"><i class="fal fa-file-pdf"></i> ไฟล์แบบฝึกหัด</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show4-modal<?= $row['sls_id']; ?>"><i class="fal fa-file-check"></i> ไฟล์เฉลย</button>
                                             </td>
-                                            <td style="text-align: left; vertical-align: middle;"><?= $row_sls_lesson['sls_detail']; ?></td>
-                                            <td style="text-align: left; vertical-align: middle;"><?= $row_sls_lesson['sls_refer']; ?></td>
-                                            <td style="text-align: left; vertical-align: middle;"><?= $row_sls_lesson['exe_name']; ?></td>
-                                            <td style="text-align: left; vertical-align: middle;"><?= $row_sls_lesson['qz_name']; ?></td>
+                                            <td style="text-align: left; vertical-align: middle;"><?= $row['sls_detail']; ?></td>
+                                            <td style="text-align: left; vertical-align: middle;"><?= $row['sls_refer']; ?></td>
+                                            <td style="text-align: left; vertical-align: middle;"><?= $row['exe_name']; ?></td>
+                                            <td style="text-align: left; vertical-align: middle;"><?= $row['qz_name']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row_sls_lesson['sls_id']; ?>"><i class="fal fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row_sls_lesson['sls_id']; ?>"><i class="fal fa-times"></i></button>
+                                                <button type="button" class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['sls_id']; ?>"><i class="fal fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['sls_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
+
+                                        <!-- Modal Edit -->
+                                        <?php include 'ls_modal_edit.inc.php' ?>
+
+                                        <!-- Modal Delete -->
+                                        <?php include 'ls_modal_del.inc.php' ?>
 
                                         <!-- Modal Show Image -->
                                         <?php include 'ls_modal_show_img.inc.php' ?>
@@ -115,14 +122,8 @@ include 'ls_modal_add.inc.php'
                                         <!-- Modal Show EXE -->
                                         <?php include 'ls_modal_show_exe.inc.php' ?>
 
-                                        <!-- Modal Edit -->
-                                        <?php //include 'ls_modal_edit.inc.php' ?>
-
-                                        <!-- Modal Delete -->
-                                        <?php //include 'ls_modal_del.inc.php' ?>
-
-
                                     <?php } ?>
+
                                 </tbody>
                             </table>
                         </div>
