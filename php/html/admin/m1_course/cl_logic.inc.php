@@ -22,8 +22,13 @@ if (isset($_GET['btn_filter'])) {
 
         if ($_GET['fd_per_page'] !== '' && $_GET['fd_per_page'] !== 'all') {
             $per_page = intval($_GET['fd_per_page']);
+        } else if ($_GET['fd_per_page'] === 'all') {
+            $sql_v_all = $conn->prepare("SELECT COUNT(*) FROM course_lesson cl WHERE cl.cs_id = :cs_id");
+            $sql_v_all->bindParam(':cs_id', $cs_id, PDO::PARAM_INT);
+            $sql_v_all->execute();
+            $per_page = $sql_v_all->fetchColumn();
         } else {
-            $per_page = 10;
+            $per_page = 5;
         }
 
         $fd_ls_id = trim($_GET['fd_ls_id']);
@@ -99,7 +104,7 @@ if (isset($_GET['btn_filter'])) {
     }
 } else {
 
-    $per_page = 10;
+    $per_page = 5;
 
     $start_from = ($page - 1) * $per_page;
 

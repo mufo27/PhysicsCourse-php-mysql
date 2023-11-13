@@ -31,10 +31,10 @@
 
                                     <option value="<?= $v_per_page; ?>"><?= $s_per_page; ?></option>
 
+                                    <option value="5">5</option>
                                     <option value="10">10</option>
-                                    <option value="20">20</option>
+                                    <option value="25">25</option>
                                     <option value="50">50</option>
-                                    <option value="100">100</option>
                                     <option value="all">ทั้งหมด</option>
                                 </select>
                             </div>

@@ -9,7 +9,7 @@
             <ul class="pagination justify-content-end">
                 <?php if ($page > 1) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="index.php?course&page=<?= $page - 1 ?>" tabindex="-1" aria-disabled="true">ก่อนหน้า</a>
+                        <a class="page-link" href="?active=course&course&page=<?= $page - 1 ?>" tabindex="-1" aria-disabled="true">ก่อนหน้า</a>
                     </li>
                 <?php else : ?>
                     <li class="page-item disabled">
@@ -19,7 +19,7 @@
 
                 <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
                     <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-                        <a class="page-link" href="index.php?course&page=<?= $i ?>">
+                        <a class="page-link" href="?active=course&course&page=<?= $i ?>">
                             <?= $i ?>
                             <?php if ($i == $page) : ?>
                                 <span class="sr-only">(current)</span>
@@ -30,7 +30,7 @@
 
                 <?php if ($page < $total_pages) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="index.php?course&page=<?= $page + 1 ?>">ถัดไป</a>
+                        <a class="page-link" href="?active=course&course&page=<?= $page + 1 ?>">ถัดไป</a>
                     </li>
                 <?php else : ?>
                     <li class="page-item disabled">
