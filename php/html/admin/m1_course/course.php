@@ -10,7 +10,7 @@ require_once 'c_db_edit.inc.php';
 require_once 'c_db_del.inc.php';
 
 // Modal Add
-include 'c_modal_add.inc.php'
+include 'c_modal_add.inc.php';
 ?>
 
 
@@ -36,7 +36,7 @@ include 'c_modal_add.inc.php'
                         <div class="col-sm-12">
 
                             <!-- START Filter Data  -->
-                            <?php include 'c_filter_data.inc.php' ?>
+                            <?php include 'c_filter_data.inc.php'; ?>
                             <!-- END Filter Data  -->
 
                         </div>
@@ -76,11 +76,8 @@ include 'c_modal_add.inc.php'
                                 <tbody>
                                     <?php
 
-                                    $i = 1;
+                                    $i = ($per_page * ($page - 1)) + 1;
                                     while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
-
-                                        // $show_cs_pay_status = ($row['cs_pay_status'] == 0) ? 'ฟรี' : 'ไม่ฟรี';
-                                        $show_status = ($row['cs_status'] == '0') ? 'ปิด' : 'เปิด';
 
                                     ?>
                                         <tr>
@@ -129,16 +126,16 @@ include 'c_modal_add.inc.php'
                                         </tr>
 
                                         <!-- Modal Edit -->
-                                        <?php include 'c_modal_edit.inc.php' ?>
+                                        <?php include 'c_modal_edit.inc.php'; ?>
 
                                         <!-- Modal Delete -->
-                                        <?php include 'c_modal_del.inc.php' ?>
+                                        <?php include 'c_modal_del.inc.php'; ?>
 
                                         <!-- Modal Image -->
-                                        <?php include 'c_modal_show_img.inc.php' ?>
+                                        <?php include 'c_modal_show_img.inc.php'; ?>
 
                                         <!-- Modal Cer -->
-                                        <?php include 'c_modal_show_cer.inc.php' ?>
+                                        <?php include 'c_modal_show_cer.inc.php'; ?>
 
 
                                     <?php } ?>
@@ -149,7 +146,7 @@ include 'c_modal_add.inc.php'
                     <!-- END Table -->
 
                     <!-- START Pagination -->
-                    <?php include 'c_pagination.inc.php' ?>
+                    <?php generatePagination($page, $total_pages, $per_page, $total_records, '?active=course&course&page='); ?>
                     <!-- END Pagination -->
 
                 </div>
@@ -159,22 +156,3 @@ include 'c_modal_add.inc.php'
     </div>
 
 </div>
-
-<script>
-    // function checkPaymentStatus(index) {
-    //     var paymentStatusDropdown = document.getElementById(`cs_pay_status${index}`);
-    //     var amountField = document.getElementById(`cs_pay_num${index}`);
-
-    //     paymentStatusDropdown.addEventListener("change", function() {
-    //         amountField.disabled = (paymentStatusDropdown.value !== "1");
-    //     });
-
-    //     paymentStatusDropdown.dispatchEvent(new Event("change"));
-    // }
-
-    // let index = 1;
-    // while (document.getElementById(`cs_pay_status${index}`)) {
-    //     checkPaymentStatus(index);
-    //     index++;
-    // }
-</script>

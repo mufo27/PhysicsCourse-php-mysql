@@ -1,16 +1,16 @@
 <?php
 // Inclue File Logic & Select Data
-require_once 'l_logic.inc.php';
+require_once 'q_logic.inc.php';
 
 // Include File Add DB
-require_once 'l_db_add.inc.php';
+require_once 'q_db_add.inc.php';
 // Include File Edit DB
-require_once 'l_db_edit.inc.php';
+require_once 'q_db_edit.inc.php';
 // Include File Del DB
-require_once 'l_db_del.inc.php';
+require_once 'q_db_del.inc.php';
 
 // Modal Add
-include 'l_modal_add.inc.php'
+include 'q_modal_add.inc.php';
 ?>
 
 <ol class="breadcrumb page-breadcrumb">
@@ -35,7 +35,7 @@ include 'l_modal_add.inc.php'
                         <div class="col-sm-12">
 
                             <!-- START Filter Data  -->
-                            <?php include 'l_filter_data.inc.php' ?>
+                            <?php include 'q_filter_data.inc.php'; ?>
                             <!-- END Filter Data  -->
 
                         </div>
@@ -71,7 +71,7 @@ include 'l_modal_add.inc.php'
                                 <tbody>
                                     <?php
 
-                                    $i = 1;
+                                    $i = ($per_page * ($page - 1)) + 1;
                                     while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
 
                                     ?>
@@ -96,10 +96,10 @@ include 'l_modal_add.inc.php'
                                         </tr>
 
                                         <!-- Modal Edit -->
-                                        <?php include 'l_modal_edit.inc.php' ?>
+                                        <?php include 'q_modal_edit.inc.php'; ?>
 
                                         <!-- Modal Delete -->
-                                        <?php include 'l_modal_del.inc.php' ?>
+                                        <?php include 'q_modal_del.inc.php'; ?>
 
 
                                     <?php } ?>
@@ -110,7 +110,7 @@ include 'l_modal_add.inc.php'
                     <!-- END Table -->
 
                     <!-- START Pagination -->
-                    <?php include 'l_pagination.inc.php' ?>
+                    <?php generatePagination($page, $total_pages, $per_page, $total_records, '?active=quiz&quiz&page='); ?>
                     <!-- END Pagination -->
 
                 </div>

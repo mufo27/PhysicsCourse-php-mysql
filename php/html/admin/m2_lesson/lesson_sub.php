@@ -10,7 +10,7 @@ require_once 'ls_db_edit.inc.php';
 require_once 'ls_db_del.inc.php';
 
 // Modal Add
-include 'ls_modal_add.inc.php'
+include 'ls_modal_add.inc.php';
 ?>
 
 <ol class="breadcrumb page-breadcrumb">
@@ -36,7 +36,7 @@ include 'ls_modal_add.inc.php'
                         <div class="col-sm-12">
 
                             <!-- START Filter Data  -->
-                            <?php include 'ls_filter_data.inc.php' ?>
+                            <?php include 'ls_filter_data.inc.php'; ?>
                             <!-- END Filter Data  -->
 
                         </div>
@@ -80,7 +80,7 @@ include 'ls_modal_add.inc.php'
                                 <tbody>
                                     
                                     <?php
-                                    $i = 1;
+                                    $i = ($per_page * ($page - 1)) + 1;
                                     while ($row = $select->fetch(PDO::FETCH_ASSOC)) {
                                     ?>
                                         <tr>
@@ -105,22 +105,22 @@ include 'ls_modal_add.inc.php'
                                         </tr>
 
                                         <!-- Modal Edit -->
-                                        <?php include 'ls_modal_edit.inc.php' ?>
+                                        <?php include 'ls_modal_edit.inc.php'; ?>
 
                                         <!-- Modal Delete -->
-                                        <?php include 'ls_modal_del.inc.php' ?>
+                                        <?php include 'ls_modal_del.inc.php'; ?>
 
                                         <!-- Modal Show Image -->
-                                        <?php include 'ls_modal_show_img.inc.php' ?>
+                                        <?php include 'ls_modal_show_img.inc.php'; ?>
 
                                         <!-- Modal Show Video -->
-                                        <?php include 'ls_modal_show_video.inc.php' ?>
+                                        <?php include 'ls_modal_show_video.inc.php'; ?>
 
                                         <!-- Modal Show Quiz -->
-                                        <?php include 'ls_modal_show_quiz.inc.php' ?>
+                                        <?php include 'ls_modal_show_quiz.inc.php'; ?>
 
                                         <!-- Modal Show EXE -->
-                                        <?php include 'ls_modal_show_exe.inc.php' ?>
+                                        <?php include 'ls_modal_show_exe.inc.php'; ?>
 
                                     <?php } ?>
 
@@ -131,7 +131,7 @@ include 'ls_modal_add.inc.php'
                     <!-- END Table -->
 
                     <!-- START Pagination -->
-                    <?php include 'ls_pagination.inc.php' ?>
+                    <?php generatePagination($page, $total_pages, $per_page, $total_records,  '?active=lesson&lesson_sub=' . $ls_id); ?>
                     <!-- END Pagination -->
 
                 </div>

@@ -4,9 +4,9 @@
 
             <form action="" method="post" enctype="multipart/form-data">
 
-                <input type="hidden" id="" name="cs_id" value="<?= $row['cs_id']; ?>">
-                <input type="hidden" id="" name="check_cs_code" value="<?= $row['cs_code']; ?>">
-                <input type="hidden" id="" name="check_cs_name" value="<?= $row['cs_name']; ?>">
+                <input type="hidden" name="cs_id" value="<?= $row['cs_id']; ?>">
+                <input type="hidden" name="check_cs_code" value="<?= $row['cs_code']; ?>">
+                <input type="hidden" name="check_cs_name" value="<?= $row['cs_name']; ?>">
                 
                 <div class="modal-header">
                     <h4 class="modal-title">
@@ -19,21 +19,21 @@
                 <div class="modal-body bg-faded">
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัส : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_code2">รหัส : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" id="" name="cs_code" class="form-control" value="<?= $row['cs_code']; ?>" required>
+                            <input type="text" id="cs_code2" name="cs_code" class="form-control" value="<?= $row['cs_code']; ?>" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">คอร์สเรียน : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_name2">คอร์สเรียน : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" id="" name="cs_name" class="form-control" value="<?= $row['cs_name']; ?>" required>
+                            <input type="text" id="cs_name2" name="cs_name" class="form-control" value="<?= $row['cs_name']; ?>" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="editor2">รายละเอียด : </label>
                         <div class="col-lg-9">
                             <textarea class="form-control" id="editor2" name="cs_detail" rows="3"><?= $row['cs_detail']; ?></textarea>
                         </div>
@@ -41,21 +41,21 @@
 
                     <div class="form-group row">
 
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ระยะเวลาเรียน ชั่วโมง : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="k_hour2">ระยะเวลาเรียน ชั่วโมง : <span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <input type="number" id="" name="k_hour" class="form-control" value="<?= $row['k_hour']; ?>" min="0" max="999" required>
+                            <input type="number" id="k_hour2" name="k_hour" class="form-control" value="<?= $row['k_hour']; ?>" min="0" max="999" required>
                         </div>
 
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">นาที : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="k_minute2">นาที : <span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <input type="number" id="" name="k_minute" class="form-control" value="<?= $row['k_minute']; ?>" min="0" max="59" required>
+                            <input type="number" id="k_minute2" name="k_minute" class="form-control" value="<?= $row['k_minute']; ?>" min="0" max="59" required>
                         </div>
 
                     </div>
 
                     <div class="form-group row">
 
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ค่าธรรมเนียม : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_pay_status2">ค่าธรรมเนียม : <span class="text-danger">*</span></label>
                         <div class="col-lg-3">
                             <select class="custom-select form-control" id="cs_pay_status2" name="cs_pay_status" required>
                                 <option value="<?= $row['cs_pay_status']; ?>">-- <?= getPayStatusText($row['cs_pay_status']); ?> --</option>
@@ -64,7 +64,7 @@
                             </select>
                         </div>
 
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">จำนวนเงิน : <span class="text-danger">(กรณีไม่ฟรี)</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_pay_num2">จำนวนเงิน : <span class="text-danger">(กรณีไม่ฟรี)</span></label>
                         <div class="col-lg-3">
                             <input type="number" id="cs_pay_num2" name="cs_pay_num" class="form-control" min="0" max="999999" value="<?= $row['cs_pay_num']; ?>">
                         </div>
@@ -73,9 +73,9 @@
 
                     <div class="form-group row">
 
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">เหมาะสำหรับ : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_for2">เหมาะสำหรับ : <span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <select class="custom-select form-control" id="" name="cs_for" required>
+                            <select class="custom-select form-control" id="cs_for2" name="cs_for" required>
                                 <option value="<?= $row['cs_for']; ?> ">-- <?= getGradeText($row['cs_for']); ?> --</option>
                                 <option value="1">ม.1</option>
                                 <option value="2">ม.2</option>
@@ -88,9 +88,9 @@
                             </select>
                         </div>
 
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">สถานะ เปิด/ปิด : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_status2">สถานะ เปิด/ปิด : <span class="text-danger">*</span></label>
                         <div class="col-lg-3">
-                            <select class="custom-select form-control" id="" name="cs_status" required>
+                            <select class="custom-select form-control" id="cs_status2" name="cs_status" required>
                                 <option value="<?= $row['cs_status']; ?>">-- <?= getStatusText($row['cs_status']); ?> --</option>
                                 <option value="0">ค่าเริ่มต้น ปิด</option>
                                 <option value="1">เปิด</option>
@@ -100,30 +100,30 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รูปภาพ : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right">รูปภาพ : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <img src="upload/courses/<?= $row['cs_img']; ?>" class="profile-image-lg" alt="..." width="250px" height="150px">
                             <input type="hidden" name="cs_img_befor" value="<?= $row['cs_img']; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดใหม่:</label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_img2">อัพโหลดใหม่:</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="cs_img" class="form-control" value="">
+                            <input type="file" id="cs_img2" name="cs_img" class="form-control" value="">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">ใบเกียรติบัตร : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right">ใบเกียรติบัตร : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <img src="upload/courses/<?= $row['cs_cer']; ?>" class="profile-image-lg" alt="..." width="250px" height="150px">
                             <input type="hidden" name="cs_cer_befor" value="<?= $row['cs_cer']; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดใหม่:</label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_cer2">อัพโหลดใหม่:</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="cs_cer" class="form-control" value="">
+                            <input type="file" id="cs_cer2" name="cs_cer" class="form-control" value="">
                         </div>
                     </div>
 

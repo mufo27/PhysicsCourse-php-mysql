@@ -9,7 +9,7 @@ require_once 'cl_db_add.inc.php';
 require_once 'cl_db_del.inc.php';
 
 // Modal Add
-include 'cl_modal_add.inc.php'
+include 'cl_modal_add.inc.php';
 ?>
 
 <ol class="breadcrumb page-breadcrumb">
@@ -35,7 +35,7 @@ include 'cl_modal_add.inc.php'
                         <div class="col-sm-12">
 
                             <!-- START Filter Data  -->
-                            <?php include 'cl_filter_data.inc.php' ?>
+                            <?php include 'cl_filter_data.inc.php'; ?>
                             <!-- END Filter Data  -->
 
                         </div>
@@ -74,7 +74,7 @@ include 'cl_modal_add.inc.php'
                                 <tbody>
                                     <?php
 
-                                    $i = 1;
+                                    $i = ($per_page * ($page - 1)) + 1;
                                     while ($row_cs_lesson = $select_cs_lesson->fetch(PDO::FETCH_ASSOC)) {
                                     ?>
                                         <tr>
@@ -87,7 +87,7 @@ include 'cl_modal_add.inc.php'
                                         </tr>
 
                                         <!-- Modal Delete -->
-                                        <?php include 'cl_modal_del.inc.php' ?>
+                                        <?php include 'cl_modal_del.inc.php'; ?>
 
 
                                     <?php } ?>
@@ -98,7 +98,7 @@ include 'cl_modal_add.inc.php'
                     <!-- END Table -->
 
                     <!-- START Pagination -->
-                    <?php include 'cl_pagination.inc.php' ?>
+                    <?php generatePagination($page, $total_pages, $per_page, $total_records,  '?active=course&course_lesson=' . $cs_id); ?>
                     <!-- END Pagination -->
 
                 </div>
