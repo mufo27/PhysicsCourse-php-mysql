@@ -1,5 +1,3 @@
-<?php require_once('active.inc.php'); ?>
-
 <aside class="page-sidebar">
     <div class="page-logo">
         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
@@ -23,21 +21,29 @@
 
         <ul id="js-nav-menu" class="nav-menu">
 
-            <li class="nav-title"><h5>รายงานข้อมูล</h5></li>
+            <li class="nav-title">
+                <h5>MENU</h5>
+            </li>
 
-             <li id="main" class="nav-item">
+            <li id="main" class="nav-item">
                 <a href="?active=main&main" title="" data-filter-tags="">
-                    <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">หน้าแรก</span>
+                    <i class="fal fa-home"></i><span class="nav-link-text" data-i18n="">หน้าแรก</span>
                 </a>
             </li>
 
-            <li id="summarys" class="nav-item">
-                <a href="?active=summarys&summarys" title="" data-filter-tags="">
+            <li class="nav-title">
+                <h5>รายงานข้อมูล</h5>
+            </li>
+
+            <li id="report" class="nav-item">
+                <a href="?active=report&report" title="" data-filter-tags="">
                     <i class="fal fa-analytics"></i><span class="nav-link-text" data-i18n="">รายงานผลการเรียน</span>
                 </a>
             </li>
 
-            <li class="nav-title"><h5>จัดการข้อมูล</h5></li>
+            <li class="nav-title">
+                <h5>จัดการข้อมูล</h5>
+            </li>
 
             <li id="course" class="nav-item">
                 <a href="?active=course&course" title="" data-filter-tags="">
@@ -69,53 +75,53 @@
                 </a>
             </li>
 
-            <li class="<?= $account; ?>">
+            <li id="account" class="nav-item">
                 <a href="#" title="" data-filter-tags="">
                     <i class="fal fa-store-alt"></i>
                     <span class="nav-link-text" data-i18n="">6. บัญชีผู้ใช้งาน</span>
                 </a>
                 <ul>
-                    <li class="<?= $account_student; ?>">
-                        <a href="student.php?student" title="" data-filter-tags="">
+                    <li id="student" class="nav-item">
+                        <a href="?active=student&student" title="" data-filter-tags="">
                             <span class="nav-link-text" data-i18n="">นักเรียน</span>
                         </a>
                     </li>
-                    <li class="<?= $account_member; ?>">
-                        <a href="member.php?member" title="" data-filter-tags="">
-                            <span class="nav-link-text" data-i18n="">สมาชิก (บุคคลทั่วไป)</span>
+                    <li id="member" class="nav-item">
+                        <a href="?active=member&member" title="" data-filter-tags="">
+                            <span class="nav-link-text" data-i18n="">สมาชิก</span>
                         </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li id="press_release" class="nav-item">
+                <a href="?active=press_release&press_release" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">7. ประชาสัมพันธ์</span>
                 </a>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li id="recommend" class="nav-item">
+                <a href="?active=recommend&recommend" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">8. แนะนำคอร์สเรียน</span>
                 </a>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li id="new_registration" class="nav-item">
+                <a href="?active=new_registration&new_registration" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">9. คำร้องขอลงทะเบียนใหม่</span>
                 </a>
             </li>
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
+            <li id="new_password" class="nav-item">
+                <a href="?active=new_password&new_password" title="" data-filter-tags="">
                     <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">10. คำร้องขอรหัสผ่านใหม่</span>
                 </a>
             </li>
 
 
-            <li class="<?= $c_order; ?>">
-                <a href="?c_order" title="" data-filter-tags="">
-                    <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">10. การตั้งค่าเว็บไซต์</span>
+            <li id="web_settings" class="nav-item">
+                <a href="?active=web_settings&web_settings" title="" data-filter-tags="">
+                    <i class="fal fa-list-alt"></i><span class="nav-link-text" data-i18n="">11. การตั้งค่าเว็บไซต์</span>
                 </a>
             </li>
 
@@ -152,8 +158,8 @@
                     </li>
                 </ul>
             </li> -->
-           
-            
+
+
 
             <li class="nav-title"></li>
 

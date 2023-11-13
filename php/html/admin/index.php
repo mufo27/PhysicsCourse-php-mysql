@@ -1,7 +1,12 @@
 <?php
 $_SESSION['id'] = 1;
-require_once 'include/auth.inc.php';
-require_once '../config/con_db.php';
+
+// require_once 'include/auth.inc.php';
+// require_once '../config/con_db.inc.php';
+
+require_once 'include' . DIRECTORY_SEPARATOR . 'auth.inc.php';
+require_once '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'con_db.inc.php';
+require_once 'include' . DIRECTORY_SEPARATOR . 'function.inc.php';
 
 ?>
 
@@ -45,6 +50,18 @@ require_once '../config/con_db.php';
                         case isset($_GET['lesson_sub']):
                             include 'm2_lesson/lesson_sub.php';
                             break;
+                        case isset($_GET['quiz']):
+                            include 'm3_quiz/quiz.php';
+                            break;
+
+                        case isset($_GET['exe']):
+                            include 'm4_exe/exe.php';
+                            break;
+
+                        case isset($_GET['class_room']):
+                            include 'm5_class_room/class_room.php';
+                            break;
+
                         default:
                             echo 'error: Include Page';
                     }

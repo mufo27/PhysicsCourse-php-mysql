@@ -24,25 +24,27 @@ if (isset($_POST['btn_update'])) {
     $row_check = $select_check->fetch(PDO::FETCH_ASSOC);
 
     if ($row_check['num_code'] > 0 && $check_cs_code !== $cs_code) {
-        echo '<script type="text/javascript">
-                    Swal.fire({
-                    icon: "error",
-                    title: "ล้มเหลว",
-                    text: "**ซ้ำ** มีรหัสคอร์สเรียนอยู่ในระบบแล้ว..!!"
-                    });
-                </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-        exit;
+        // echo '<script type="text/javascript">
+        //             Swal.fire({
+        //             icon: "error",
+        //             title: "ล้มเหลว",
+        //             text: "**ซ้ำ** มีรหัสคอร์สเรียนอยู่ในระบบแล้ว..!!"
+        //             });
+        //         </script>';
+        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+        // exit;
+        displayMessage("error", "Error", "**ซ้ำ** มีรหัสคอร์สเรียนอยู่ในระบบแล้ว..!!", "?active=course&course");
     } else if ($row_check['num_name'] > 0 && $check_cs_name !== $cs_name) {
-        echo '<script type="text/javascript">
-                    Swal.fire({
-                    icon: "error",
-                    title: "ล้มเหลว",
-                    text: "**ซ้ำ** มีชื่อคอร์สเรียนอยู่ในระบบแล้ว..!!"
-                    });
-                </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-        exit;
+        // echo '<script type="text/javascript">
+        //             Swal.fire({
+        //             icon: "error",
+        //             title: "ล้มเหลว",
+        //             text: "**ซ้ำ** มีชื่อคอร์สเรียนอยู่ในระบบแล้ว..!!"
+        //             });
+        //         </script>';
+        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+        // exit;
+        displayMessage("error", "Error", "**ซ้ำ** มีชื่อคอร์สเรียนอยู่ในระบบแล้ว..!!", "?active=course&course");
     } else {
         try {
 
@@ -109,27 +111,28 @@ if (isset($_POST['btn_update'])) {
             $update->execute();
 
             if ($update) {
-
-                echo '<script type="text/javascript">
-                    Swal.fire({
-                        icon: "success",
-                        title: "แก้ไขข้อมูล เรียบร้อย...!!", 
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-                exit;
+                // echo '<script type="text/javascript">
+                //     Swal.fire({
+                //         icon: "success",
+                //         title: "แก้ไขข้อมูล เรียบร้อย...!!", 
+                //         showConfirmButton: false,
+                //         timer: 2000
+                //     });
+                //     </script>';
+                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+                // exit;
+                displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", "?active=course&course");
             } else {
-                echo '<script type="text/javascript">
-                    Swal.fire({
-                    icon: "error",
-                    title: "ล้มเหลว",
-                    text: "โปรด ลองใหม่อีกครั้ง..!!"
-                    });
-                </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-                exit;
+                // echo '<script type="text/javascript">
+                //     Swal.fire({
+                //     icon: "error",
+                //     title: "ล้มเหลว",
+                //     text: "โปรด ลองใหม่อีกครั้ง..!!"
+                //     });
+                // </script>';
+                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+                // exit;
+                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course");
             }
         } catch (PDOException $e) {
 

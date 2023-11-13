@@ -10,7 +10,7 @@ if (isset($_POST['btn_update'])) {
     $sls_id        = $_POST['sls_id'];
     $ex_id         = $_POST['ex_id'];
     $z_id          = $_POST['z_id'];
-    
+
     $select = $conn->prepare("SELECT count(*) AS check_num FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
     $select->bindParam(':ls_id', $ls_id);
     $select->bindParam(':sls_name', $sls_name);
@@ -18,17 +18,16 @@ if (isset($_POST['btn_update'])) {
     $row = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($row['check_num'] > 0 && $check_sls_name !== $sls_name) {
-
-        echo '<script type="text/javascript">
-                Swal.fire({
-                    icon: "error",
-                    title: "ล้มเหลว",
-                    text: "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!"
-                    });
-                </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-        exit;
-        
+        // echo '<script type="text/javascript">
+        //         Swal.fire({
+        //             icon: "error",
+        //             title: "ล้มเหลว",
+        //             text: "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!"
+        //             });
+        //         </script>';
+        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
+        // exit;
+        displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson_sub=$ls_id");
     } else {
 
         try {
@@ -107,28 +106,28 @@ if (isset($_POST['btn_update'])) {
             $update->execute();
 
             if ($update) {
-
-                echo '<script type="text/javascript">
-                        Swal.fire({
-                            icon: "success",
-                            title: "แก้ไขข้อมูล เรียบร้อย...!!", 
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-                exit;
+                // echo '<script type="text/javascript">
+                //         Swal.fire({
+                //             icon: "success",
+                //             title: "แก้ไขข้อมูล เรียบร้อย...!!", 
+                //             showConfirmButton: false,
+                //             timer: 2000
+                //         });
+                //         </script>';
+                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
+                // exit;
+                displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", "?active=lesson&lesson_sub=$ls_id");
             } else {
-
-                echo '<script type="text/javascript">
-                        Swal.fire({
-                        icon: "error",
-                        title: "ล้มเหลว",
-                        text: "โปรด ลองใหม่อีกครั้ง..!!"
-                        });
-                    </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-                exit;
+                // echo '<script type="text/javascript">
+                //         Swal.fire({
+                //         icon: "error",
+                //         title: "ล้มเหลว",
+                //         text: "โปรด ลองใหม่อีกครั้ง..!!"
+                //         });
+                //     </script>';
+                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
+                // exit;
+                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson_sub=$ls_id");
             }
         } catch (PDOException $e) {
 

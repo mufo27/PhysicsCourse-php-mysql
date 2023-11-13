@@ -1,19 +1,23 @@
 <?php
+
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 
 if (isset($_GET['btn_filter'])) {
 
     if ($_GET['fd_cs_code'] === '' && $_GET['fd_cs_name'] === '' && $_GET['fd_cs_for'] === '' && $_GET['fd_cs_pay_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_per_page'] === '') {
 
-        echo '<script type="text/javascript">
-                Swal.fire({
-                icon: "error",
-                title: "ล้มเหลว",
-                text: "ต้องเลือกอย่างน้อย 1 รายการ"
-                });
-            </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-        exit;
+        // echo '<script type="text/javascript">
+        //         Swal.fire({
+        //         icon: "error",
+        //         title: "ล้มเหลว",
+        //         text: "ต้องเลือกอย่างน้อย 1 รายการ"
+        //         });
+        //     </script>';
+        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+        // exit;
+
+        displayMessage("error", "ล้มเหลว", "ต้องเลือกอย่างน้อย 1 รายการ", "?active=course&course");
+
     } else {
 
         if ($_GET['fd_per_page'] !== '' && $_GET['fd_per_page'] !== 'all') {
@@ -197,48 +201,4 @@ if (isset($_GET['btn_filter'])) {
     
 }
 
-function getGradeText($grade)
-{
-    switch ($grade) {
-        case 1:
-            return 'ม.1';
-        case 2:
-            return 'ม.2';
-        case 3:
-            return 'ม.3';
-        case 4:
-            return 'ม.4';
-        case 5:
-            return 'ม.5';
-        case 6:
-            return 'ม.6';
-        case 7:
-            return 'ป.ตรี';
-        default:
-            return 'ทั้งหมด';
-    }
-}
 
-function getPayStatusText($grade)
-{
-    switch ($grade) {
-        case 0:
-            return 'ฟรี';
-        case 1:
-            return 'ไม่ฟรี';
-        default:
-            return 'ทั้งหมด';
-    }
-}
-
-function getStatusText($grade)
-{
-    switch ($grade) {
-        case 0:
-            return 'ปิด';
-        case 1:
-            return 'เปิด';
-        default:
-            return 'ทั้งหมด';
-    }
-}

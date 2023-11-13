@@ -33,28 +33,28 @@ if (isset($_POST['btn_del'])) {
         $delete_c->execute();
 
         if ($delete_cr && $delete_cl && $delete_c) {
-
-            echo '<script type="text/javascript">
-                    Swal.fire({
-                        icon: "success",
-                        title: "ลบข้อมูล เรียบร้อย...!!", 
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-            exit;
+            // echo '<script type="text/javascript">
+            //         Swal.fire({
+            //             icon: "success",
+            //             title: "ลบข้อมูล เรียบร้อย...!!", 
+            //             showConfirmButton: false,
+            //             timer: 2000
+            //         });
+            //         </script>';
+            // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+            // exit;
+            displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", "?active=course&course");
         } else {
-
-            echo '<script type="text/javascript">
-                    Swal.fire({
-                    icon: "error",
-                    title: "ล้มเหลว",
-                    text: "โปรด ลองใหม่อีกครั้ง..!!"
-                    });
-                </script>';
-            echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-            exit;
+            // echo '<script type="text/javascript">
+            //         Swal.fire({
+            //         icon: "error",
+            //         title: "ล้มเหลว",
+            //         text: "โปรด ลองใหม่อีกครั้ง..!!"
+            //         });
+            //     </script>';
+            // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
+            // exit;
+            displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course");
         }
     } catch (PDOException $e) {
 

@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['btn_save'])){
+if (isset($_POST['btn_save'])) {
 
     $check = $_POST['check'];
     $check_cs_id = $_POST['btn_save'];
@@ -7,60 +7,56 @@ if(isset($_POST['btn_save'])){
 
     if (empty($check) || $check == 0) {
 
-        echo '<script type="text/javascript">
-                Swal.fire({
-                icon: "error",
-                title: "ล้มเหลว",
-                text: "โปรด ต้องเลือกอย่างน้อย 1 รายการ"
-                });
-            </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
-        exit;
-
+        // echo '<script type="text/javascript">
+        //         Swal.fire({
+        //         icon: "error",
+        //         title: "ล้มเหลว",
+        //         text: "โปรด ต้องเลือกอย่างน้อย 1 รายการ"
+        //         });
+        //     </script>';
+        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
+        // exit;
+        displayMessage("error", "Error", "โปรดเลือกอย่างน้อย 1 รายการ", "?active=course&course_lesson=$check_cs_id");
     } else {
 
         try {
-            
+
             foreach ($check as $key) {
                 $insert = $conn->prepare("INSERT INTO course_lesson (cs_id, ls_id) VALUES (:cs_id, :ls_id)");
-                $insert->bindParam(':cs_id'     ,  $check_cs_id); 
-                $insert->bindParam(':ls_id'     ,  $check_ls_id[$key]); 
+                $insert->bindParam(':cs_id',  $check_cs_id);
+                $insert->bindParam(':ls_id',  $check_ls_id[$key]);
                 $insert->execute();
             }
             if ($insert) {
 
-                echo '<script type="text/javascript">
-                        Swal.fire({
-                            icon: "success",
-                            title: "บันทึกข้อมูล เรียบร้อย...!!", 
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
-                exit;
-
+                // echo '<script type="text/javascript">
+                //         Swal.fire({
+                //             icon: "success",
+                //             title: "บันทึกข้อมูล เรียบร้อย...!!", 
+                //             showConfirmButton: false,
+                //             timer: 2000
+                //         });
+                //         </script>';
+                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
+                // exit;
+                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=course&course_lesson=$check_cs_id");
             } else {
 
-                echo '<script type="text/javascript">
-                        Swal.fire({
-                            icon: "error",
-                            title: "error..!!", 
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        </script>';
-                echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
-                exit;
-
-            }  
-
+                // echo '<script type="text/javascript">
+                //         Swal.fire({
+                //             icon: "error",
+                //             title: "error..!!", 
+                //             showConfirmButton: false,
+                //             timer: 2000
+                //         });
+                //         </script>';
+                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
+                // exit;
+                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course_lesson=$check_cs_id");
+            }
         } catch (PDOException $e) {
 
             echo $e->getMessage();
-
         }
     }
-
-    
 }
