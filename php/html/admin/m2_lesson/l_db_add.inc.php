@@ -31,27 +31,8 @@ if (isset($_POST['btn_save'])) {
             $insert->execute();
 
             if ($insert) {
-                // echo '<script type="text/javascript">
-                //             Swal.fire({
-                //                 icon: "success",
-                //                 title: "บันทึกข้อมูล เรียบร้อย...!!", 
-                //                 showConfirmButton: false,
-                //                 timer: 2000
-                //             });
-                //             </script>';
-                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson\">";
-                // exit;
                 displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=lesson&lesson");
             } else {
-                // echo '<script type="text/javascript">
-                //         Swal.fire({
-                //             icon: "error",
-                //             title: "ล้มเหลว",
-                //             text: "โปรด ลองใหม่อีกครั้ง..!!"
-                //             });
-                //         </script>';
-                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson\">";
-                // exit;
                 displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson");
             }
         } catch (PDOException $e) {

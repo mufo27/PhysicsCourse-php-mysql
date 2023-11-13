@@ -6,16 +6,6 @@ if (isset($_POST['btn_save'])) {
     $check_ls_id = $_POST['ls_id'];
 
     if (empty($check) || $check == 0) {
-
-        // echo '<script type="text/javascript">
-        //         Swal.fire({
-        //         icon: "error",
-        //         title: "ล้มเหลว",
-        //         text: "โปรด ต้องเลือกอย่างน้อย 1 รายการ"
-        //         });
-        //     </script>';
-        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
-        // exit;
         displayMessage("error", "Error", "โปรดเลือกอย่างน้อย 1 รายการ", "?active=course&course_lesson=$check_cs_id");
     } else {
 
@@ -28,30 +18,8 @@ if (isset($_POST['btn_save'])) {
                 $insert->execute();
             }
             if ($insert) {
-
-                // echo '<script type="text/javascript">
-                //         Swal.fire({
-                //             icon: "success",
-                //             title: "บันทึกข้อมูล เรียบร้อย...!!", 
-                //             showConfirmButton: false,
-                //             timer: 2000
-                //         });
-                //         </script>';
-                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
-                // exit;
                 displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=course&course_lesson=$check_cs_id");
             } else {
-
-                // echo '<script type="text/javascript">
-                //         Swal.fire({
-                //             icon: "error",
-                //             title: "error..!!", 
-                //             showConfirmButton: false,
-                //             timer: 2000
-                //         });
-                //         </script>';
-                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$check_cs_id\">";
-                // exit;
                 displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course_lesson=$check_cs_id");
             }
         } catch (PDOException $e) {

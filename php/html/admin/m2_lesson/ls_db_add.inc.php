@@ -18,15 +18,6 @@ if (isset($_POST['btn_save'])) {
     $row = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($row['check_num'] > 0) {
-        // echo '<script type="text/javascript">
-        //         Swal.fire({
-        //             icon: "error",
-        //             title: "ล้มเหลว",
-        //             text: "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!"
-        //             });
-        //         </script>';
-        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-        // exit;
         displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson_sub=$ls_id");
     } else {
 
@@ -96,27 +87,8 @@ if (isset($_POST['btn_save'])) {
             $insert->execute();
 
             if ($insert) {
-                // echo '<script type="text/javascript">
-                //             Swal.fire({
-                //                 icon: "success",
-                //                 title: "บันทึกข้อมูล เรียบร้อย...!!", 
-                //                 showConfirmButton: false,
-                //                 timer: 2000
-                //             });
-                //             </script>';
-                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-                // exit;
                 displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=lesson&lesson_sub=$ls_id");
             } else {
-                // echo '<script type="text/javascript">
-                //         Swal.fire({
-                //             icon: "error",
-                //             title: "ล้มเหลว",
-                //             text: "โปรด ลองใหม่อีกครั้ง..!!"
-                //             });
-                //         </script>';
-                // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-                // exit;
                 displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson_sub=$ls_id");
             }
         } catch (PDOException $e) {

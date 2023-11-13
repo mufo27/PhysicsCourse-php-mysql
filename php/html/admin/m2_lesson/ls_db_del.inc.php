@@ -46,27 +46,8 @@ if (isset($_POST['btn_del'])) {
         $delete_sls->execute();
 
         if ($delete_pg && $delete_exe_status && $delete_qza && $delete_qzp && $delete_sls) {
-            // echo '<script type="text/javascript">
-            //             Swal.fire({
-            //                 icon: "success",
-            //                 title: "ลบข้อมูล เรียบร้อย...!!", 
-            //                 showConfirmButton: false,
-            //                 timer: 2000
-            //             });
-            //             </script>';
-            // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-            // exit;
             displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", "?active=lesson&lesson_sub=$ls_id");
         } else {
-            // echo '<script type="text/javascript">
-            //             Swal.fire({
-            //             icon: "error",
-            //             title: "ล้มเหลว",
-            //             text: "โปรด ลองใหม่อีกครั้ง..!!"
-            //             });
-            //         </script>';
-            // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-            // exit;
             displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson_sub=$ls_id");
         }
     } catch (PDOException $e) {
