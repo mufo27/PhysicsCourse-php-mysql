@@ -46,7 +46,7 @@ include 'c_modal_add.inc.php'
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-3">
                             <button type="button" class="btn btn-success btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
-                                <span class="fal fa-plus mr-1"></span> เพิ่มข้อมูล
+                                <span class="fal fa-plus mr-1"></span> เพิ่มคอร์สเรียน
                             </button>
                         </div>
                         <div class="col-sm-12 col-md-9">
@@ -62,7 +62,7 @@ include 'c_modal_add.inc.php'
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th style="width:5%; text-align: center; vertical-align: middle;">ลำดับ</th>
-                                        <th style="width:5%; text-align: left; vertical-align: middle;">รหัส</th>
+                                        <th style="width:5%; text-align: center; vertical-align: middle;">รหัส</th>
                                         <th style="width:15%; text-align: left; vertical-align: middle;">คอร์ส</th>
                                         <th style="width:20%; text-align: left; vertical-align: middle;">รายละเอียด</th>
                                         <th style="width:7%; text-align: center; vertical-align: middle;">บทเรียน</th>
@@ -85,7 +85,7 @@ include 'c_modal_add.inc.php'
                                     ?>
                                         <tr>
                                             <td style="text-align: center; vertical-align: middle;"><?= $i++; ?></td>
-                                            <td style="text-align: left; vertical-align: middle;"><?= $row['cs_code']; ?></td>
+                                            <td style="text-align: center; vertical-align: middle;"><?= $row['cs_code']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;">
                                                 <?= $row['cs_name']; ?>
                                                 <hr>

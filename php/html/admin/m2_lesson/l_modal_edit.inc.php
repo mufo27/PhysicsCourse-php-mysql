@@ -6,7 +6,7 @@
 
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        แก้ไขข้อมูล
+                        แบบฟอร์ม แก้ไขบทเรียน
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
@@ -15,7 +15,7 @@
                 <div class="modal-body bg-faded">
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัสบทเรียน : </label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัส : </label>
                         <div class="col-lg-9">
                             <input type="text" id="" name="ls_id" class="form-control" value="<?= $row['ls_id']; ?>" readonly>
                         </div>

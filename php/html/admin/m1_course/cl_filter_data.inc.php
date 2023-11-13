@@ -61,10 +61,19 @@
                         </div>
 
                         <div class="col-md-1 mb-3">
-                            <button class="btn btn-outline-info btn-block waves-effect waves-themed" type="submit" name="btn_filter">ยืนยันข้อมูล</button>
+                            <button class="btn btn-dark btn-block waves-effect waves-themed" type="submit" name="btn_filter">
+                                <i class="fal fa-search mr-1"></i> ยืนยัน
+                            </button>
                         </div>
                         <div class="col-md-1 mb-3">
-                            <button class="btn btn-outline-warning btn-block waves-effect waves-themed" type="reset" name="btn_filter">ล้างข้อมูล</button>
+                            <button class="btn btn-light btn-block waves-effect waves-themed" type="reset" name="btn_filter">
+                                <i class="fal fa-eraser mr-1"></i> ล้าง
+                            </button>
+                        </div>
+                        <div class="col-md-1 mb-3">
+                            <a href="?active=course&course_lesson=<?= $cs_id ?>" class="btn btn-light btn-block waves-effect waves-themed">
+                                <span class="fal fa-undo-alt mr-1"></span> ค่าเริ่มต้น
+                            </a>
                         </div>
                     </div>
                 </form>

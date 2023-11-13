@@ -16,7 +16,7 @@ if (isset($_GET['btn_filter'])) {
                 text: "ต้องเลือกอย่างน้อย 1 รายการ"
                 });
             </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?course_lesson=$cs_id\">";
+        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$cs_id\">";
         exit;
     } else {
 

@@ -6,7 +6,7 @@
 
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        เพิ่มข้อมูล
+                    แบบฟอร์ม เพิ่มคอร์สเรียน
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
@@ -15,7 +15,7 @@
                 <div class="modal-body bg-faded">
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัสคอร์สเรียน : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัส : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="text" id="" name="cs_code" class="form-control" required>
                         </div>

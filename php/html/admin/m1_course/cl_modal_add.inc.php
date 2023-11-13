@@ -6,7 +6,7 @@
 
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        เพิ่มข้อมูล
+                        แบบฟอร์ม เพิ่มบทเรียนลงในคอร์เรียน
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
@@ -15,10 +15,11 @@
                 <div class="modal-body bg-faded">
 
                     <table id="" class="table table-bordered table-striped w-100">
-                        <thead class="bg-primary text-white">
+                        <thead class="bg-warning text-white">
                             <tr>
-                                <th style="width:10%; text-align: left; vertical-align: middle;">ลำดับ</th>
-                                <th style="width:80%; text-align: left; vertical-align: middle;">บทเรียน</th>
+                                <th style="width:10%; text-align: center; vertical-align: middle;">ลำดับ</th>
+                                <th style="width:20%; text-align: center; vertical-align: middle;">รหัส</th>
+                                <th style="width:60%; text-align: left; vertical-align: middle;">บทเรียน</th>
                                 <th style="width:10%; text-align: center; vertical-align: middle;">เลือก</th>
                             </tr>
                         </thead>
@@ -38,6 +39,7 @@
                             ?>
                                 <tr>
                                     <td style="text-align: center; vertical-align: middle;"><?= $k++; ?></td>
+                                    <td style="text-align: center; vertical-align: middle;"><?= $row_add['ls_id']; ?></td>
                                     <td style="text-align: left; vertical-align: middle;"><?= $row_add['ls_name']; ?></td>
                                     <td style="text-align: center; vertical-align: middle;">
                                         <div class="form-check">

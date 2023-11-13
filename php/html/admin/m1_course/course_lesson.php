@@ -44,13 +44,13 @@ include 'cl_modal_add.inc.php'
                     <!-- START Button Add-->
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-2">
-                            <a href="?active=course&course" class="btn btn-warning btn-block waves-effect waves-themed">
+                            <a href="?active=course&course" class="btn btn-light btn-block waves-effect waves-themed">
                                 <span class="fal fa-step-backward mr-1"></span> ย้อนกลับ
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-3">
                             <button type="button" class="btn btn-success btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
-                                <span class="fal fa-plus mr-1"></span> เพิ่มข้อมูล
+                                <span class="fal fa-plus mr-1"></span> เพิ่มบทเรียนลงในคอร์เรียน
                             </button>
                         </div>
                         <div class="col-sm-12 col-md-7">
