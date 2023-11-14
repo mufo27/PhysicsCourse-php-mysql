@@ -11,15 +11,16 @@ if (isset($_POST['btn_save'])) {
         try {
 
             foreach ($_POST['check'] as $key) {
-                $insert = $conn->prepare("INSERT INTO course_lesson (cs_id, ls_id) VALUES (:cs_id, :ls_id)");
-                $insert->bindParam(':cs_id',  $check_cs_id);
-                $insert->bindParam(':ls_id',  $check_ls_id[$key]);
-                $insert->execute();
+                $insert_cl = $conn->prepare("INSERT INTO course_lesson (cs_id, ls_id) VALUES (:cs_id, :ls_id)");
+                $insert_cl->bindParam(':cs_id',  $check_cs_id);
+                $insert_cl->bindParam(':ls_id',  $check_ls_id[$key]);
+                $insert_cl->execute();
             }
-            if ($insert) {
+            
+            if ($insert_cl->rowCount() > 0) {
                 displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=course&course_lesson=$check_cs_id");
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course_lesson=$check_cs_id");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถบันทึกข้อมูลได้", "?active=course&course_lesson=$check_cs_id");
             }
         } catch (PDOException $e) {
 

@@ -50,7 +50,7 @@ include 'ls_modal_add.inc.php';
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-3">
-                            <button type="button" class="btn btn-success btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
+                            <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
                                 <span class="fal fa-plus mr-1"></span> เพิ่มหัวข้อย่อยในบทเรียน
                             </button>
                         </div>
@@ -99,8 +99,8 @@ include 'ls_modal_add.inc.php';
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['exe_name']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['qz_name']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['sls_id']; ?>"><i class="fal fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['sls_id']; ?>"><i class="fal fa-times"></i></button>
+                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['sls_id']; ?>"><i class="fal fa-edit"></i></button>
+                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['sls_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
 

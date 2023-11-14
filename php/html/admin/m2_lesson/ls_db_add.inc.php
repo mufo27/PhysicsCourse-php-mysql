@@ -10,64 +10,38 @@ if (isset($_POST['btn_save'])) {
     $ex_id         = $_POST['ex_id'];
     $z_id          = $_POST['z_id'];
 
+    $file_path = 'upload/lesson_sub/';
+    $url_prefix = '?active=lesson&lesson_sub=' . $ls_id;
 
-    $select = $conn->prepare("SELECT count(*) AS check_num FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
-    $select->bindParam(':ls_id', $ls_id);
-    $select->bindParam(':sls_name', $sls_name);
-    $select->execute();
-    $row = $select->fetch(PDO::FETCH_ASSOC);
-
-    if ($row['check_num'] > 0) {
+    $check_data = $conn->prepare("SELECT count(*) FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
+    $check_data->bindParam(':ls_id', $ls_id);
+    $check_data->bindParam(':sls_name', $sls_name);
+    $check_data->execute();
+    $count_data = $check_data->fetchColumn();
+ 
+    if ($count_data > 0) {
         displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson_sub=$ls_id");
     } else {
 
+        // มาทำต่อหน้านี้
         try {
 
-            $file_location = "upload/lesson_sub/";
-
-            // ใบความรู้รูปภาพ
-            if ($_FILES['sls_img']['tmp_name'] == "") {
-                $newfilename_img   = "";
+            if (!empty($_FILES['sls_img']['tmp_name'])) {
+                $new_img = checkFileUploadImage('sls_img', $url_prefix);
             } else {
-
-                $allowedExts_img    =   array("jpg,png");
-                $temp_img           =   explode(".", $_FILES["sls_img"]["name"]);
-                $source_file_img    =   $_FILES['sls_img']['tmp_name'];
-                $size_file_img      =   $_FILES['sls_img']['size'];
-                $extension_img      =   end($temp_img);
-                $newfilename_img    =   'img_' . round(microtime(true)) . '.' . end($temp_img);
-
-                move_uploaded_file($source_file_img, $file_location . $newfilename_img);
+                $new_img = '';
             }
 
-            //ใบความรู้แบบฝึกหัด
-            if ($_FILES['sls_sheet']['tmp_name'] == "") {
-
-                $newfilename_sheet = "";
+            if (!empty($_FILES['sls_sheet']['tmp_name'])) {
+                $new_sheet = checkFileUploadDocument('sls_sheet', $url_prefix);
             } else {
-                $allowedExts_sheet    =   array("pdf,docx");
-                $temp_sheet           =   explode(".", $_FILES["sls_sheet"]["name"]);
-                $source_file_sheet    =   $_FILES['sls_sheet']['tmp_name'];
-                $size_file_sheet      =   $_FILES['sls_sheet']['size'];
-                $extension_sheet      =   end($temp_sheet);
-                $newfilename_sheet    =   'sheet_' . round(microtime(true)) . '.' . end($temp_sheet);
-
-                move_uploaded_file($source_file_sheet, $file_location . $newfilename_sheet);
+                $new_sheet = '';
             }
 
-            //ใบความรู้เฉลยแบบฝึกหัด
-            if ($_FILES['sls_answer']['tmp_name'] == "") {
-                $newfilename_answer = "";
+            if (!empty($_FILES['sls_answer']['tmp_name'])) {
+                $new_answer = checkFileUploadDocument('sls_answer', $url_prefix);
             } else {
-
-                $allowedExts_answer    =   array("pdf,docx");
-                $temp_answer           =   explode(".", $_FILES["sls_answer"]["name"]);
-                $source_file_answer    =   $_FILES['sls_answer']['tmp_name'];
-                $size_file_answer      =   $_FILES['sls_answer']['size'];
-                $extension_answer      =   end($temp_answer);
-                $newfilename_answer    =   'answer_' . round(microtime(true)) . '.' . end($temp_answer);
-
-                move_uploaded_file($source_file_answer, $file_location . $newfilename_answer);
+                $new_answer = '';
             }
 
 
@@ -87,9 +61,9 @@ if (isset($_POST['btn_save'])) {
             $insert->execute();
 
             if ($insert) {
-                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=lesson&lesson_sub=$ls_id");
+                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson_sub=$ls_id");
+                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", $url_prefix);
             }
         } catch (PDOException $e) {
 

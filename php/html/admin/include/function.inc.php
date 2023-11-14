@@ -46,7 +46,6 @@ function getStatusText($x)
     }
 }
 
-
 function getQuizType($x) {
     switch ($x) {
         case 1:
@@ -62,13 +61,15 @@ function getQuizSide($x) {
     return ($x === 1) ? 'P' : 'K';
 }
 
-function getStatusTextInC($x) {
+function getStatusTextInCL($x) {
     return ($x > 0) ? 'ถูกใช้งาน' : 'ไม่ได้ถูกใช้งาน';
 }
 
+function getStatusTextInCR($x) {
+    return ($x > 0) ? 'มีการลงทะเบียน' : 'ยังไม่มีการลงทะเบียน';
+}
 
-
-function displayMessage($icon, $title, $text, $url)
+function displayMessage($icon, $title, $text, $urlPrefix)
 {
     echo '<script type="text/javascript">
             Swal.fire({
@@ -77,7 +78,7 @@ function displayMessage($icon, $title, $text, $url)
             text: "' . $text . '"
             });
         </script>';
-    echo "<meta http-equiv=\"refresh\" content=\"2; URL=$url\">";
+    echo "<meta http-equiv=\"refresh\" content=\"2; URL=$urlPrefix\">";
     exit;
 }
 
@@ -131,4 +132,69 @@ function generatePagination($currentPage, $totalPages, $cal_per_page, $cal_total
     echo '</nav>';
     echo '</div>';
     echo '</div>';
+}
+
+function checkFileUploadImage($x, $urlPrefix)
+{
+    if ($_FILES[$x]['tmp_name'] == "") {
+        return "";
+    }
+
+    $allowedExts = array("jpg", "jpeg", "png", "gif");
+    $maxFileSize = 2 * 1024 * 1024; // 2MB
+
+    $temp = explode(".", $_FILES[$x]["name"]);
+    $fileSize = $_FILES[$x]['size'];
+
+    // Check if the file is an image
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $fileMimeType = finfo_file($finfo, $_FILES[$x]['tmp_name']);
+    finfo_close($finfo);
+
+    if (!in_array($temp[1], $allowedExts) || !preg_match('/^image\//', $fileMimeType)) {
+        displayMessage("error", "Error", "ไฟล์ที่อัปโหลดไม่ใช่ ประเภทรูปภาพที่รองรับ เช่น jpg, jpeg, png และ gif", $urlPrefix);
+        return "";
+    }
+
+    // Check if the file size is within the limit
+    if ($fileSize > $maxFileSize) {
+        displayMessage("error", "Error", "ไฟล์ที่อัปโหลดมีขนาดเกิน 2MB", $urlPrefix);
+        return "";
+    }
+
+    // Generate new file name based on current date and time
+    $newFileName = $x . '_' . date("YmdHis") . '.' . $temp[1];
+
+    return $newFileName;
+}
+
+function checkFileUploadDocument($x, $urlPrefix)
+{
+    if ($_FILES[$x]['tmp_name'] == "") {
+        return "";
+    }
+
+    $allowedExts = array("pdf", "docx");
+    $maxFileSize = 5 * 1024 * 1024; // 5MB
+
+    $temp = explode(".", $_FILES[$x]["name"]);
+    $fileSize = $_FILES[$x]['size'];
+
+    // Check if the file is a document (PDF or DOCX)
+    $fileMimeType = mime_content_type($_FILES[$x]['tmp_name']);
+    if (!in_array($temp[1], $allowedExts) || !in_array($fileMimeType, ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"])) {
+        displayMessage("error", "Error", "ไฟล์ที่อัปโหลดไม่ใช่ ประเภทเอกสารที่รองรับ เช่น PDF และ DOCX", $urlPrefix);
+        return "";
+    }
+
+    // Check if the file size is within the limit
+    if ($fileSize > $maxFileSize) {
+        displayMessage("error", "Error", "ไฟล์ที่อัปโหลดมีขนาดเกิน 5MB", $urlPrefix);
+        return "";
+    }
+
+    // Generate new file name based on current date and time
+    $newFileName = $x . '_' . date("YmdHis") . '.' . $temp[1];
+
+    return $newFileName;
 }

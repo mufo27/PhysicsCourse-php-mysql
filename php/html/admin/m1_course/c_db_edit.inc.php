@@ -1,7 +1,6 @@
 <?php
 if (isset($_POST['btn_update'])) {
 
-
     $cs_id         = $_POST['cs_id'];
     $check_cs_code = trim($_POST['check_cs_code']);
     $cs_code       = trim($_POST['cs_code']);
@@ -15,56 +14,40 @@ if (isset($_POST['btn_update'])) {
     $cs_for        = $_POST['cs_for'];
     $cs_status     = $_POST['cs_status'];
 
-    $select_check = $conn->prepare("SELECT 
+    $check_cs_img  = $_POST['check_cs_img'];
+    $check_cs_cer  = $_POST['check_cs_cer'];
+
+    $file_path  = "upload/courses/";
+    $url_prefix = '?active=course&course';
+
+    $check_data = $conn->prepare("SELECT 
                                         (SELECT COUNT(*) FROM course WHERE cs_code = :cs_code) AS num_code,
                                         (SELECT COUNT(*) FROM course WHERE cs_name = :cs_name) AS num_name");
-    $select_check->bindParam(':cs_code', $cs_code);
-    $select_check->bindParam(':cs_name', $cs_name);
-    $select_check->execute();
-    $row_check = $select_check->fetch(PDO::FETCH_ASSOC);
+    $check_data->bindParam(':cs_code', $cs_code);
+    $check_data->bindParam(':cs_name', $cs_name);
+    $check_data->execute();
+    $count_data = $check_data->fetch(PDO::FETCH_ASSOC);
 
-    if ($row_check['num_code'] > 0 && $check_cs_code !== $cs_code) {
-        displayMessage("error", "Error", "**ซ้ำ** มีรหัสคอร์สเรียนอยู่ในระบบแล้ว..!!", "?active=course&course");
-    } else if ($row_check['num_name'] > 0 && $check_cs_name !== $cs_name) {
-        displayMessage("error", "Error", "**ซ้ำ** มีชื่อคอร์สเรียนอยู่ในระบบแล้ว..!!", "?active=course&course");
+    if ($count_data['num_code'] > 0 && $check_cs_code !== $cs_code) {
+        displayMessage("error", "Error", "**ซ้ำ** มีรหัสคอร์สเรียนนี้ อยู่ในระบบแล้ว..!!", $url_prefix);
+    } else if ($count_data['num_name'] > 0 && $check_cs_name !== $cs_name) {
+        displayMessage("error", "Error", "**ซ้ำ** มีชื่อคอร์สเรียนนี้ อยู่ในระบบแล้ว..!!", $url_prefix);
     } else {
         try {
 
-            $file_location  = "upload/courses/";
-
-            if ($_FILES['cs_img']['tmp_name'] == "") {
-
-                $newfilename   = $_POST['cs_img_befor'];
+            if (!empty($_FILES['cs_img']['tmp_name'])) {
+                $new_img = checkFileUploadImage('cs_img', $url_prefix);
             } else {
-
-                $allowedExts    =   array("jpg,png");
-                $temp           =   explode(".", $_FILES["cs_img"]["name"]);
-                $source_file    =   $_FILES['cs_img']['tmp_name'];
-                $size_file      =   $_FILES['cs_img']['size'];
-                $extension      =   end($temp);
-                $newfilename    =   'img_' . round(microtime(true)) . '.' . end($temp);
-
-                unlink($file_location . $_POST['cs_img_befor']);
-                move_uploaded_file($source_file, $file_location . $newfilename);
+                $new_img = $check_cs_img;
             }
 
-            if ($_FILES['cs_cer']['tmp_name'] == "") {
-
-                $newfilename_cer   = $_POST['cs_cer_befor'];
+            if (!empty($_FILES['cs_cer']['tmp_name'])) {
+                $new_cer = checkFileUploadImage('cs_cer', $url_prefix);
             } else {
-
-                $allowedExts_cer    =   array("jpg,png");
-                $temp_cer           =   explode(".", $_FILES["cs_cer"]["name"]);
-                $source_file_cer    =   $_FILES['cs_cer']['tmp_name'];
-                $size_file_cer      =   $_FILES['cs_cer']['size'];
-                $extension_cer      =   end($temp_cer);
-                $newfilename_cer    =   'cer_' . round(microtime(true)) . '.' . end($temp_cer);
-
-                unlink($file_location . $_POST['cs_cer_befor']);
-                move_uploaded_file($source_file_cer, $file_location . $newfilename_cer);
+                $new_cer = $check_cs_cer;
             }
 
-            $update = $conn->prepare("UPDATE course SET cs_code = :cs_code, 
+            $update_c = $conn->prepare("UPDATE course SET cs_code = :cs_code, 
                                                     cs_name = :cs_name, 
                                                     cs_detail = :cs_detail, 
                                                     k_hour = :k_hour, 
@@ -75,27 +58,37 @@ if (isset($_POST['btn_update'])) {
                                                     cs_for = :cs_for, 
                                                     cs_img = :cs_img, 
                                                     cs_cer = :cs_cer 
-                                                WHERE cs_id = :cs_id
-                                ");
+                                                WHERE cs_id = :cs_id");
 
-            $update->bindParam(':cs_id',  $cs_id);
-            $update->bindParam(':cs_code',  $cs_code);
-            $update->bindParam(':cs_name',  $cs_name);
-            $update->bindParam(':cs_detail',  $cs_detail);
-            $update->bindParam(':k_hour',  $k_hour);
-            $update->bindParam(':k_minute',  $k_minute);
-            $update->bindParam(':cs_pay_status',  $cs_pay_status);
-            $update->bindParam(':cs_pay_num',  $cs_pay_num);
-            $update->bindParam(':cs_status',  $cs_status);
-            $update->bindParam(':cs_for',  $cs_for);
-            $update->bindParam(':cs_img',  $newfilename);
-            $update->bindParam(':cs_cer',  $newfilename_cer);
-            $update->execute();
+            $update_c->bindParam(':cs_id',  $cs_id);
+            $update_c->bindParam(':cs_code',  $cs_code);
+            $update_c->bindParam(':cs_name',  $cs_name);
+            $update_c->bindParam(':cs_detail',  $cs_detail);
+            $update_c->bindParam(':k_hour',  $k_hour);
+            $update_c->bindParam(':k_minute',  $k_minute);
+            $update_c->bindParam(':cs_pay_status',  $cs_pay_status);
+            $update_c->bindParam(':cs_pay_num',  $cs_pay_num);
+            $update_c->bindParam(':cs_status',  $cs_status);
+            $update_c->bindParam(':cs_for',  $cs_for);
+            $update_c->bindParam(':cs_img',  $new_img);
+            $update_c->bindParam(':cs_cer',  $new_cer);
+            $update_c->execute();
 
-            if ($update) {
-                displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", "?active=course&course");
+            if ($update_c) {
+
+                if (!empty($_FILES['cs_img']['tmp_name'])) {
+                    unlink($file_path . $check_cs_img);
+                    move_uploaded_file($_FILES['cs_img']['tmp_name'], $file_path . $new_img);
+                }
+        
+                if (!empty($_FILES['cs_cer']['tmp_name'])) {
+                    unlink($file_path . $check_cs_cer);
+                    move_uploaded_file($_FILES['cs_cer']['tmp_name'], $file_path . $new_cer);
+                }
+
+                displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถแก้ไขข้อมูลได้", $url_prefix);
             }
         } catch (PDOException $e) {
 
@@ -103,3 +96,4 @@ if (isset($_POST['btn_update'])) {
         }
     }
 }
+

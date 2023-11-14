@@ -8,7 +8,7 @@
 
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        แบบฟอร์ม แก้ไขบทเรียน
+                        แบบฟอร์ม แก้ไขแบบทดสอบ
                     </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">บทเรียน : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">แบบทดสอบ : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="text" id="" name="ls_name" class="form-control" value="<?= $row['ls_name']; ?>" required>
                         </div>

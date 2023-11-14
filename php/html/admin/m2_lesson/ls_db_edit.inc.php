@@ -2,7 +2,7 @@
 
 if (isset($_POST['btn_update'])) {
 
-    $check_sls_name      = trim($_POST['check_sls_name']);
+    $check_sls_name = trim($_POST['check_sls_name']);
     $sls_name      = trim($_POST['sls_name']);
     $sls_detail    = $_POST['sls_detail'];
     $sls_youtube   = trim($_POST['sls_youtube']);
@@ -18,16 +18,9 @@ if (isset($_POST['btn_update'])) {
     $row = $select->fetch(PDO::FETCH_ASSOC);
 
     if ($row['check_num'] > 0 && $check_sls_name !== $sls_name) {
-        // echo '<script type="text/javascript">
-        //         Swal.fire({
-        //             icon: "error",
-        //             title: "ล้มเหลว",
-        //             text: "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!"
-        //             });
-        //         </script>';
-        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson_sub=$ls_id\">";
-        // exit;
+
         displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson_sub=$ls_id");
+
     } else {
 
         try {
@@ -82,15 +75,15 @@ if (isset($_POST['btn_update'])) {
                 move_uploaded_file($source_file_answer, $file_location . $newfilename_answer);
             }
 
-            $update = $conn->prepare("UPDATE sub_lesson SET sls_name = :sls_name, 
-                                                            sls_detail = :sls_detail, 
+            $update = $conn->prepare("UPDATE sub_lesson SET sls_name    = :sls_name, 
+                                                            sls_detail  = :sls_detail, 
                                                             sls_youtube = :sls_youtube, 
-                                                            sls_refer = :sls_refer, 
-                                                            sls_img = :sls_img, 
-                                                            sls_sheet = :sls_sheet, 
-                                                            sls_answer = :sls_answer, 
-                                                            ex_id = :ex_id,
-                                                            z_id = :z_id
+                                                            sls_refer   = :sls_refer, 
+                                                            sls_img     = :sls_img, 
+                                                            sls_sheet   = :sls_sheet, 
+                                                            sls_answer  = :sls_answer, 
+                                                            ex_id       = :ex_id,
+                                                            z_id        = :z_id
                                                         WHERE sls_id = :sls_id");
 
             $update->bindParam(':sls_name',  $sls_name);

@@ -44,7 +44,7 @@ include 'l_modal_add.inc.php';
                     <!-- START Button Add-->
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-3">
-                            <button type="button" class="btn btn-success btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
+                            <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
                                 <span class="fal fa-plus mr-1"></span> เพิ่มบทเรียน
                             </button>
                         </div>
@@ -82,23 +82,21 @@ include 'l_modal_add.inc.php';
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['ls_name']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['ls_detail']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="?active=lesson&lesson_sub=<?= $row['ls_id']; ?>" class="btn btn-sm btn-info waves-effect waves-themed">
+                                                <a href="?active=lesson&lesson_sub=<?= $row['ls_id']; ?>" class="btn btn-outline-info btn-sm waves-effect waves-themed">
                                                     <span class="fal fa-plus mr-1"></span>
                                                     เพิ่ม (<?= $row['check_count_in_sls']; ?>)
-                                                    </ฟ>
+                                                </a>
                                             </td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <?php if($row['check_count_in_c'] > 0) { ?>
+                                                <?php if ($row['check_count_in_cl'] > 0) { ?>
                                                     <span class="chip purple lighten-5">
-                                                        <span class="badge badge-success badge-pill"><?= getStatusTextInC($row['check_count_in_c']); ?></span>
+                                                        <span class="badge badge-success badge-pill"><?= getStatusTextInCL($row['check_count_in_cl']); ?></span>
                                                     </span>
                                                 <?php } ?>
                                             </td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['ls_id']; ?>"><i class="fal fa-edit"></i></button>
-                                                <?php if ($row['check_count_in_sls'] < 1) { ?>
-                                                    <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['ls_id']; ?>"><i class="fal fa-times"></i></button>
-                                                <?php } ?>
+                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['ls_id']; ?>"><i class="fal fa-edit"></i></button>
+                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['ls_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
 

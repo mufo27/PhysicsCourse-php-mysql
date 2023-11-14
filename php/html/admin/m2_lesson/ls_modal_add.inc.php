@@ -76,21 +76,21 @@
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดรูปภาพ :</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_img" class="form-control">
+                            <input type="file" id="" name="sls_img" class="form-control" accept="image/jpeg, image/png, image/gif">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์แบบฝึกหัด :</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_sheet" class="form-control">
+                            <input type="file" id="" name="sls_sheet" class="form-control" accept=".pdf, .docx">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์เฉลยแบบฝึกหัด :</label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_answer" class="form-control">
+                            <input type="file" id="" name="sls_answer" class="form-control" accept=".pdf, .docx">
                         </div>
                     </div>
 

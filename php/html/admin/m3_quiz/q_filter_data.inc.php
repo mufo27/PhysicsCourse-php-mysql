@@ -54,7 +54,7 @@
                         <div class="col-md-3 mb-3">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="">บทเรียน</span>
+                                    <span class="input-group-text" id="">แบบทดสอบ</span>
                                 </div>
                                 <input type="text" class="form-control" id="" name="fd_ls_name" value="<?= $v_ls_name; ?>">
                             </div>

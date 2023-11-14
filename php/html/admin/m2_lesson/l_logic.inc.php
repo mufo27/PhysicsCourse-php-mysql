@@ -37,7 +37,7 @@ if (isset($_GET['btn_filter'])) {
         $sql = "SELECT 
                     l.*, 
                     (SELECT count(ls_id)  FROM sub_lesson sb WHERE sb.ls_id = l.ls_id) AS check_count_in_sls,
-                    (SELECT count(ls_id)  FROM course_lesson cl WHERE cl.ls_id = 52) AS check_status_in_c
+                    (SELECT count(ls_id)  FROM course_lesson cl WHERE cl.ls_id = l.ls_id) AS check_count_in_cl
                 FROM lesson l
                 WHERE 1=1";
 
@@ -114,7 +114,7 @@ if (isset($_GET['btn_filter'])) {
     $select = $conn->prepare("SELECT 
                                 l.*, 
                                 (SELECT count(ls_id)  FROM sub_lesson sb WHERE sb.ls_id = l.ls_id) AS check_count_in_sls,
-                                (SELECT count(ls_id)  FROM course_lesson cl WHERE cl.ls_id = l.ls_id) AS check_count_in_c
+                                (SELECT count(ls_id)  FROM course_lesson cl WHERE cl.ls_id = l.ls_id) AS check_count_in_cl
                             FROM lesson l
                             LIMIT :start_from, :per_page");
     $select->bindParam(':start_from', $start_from, PDO::PARAM_INT);

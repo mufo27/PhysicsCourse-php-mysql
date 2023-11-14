@@ -5,38 +5,30 @@ if (isset($_POST['btn_save'])) {
     $ls_name   = trim($_POST['ls_name']);
     $ls_detail = $_POST['ls_detail'];
 
-    $select = $conn->prepare("SELECT count(*) AS check_num FROM lesson WHERE ls_name = :ls_name");
-    $select->bindParam(':ls_name', $ls_name);
-    $select->execute();
-    $row = $select->fetch(PDO::FETCH_ASSOC);
+    $url_prefix = '?active=lesson&lesson';
 
-    if ($row['check_num'] > 0) {
-        // echo '<script type="text/javascript">
-        //         Swal.fire({
-        //             icon: "error",
-        //             title: "ล้มเหลว",
-        //             text: "**ซ้ำ** มีบทเรียนอยู่ในระบบแล้ว..!!"
-        //             });
-        //         </script>';
-        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson\">";
-        // exit;
-        displayMessage("error", "Error", "**ซ้ำ** มีบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson");
+    $check_data = $conn->prepare("SELECT count(*) FROM lesson WHERE ls_name = :ls_name");
+    $check_data->bindParam(':ls_name', $ls_name);
+    $check_data->execute();
+    $count_data = $check_data->fetchColumn();
+
+    if ($count_data > 0) {
+        displayMessage("error", "Error", "**ซ้ำ** มีบทเรียนนี้ อยู่ในระบบแล้ว..!!", $url_prefix);
     } else {
 
         try {
 
-            $insert = $conn->prepare("INSERT INTO lesson (ls_name, ls_detail) VALUES (:ls_name, :ls_detail)");
-            $insert->bindParam(':ls_name', $ls_name);
-            $insert->bindParam(':ls_detail',  $ls_detail);
-            $insert->execute();
+            $insert_l = $conn->prepare("INSERT INTO lesson (ls_name, ls_detail) VALUES (:ls_name, :ls_detail)");
+            $insert_l->bindParam(':ls_name', $ls_name);
+            $insert_l->bindParam(':ls_detail',  $ls_detail);
+            $insert_l->execute();
 
-            if ($insert) {
-                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=lesson&lesson");
+            if ($insert_l) {
+                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถบันทึกข้อมูลได้", $url_prefix);
             }
         } catch (PDOException $e) {
-
             echo $e->getMessage();
         }
     }

@@ -1,8 +1,17 @@
 <script src="../assets/dist/js/vendors.bundle.js"></script>
 <script src="../assets/dist/js/app.bundle.js"></script>
+<!-- <script type="text/javascript">
+    $('#js-page-content').smartPanel();
+</script> -->
+
+<script src="../assets/dist/js/statistics/peity/peity.bundle.js"></script>
+<script src="../assets/dist/js/statistics/flot/flot.bundle.js"></script>
+<script src="../assets/dist/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+
 <!-- <script src="../assets/dist/js/notifications/sweetalert2/sweetalert2.bundle.js"></script> -->
 
 <script>
+    
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");
@@ -67,8 +76,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/super-build/ckeditor.js"></script>
 
 <script>
-
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('[id^="editor"]').forEach(textarea => {
             CKEditorInit(textarea);
         });
@@ -78,12 +86,7 @@
         CKEDITOR.ClassicEditor.create(textarea, {
             toolbar: {
                 items: [
-                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat'
-                    , '|' , 'bulletedList', 'numberedList', 'todoList'
-                    , '|' , 'outdent', 'indent'
-                    , '|' , 'highlight'
-                    , '|' , 'alignment'
-                    , '|' , 'specialCharacters'
+                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|', 'bulletedList', 'numberedList', 'todoList', '|', 'outdent', 'indent', '|', 'highlight', '|', 'alignment', '|', 'specialCharacters'
                 ],
                 shouldNotGroupWhenFull: true
             },
@@ -95,14 +98,47 @@
                 }
             },
             heading: {
-                options: [
-                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-                    { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-                    { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-                    { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                options: [{
+                        model: 'paragraph',
+                        title: 'Paragraph',
+                        class: 'ck-heading_paragraph'
+                    },
+                    {
+                        model: 'heading1',
+                        view: 'h1',
+                        title: 'Heading 1',
+                        class: 'ck-heading_heading1'
+                    },
+                    {
+                        model: 'heading2',
+                        view: 'h2',
+                        title: 'Heading 2',
+                        class: 'ck-heading_heading2'
+                    },
+                    {
+                        model: 'heading3',
+                        view: 'h3',
+                        title: 'Heading 3',
+                        class: 'ck-heading_heading3'
+                    },
+                    {
+                        model: 'heading4',
+                        view: 'h4',
+                        title: 'Heading 4',
+                        class: 'ck-heading_heading4'
+                    },
+                    {
+                        model: 'heading5',
+                        view: 'h5',
+                        title: 'Heading 5',
+                        class: 'ck-heading_heading5'
+                    },
+                    {
+                        model: 'heading6',
+                        view: 'h6',
+                        title: 'Heading 6',
+                        class: 'ck-heading_heading6'
+                    }
                 ]
             },
             placeholder: '',
@@ -121,18 +157,16 @@
                 supportAllValues: true
             },
             fontSize: {
-                options: [ 10, 12, 14, 'default', 18, 20, 22 ],
+                options: [10, 12, 14, 'default', 18, 20, 22],
                 supportAllValues: true
             },
             htmlSupport: {
-                allow: [
-                    {
-                        name: /.*/,
-                        attributes: true,
-                        classes: true,
-                        styles: true
-                    }
-                ]
+                allow: [{
+                    name: /.*/,
+                    attributes: true,
+                    classes: true,
+                    styles: true
+                }]
             },
             htmlEmbed: {
                 showPreviews: true
@@ -151,18 +185,16 @@
                 }
             },
             mention: {
-                feeds: [
-                    {
-                        marker: '@',
-                        feed: [
-                            '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
-                            '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
-                            '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
-                            '@sugar', '@sweet', '@topping', '@wafer'
-                        ],
-                        minimumCharacters: 1
-                    }
-                ]
+                feeds: [{
+                    marker: '@',
+                    feed: [
+                        '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
+                        '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
+                        '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
+                        '@sugar', '@sweet', '@topping', '@wafer'
+                    ],
+                    minimumCharacters: 1
+                }]
             },
             removePlugins: [
                 'CKBox',
@@ -182,8 +214,4 @@
             ]
         });
     }
-
 </script>
-
-
-

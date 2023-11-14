@@ -7,7 +7,9 @@
                 <input type="hidden" name="cs_id" value="<?= $row['cs_id']; ?>">
                 <input type="hidden" name="check_cs_code" value="<?= $row['cs_code']; ?>">
                 <input type="hidden" name="check_cs_name" value="<?= $row['cs_name']; ?>">
-                
+                <input type="hidden" name="check_cs_img" value="<?= $row['cs_img']; ?>">
+                <input type="hidden" name="check_cs_cer" value="<?= $row['cs_cer']; ?>">
+
                 <div class="modal-header">
                     <h4 class="modal-title">
                         แบบฟอร์ม แก้ไขคอร์สเรียน
@@ -101,29 +103,23 @@
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right">รูปภาพ : <span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-3">
                             <img src="upload/courses/<?= $row['cs_img']; ?>" class="profile-image-lg" alt="..." width="250px" height="150px">
-                            <input type="hidden" name="cs_img_befor" value="<?= $row['cs_img']; ?>">
                         </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_img2">อัพโหลดใหม่:</label>
-                        <div class="col-lg-9">
-                            <input type="file" id="cs_img2" name="cs_img" class="form-control" value="">
+                        <div class="col-lg-3">
+                            <input type="file" id="cs_img2" name="cs_img" class="form-control" accept="image/jpeg, image/png, image/gif">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right">ใบเกียรติบัตร : <span class="text-danger">*</span></label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-3">
                             <img src="upload/courses/<?= $row['cs_cer']; ?>" class="profile-image-lg" alt="..." width="250px" height="150px">
-                            <input type="hidden" name="cs_cer_befor" value="<?= $row['cs_cer']; ?>">
                         </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_cer2">อัพโหลดใหม่:</label>
-                        <div class="col-lg-9">
-                            <input type="file" id="cs_cer2" name="cs_cer" class="form-control" value="">
+                        <div class="col-lg-3">
+                            <input type="file" id="cs_cer2" name="cs_cer" class="form-control" accept="image/jpeg, image/png, image/gif">
                         </div>
                     </div>
 

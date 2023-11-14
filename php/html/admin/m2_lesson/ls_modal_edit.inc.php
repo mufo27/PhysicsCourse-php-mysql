@@ -4,11 +4,11 @@
 
             <form action="" method="post" enctype="multipart/form-data">
 
-                <input type="hidden" id="" name="ls_id" value="<?= $row['ls_id']; ?>">
-                <input type="hidden" id="" name="check_sls_name" value="<?= $row['sls_name']; ?>">
-                <input type="hidden" id="" name="sls_img2" value="<?= $row['sls_img']; ?>">
-                <input type="hidden" id="" name="sls_sheet2" value="<?= $row['sls_sheet']; ?>">
-                <input type="hidden" id="" name="sls_answer2" value="<?= $row['sls_answer']; ?>">
+                <input type="hidden" name="ls_id" value="<?= $row['ls_id']; ?>">
+                <input type="hidden" name="check_sls_name" value="<?= $row['sls_name']; ?>">
+                <input type="hidden" name="sls_img2" value="<?= $row['sls_img']; ?>">
+                <input type="hidden" name="sls_sheet2" value="<?= $row['sls_sheet']; ?>">
+                <input type="hidden" name="sls_answer2" value="<?= $row['sls_answer']; ?>">
 
                 <div class="modal-header">
                     <h4 class="modal-title">
@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รูปภาพ : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รูปภาพ : </label>
                         <div class="col-lg-9">
                             <img src="upload/lesson_sub/<?= $row['sls_img']; ?>" class="profile-image-lg" alt="..." width="250px" height="150px">
                         </div>
@@ -100,21 +100,21 @@
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดรูปภาพ (ใหม่) : </label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_img" class="form-control">
+                            <input type="file" id="" name="sls_img" class="form-control" accept="image/jpeg, image/png, image/gif">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์แบบฝึกหัด (ใหม่) : </label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_sheet" class="form-control">
+                            <input type="file" id="" name="sls_sheet" class="form-control" accept=".pdf, .docx">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">อัพโหลดไฟล์เฉลยแบบฝึกหัด (ใหม่) : </label>
                         <div class="col-lg-9">
-                            <input type="file" id="" name="sls_answer" class="form-control">
+                            <input type="file" id="" name="sls_answer" class="form-control" accept=".pdf, .docx">
                         </div>
                     </div>
 

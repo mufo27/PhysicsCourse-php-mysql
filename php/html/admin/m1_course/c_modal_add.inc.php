@@ -99,12 +99,12 @@
                     <div class="form-group row">
                         <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_img1">อัพโหลดรูปภาพ : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="file" id="cs_img1" name="cs_img" class="form-control" required>
+                            <input type="file" id="cs_img1" name="cs_img" class="form-control" accept="image/jpeg, image/png, image/gif" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="cs_cer1">อัพโหลดใบเกียรติบัตร : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" accept="image/jpeg, image/png, image/gif" for="cs_cer1">อัพโหลดใบเกียรติบัตร : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="file" id="cs_cer1" name="cs_cer" class="form-control" required>
                         </div>

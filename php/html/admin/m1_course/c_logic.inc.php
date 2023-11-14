@@ -6,17 +6,7 @@ if (isset($_GET['btn_filter'])) {
 
     if ($_GET['fd_cs_code'] === '' && $_GET['fd_cs_name'] === '' && $_GET['fd_cs_for'] === '' && $_GET['fd_cs_pay_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_per_page'] === '') {
 
-        // echo '<script type="text/javascript">
-        //         Swal.fire({
-        //         icon: "error",
-        //         title: "ล้มเหลว",
-        //         text: "ต้องเลือกอย่างน้อย 1 รายการ"
-        //         });
-        //     </script>';
-        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course\">";
-        // exit;
-
-        displayMessage("error", "ล้มเหลว", "ต้องเลือกอย่างน้อย 1 รายการ", "?active=course&course");
+        displayMessage("error", "Error", "ต้องเลือกอย่างน้อย 1 รายการ", "?active=course&course");
 
     } else {
 
@@ -41,7 +31,10 @@ if (isset($_GET['btn_filter'])) {
         $sql_all = "SELECT COUNT(*) FROM course c 
                     WHERE 1=1";
 
-        $sql = "SELECT c.* ,(SELECT count(cs_id) FROM course_lesson WHERE cs_id = c.cs_id) AS cl_count 
+        $sql = "SELECT 
+                    c.*,
+                    (SELECT count(cs_id) FROM course_lesson cl WHERE cl.cs_id = c.cs_id) AS check_count_in_cl,
+                    (SELECT count(cs_id) FROM course_register cr WHERE cr.cs_id = c.cs_id) AS check_count_in_cr 
                 FROM course c 
                 WHERE 1=1";
 
@@ -174,7 +167,10 @@ if (isset($_GET['btn_filter'])) {
 
     $total_pages = ceil($total_records / $per_page);
 
-    $select = $conn->prepare("SELECT c.* ,(SELECT count(cs_id) FROM course_lesson WHERE cs_id = c.cs_id) AS cl_count 
+    $select = $conn->prepare("SELECT 
+                                    c.*,
+                                    (SELECT count(cs_id) FROM course_lesson cl WHERE cl.cs_id = c.cs_id) AS check_count_in_cl,
+                                    (SELECT count(cs_id) FROM course_register cr WHERE cr.cs_id = c.cs_id) AS check_count_in_cr
                             FROM course c
                             LIMIT :start_from, :per_page");
     $select->bindParam(':start_from', $start_from, PDO::PARAM_INT);

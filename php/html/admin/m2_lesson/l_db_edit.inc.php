@@ -1,48 +1,39 @@
 <?php
 
-
 if (isset($_POST['btn_update'])) {
 
-    $ls_id     = $_POST['ls_id'];
-    $check_ls_name   = trim($_POST['check_ls_name']);
-    $ls_name   = trim($_POST['ls_name']);
-    $ls_detail = $_POST['ls_detail'];
+    $ls_id       = $_POST['ls_id'];
+    $check_ls_name = trim($_POST['check_ls_name']);
+    $ls_name     = trim($_POST['ls_name']);
+    $ls_detail   = $_POST['ls_detail'];
 
-    $select = $conn->prepare("SELECT count(*) AS check_num FROM lesson WHERE ls_name = :ls_name");
-    $select->bindParam(':ls_name', $ls_name);
-    $select->execute();
-    $row = $select->fetch(PDO::FETCH_ASSOC);
+    try {
 
-    if ($row['check_num'] > 0 && $check_ls_name !== $ls_name) {
+        $check_data = $conn->prepare("SELECT COUNT(*) AS check_num FROM lesson WHERE ls_name = :ls_name AND ls_id != :ls_id");
+        $check_data->bindParam(':ls_name', $ls_name);
+        $check_data->bindParam(':ls_id', $ls_id);
+        $check_data->execute();
+        $count_data = $check_data->fetchColumn();
 
-        // echo '<script type="text/javascript">
-        //         Swal.fire({
-        //             icon: "error",
-        //             title: "ล้มเหลว",
-        //             text: "**ซ้ำ** มีบทเรียนอยู่ในระบบแล้ว..!!"
-        //             });
-        //         </script>';
-        // echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=lesson&lesson\">";
-        // exit;
-        displayMessage("error", "Error", "**ซ้ำ** มีบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson");
-    } else {
+        if ($count_data > 0) {
+            displayMessage("error", "Error", "**ซ้ำ** มีบทเรียนนี้ อยู่ในระบบแล้ว..!!", "?active=lesson&lesson");
+        } else {
 
-        try {
+            $update_l = $conn->prepare("UPDATE lesson SET ls_name=:ls_name, ls_detail=:ls_detail WHERE ls_id=:ls_id");
+            $update_l->bindParam(':ls_id', $ls_id);
+            $update_l->bindParam(':ls_name', $ls_name);
+            $update_l->bindParam(':ls_detail', $ls_detail);
+            $update_l->execute();
 
-            $update = $conn->prepare("UPDATE lesson SET ls_name=:ls_name, ls_detail=:ls_detail WHERE ls_id=:ls_id");
-            $update->bindParam(':ls_id', $ls_id);
-            $update->bindParam(':ls_name', $ls_name);
-            $update->bindParam(':ls_detail', $ls_detail);
-            $update->execute();
+            $result_rows = $update_l->rowCount();
 
-            if ($update) {
+            if ($result_rows > 0) {
                 displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", "?active=lesson&lesson");
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถแก้ไขข้อมูลได้", "?active=lesson&lesson");
             }
-        } catch (PDOException $e) {
-
-            echo $e->getMessage();
         }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
 }

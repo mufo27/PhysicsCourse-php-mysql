@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST['btn_save'])) {
 
     $cs_code       = trim($_POST['cs_code']);
@@ -11,77 +12,60 @@ if (isset($_POST['btn_save'])) {
     $cs_for        = $_POST['cs_for'];
     $cs_status     = $_POST['cs_status'];
 
-    $select_check = $conn->prepare("SELECT 
+    $file_path = 'upload/courses/';
+    $url_prefix = '?active=course&course';
+
+    $check_data = $conn->prepare("SELECT 
                                         (SELECT COUNT(*) FROM course WHERE cs_code = :cs_code) AS num_code,
                                         (SELECT COUNT(*) FROM course WHERE cs_name = :cs_name) AS num_name");
-    $select_check->bindParam(':cs_code', $cs_code);
-    $select_check->bindParam(':cs_name', $cs_name);
-    $select_check->execute();
-    $row_check = $select_check->fetch(PDO::FETCH_ASSOC);
+    $check_data->bindParam(':cs_code', $cs_code);
+    $check_data->bindParam(':cs_name', $cs_name);
+    $check_data->execute();
+    $count_data = $check_data->fetch(PDO::FETCH_ASSOC);
 
-    if ($row_check['num_code'] > 0) {
-        displayMessage("error", "Error", "**ซ้ำ** มีรหัสคอร์สเรียนอยู่ในระบบแล้ว..!!", "?active=course&course");
-    } else if ($row_check['num_name'] > 0) {
-        displayMessage("error", "Error", "**ซ้ำ** มีชื่อคอร์สเรียนอยู่ในระบบแล้ว..!!", "?active=course&course");
+    if ($count_data['num_code'] > 0) {
+        displayMessage("error", "Error", "**ซ้ำ** มีรหัสคอร์สเรียนนี้ อยู่ในระบบแล้ว..!!", $url_prefix);
+    } elseif ($count_data['num_name'] > 0) {
+        displayMessage("error", "Error", "**ซ้ำ** มีชื่อคอร์สเรียนนี้ อยู่ในระบบแล้ว..!!", $url_prefix);
     } else {
-
         try {
 
-            $file_location  = "upload/courses/";
-
-            if ($_FILES['cs_img']['tmp_name'] == "") {
-
-                $newfilename   = "";
-            } else {
-
-                $allowedExts    =   array("jpg,png");
-                $temp           =   explode(".", $_FILES["cs_img"]["name"]);
-                $source_file    =   $_FILES['cs_img']['tmp_name'];
-                $size_file      =   $_FILES['cs_img']['size'];
-                $extension      =   end($temp);
-                $newfilename    =   'img_' . round(microtime(true)) . '.' . end($temp);
-
-                move_uploaded_file($source_file, $file_location . $newfilename);
+            if (!empty($_FILES['cs_img']['tmp_name'])) {
+                $new_img = checkFileUploadImage('cs_img', $url_prefix);
+            }
+            if (!empty($_FILES['cs_cer']['tmp_name'])) {
+                $new_cer = checkFileUploadImage('cs_cer', $url_prefix);
             }
 
-            if ($_FILES['cs_cer']['tmp_name'] == "") {
-
-                $newfilename_cer = "";
-            } else {
-
-                $allowedExts_cer    =   array("jpg,png");
-                $temp_cer           =   explode(".", $_FILES["cs_cer"]["name"]);
-                $source_file_cer    =   $_FILES['cs_cer']['tmp_name'];
-                $size_file_cer      =   $_FILES['cs_cer']['size'];
-                $extension_cer      =   end($temp_cer);
-                $newfilename_cer    =   'cer_' . round(microtime(true)) . '.' . end($temp_cer);
-
-                move_uploaded_file($source_file_cer, $file_location . $newfilename_cer);
-            }
-
-
-            $insert = $conn->prepare("INSERT INTO course (cs_code, cs_name, cs_detail, k_hour, k_minute, cs_pay_status, cs_pay_num, cs_status, cs_for, cs_img, cs_cer) 
+            $insert_c = $conn->prepare("INSERT INTO course (cs_code, cs_name, cs_detail, k_hour, k_minute, cs_pay_status, cs_pay_num, cs_status, cs_for, cs_img, cs_cer) 
             VALUES (:cs_code, :cs_name, :cs_detail, :k_hour, :k_minute, :cs_pay_status, :cs_pay_num, :cs_status, :cs_for, :cs_img, :cs_cer)");
-            $insert->bindParam(':cs_code',  $cs_code);
-            $insert->bindParam(':cs_name',  $cs_name);
-            $insert->bindParam(':cs_detail',  $cs_detail);
-            $insert->bindParam(':k_hour',  $k_hour);
-            $insert->bindParam(':k_minute',  $k_minute);
-            $insert->bindParam(':cs_pay_status',  $cs_pay_status);
-            $insert->bindParam(':cs_pay_num',  $cs_pay_num);
-            $insert->bindParam(':cs_status',  $cs_status);
-            $insert->bindParam(':cs_for',  $cs_for);
-            $insert->bindParam(':cs_img',  $newfilename);
-            $insert->bindParam(':cs_cer',  $newfilename_cer);
-            $insert->execute();
+            $insert_c->bindParam(':cs_code',  $cs_code);
+            $insert_c->bindParam(':cs_name',  $cs_name);
+            $insert_c->bindParam(':cs_detail',  $cs_detail);
+            $insert_c->bindParam(':k_hour',  $k_hour);
+            $insert_c->bindParam(':k_minute',  $k_minute);
+            $insert_c->bindParam(':cs_pay_status',  $cs_pay_status);
+            $insert_c->bindParam(':cs_pay_num',  $cs_pay_num);
+            $insert_c->bindParam(':cs_status',  $cs_status);
+            $insert_c->bindParam(':cs_for',  $cs_for);
+            $insert_c->bindParam(':cs_img',  $new_img);
+            $insert_c->bindParam(':cs_cer',  $new_cer);
+            $insert_c->execute();
 
-            if ($insert) {
-                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=course&course");
+            if ($insert_c) {
+
+                if (!empty($_FILES['cs_img']['tmp_name'])) {
+                    move_uploaded_file($_FILES['cs_img']['tmp_name'], $file_path . $new_img);
+                }
+                if (!empty($_FILES['cs_cer']['tmp_name'])) {
+                    move_uploaded_file($_FILES['cs_cer']['tmp_name'], $file_path . $new_cer);
+                }
+
+                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=course&course");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถบันทึกข้อมูลได้", $url_prefix);
             }
         } catch (PDOException $e) {
-
             echo $e->getMessage();
         }
     }

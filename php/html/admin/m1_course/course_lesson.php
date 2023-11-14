@@ -49,7 +49,7 @@ include 'cl_modal_add.inc.php';
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-3">
-                            <button type="button" class="btn btn-success btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
+                            <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
                                 <span class="fal fa-plus mr-1"></span> เพิ่มบทเรียนลงในคอร์เรียน
                             </button>
                         </div>

@@ -15,7 +15,7 @@ include 'q_modal_add.inc.php';
 
 <ol class="breadcrumb page-breadcrumb">
     <li class="breadcrumb-item">หน้าแรก </li>
-    <li class="breadcrumb-item active">บทเรียน </li>
+    <li class="breadcrumb-item active">แบบทดสอบ </li>
 </ol>
 
 <div class="row">
@@ -24,7 +24,7 @@ include 'q_modal_add.inc.php';
         <div id="panel-1" class="panel">
 
             <div class="panel-hdr">
-                <h1>รายการบทเรียน</h1>
+                <h1>รายการแบบทดสอบ</h1>
                 <div class="panel-toolbar"></div>
             </div>
 
@@ -44,8 +44,8 @@ include 'q_modal_add.inc.php';
                     <!-- START Button Add-->
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-3">
-                            <button type="button" class="btn btn-success btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
-                                <span class="fal fa-plus mr-1"></span> เพิ่มบทเรียน
+                            <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
+                                <span class="fal fa-plus mr-1"></span> เพิ่มแบบทดสอบ
                             </button>
                         </div>
                         <div class="col-sm-12 col-md-9">
@@ -62,11 +62,12 @@ include 'q_modal_add.inc.php';
                                     <tr>
                                         <th style="width:5%; text-align: center; vertical-align: middle;">ลำดับ</th>
                                         <th style="width:8%; text-align: center; vertical-align: middle;">รหัส</th>
-                                        <th style="width:25%; text-align: left; vertical-align: middle;">บทเรียน</th>
-                                        <th style="width:40%; text-align: left; vertical-align: middle;">รายละเอียด</th>
-                                        <th style="width:8%; text-align: center; vertical-align: middle;">หัวข้อย่อย</th>
+                                        <th style="width:20%; text-align: left; vertical-align: middle;">แบบทดสอบ</th>
+                                        <th style="width:35%; text-align: left; vertical-align: middle;">คำชี้แจ้ง</th>
+                                        <th style="width:8%; text-align: center; vertical-align: middle;">เกณฑ์ผ่าน</th>
+                                        <th style="width:7%; text-align: center; vertical-align: middle;">จำนวนคำถาม</th>
                                         <th style="width:7%; text-align: center; vertical-align: middle;">สถานะ</th>
-                                        <th style="width:7%; text-align: center; vertical-align: middle;">จัดการ</th>
+                                        <th style="width:10%; text-align: center; vertical-align: middle;">จัดการ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,24 +82,21 @@ include 'q_modal_add.inc.php';
                                             <td style="text-align: center; vertical-align: middle;"><?= $row['ls_id']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['ls_name']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['ls_detail']; ?></td>
+                                            <td style="text-align: center; vertical-align: middle;"><?= $row['ls_id']; ?></td>
+                                            <td style="text-align: center; vertical-align: middle;"><?= $row['ls_id']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="?active=lesson&lesson_sub=<?= $row['ls_id']; ?>" class="btn btn-sm btn-info waves-effect waves-themed">
-                                                    <span class="fal fa-plus mr-1"></span>
-                                                    เพิ่ม (<?= $row['check_count_in_sls']; ?>)
-                                                    </ฟ>
-                                            </td>
-                                            <td style="text-align: center; vertical-align: middle;">
-                                                <?php if($row['check_count_in_c'] > 0) { ?>
+                                                <?php if ($row['check_count_in_c'] > 0) { ?>
                                                     <span class="chip purple lighten-5">
                                                         <span class="badge badge-success badge-pill"><?= getStatusTextInC($row['check_count_in_c']); ?></span>
                                                     </span>
                                                 <?php } ?>
                                             </td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['ls_id']; ?>"><i class="fal fa-edit"></i></button>
-                                                <?php if ($row['check_count_in_sls'] < 1) { ?>
-                                                    <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['ls_id']; ?>"><i class="fal fa-times"></i></button>
-                                                <?php } ?>
+                                                <a href="?active=lesson&lesson_sub=<?= $row['ls_id']; ?>" class="btn btn-outline-info btn-sm btn-icon waves-effect waves-themed">
+                                                    <i class="fal fa-plus"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['ls_id']; ?>"><i class="fal fa-edit"></i></button>
+                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['ls_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
 

@@ -6,7 +6,7 @@
 
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            แจ้งเตือน ลบบทเรียน
+                            แจ้งเตือน ลบแบบทดสอบ
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"><i class="fal fa-times"></i></span>
@@ -14,7 +14,7 @@
                     </div>
                     <div class="modal-body bg-faded">
                         <h4>รหัส : <?= $row['ls_id']; ?></h4>
-                        <h4>คุณแน่ใจใช่มั้ย ว่าต้องการลบบทเรียนนี้</h4>
+                        <h4>คุณแน่ใจใช่มั้ย ว่าต้องการลบแบบทดสอบนี้</h4>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
