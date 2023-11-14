@@ -2,8 +2,6 @@
 <script src="../assets/dist/js/app.bundle.js"></script>
 <!-- <script src="../assets/dist/js/notifications/sweetalert2/sweetalert2.bundle.js"></script> -->
 
-<?php //require_once 'ckeditor.inc.php'; ?>
-
 <script>
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;

@@ -1,8 +1,8 @@
 <?php
 
-function getGradeText($grade)
+function getGradeText($x)
 {
-    switch ($grade) {
+    switch ($x) {
         case 1:
             return 'ม.1';
         case 2:
@@ -22,9 +22,9 @@ function getGradeText($grade)
     }
 }
 
-function getPayStatusText($grade)
+function getPayStatusText($x)
 {
-    switch ($grade) {
+    switch ($x) {
         case 0:
             return 'ฟรี';
         case 1:
@@ -34,9 +34,9 @@ function getPayStatusText($grade)
     }
 }
 
-function getStatusText($grade)
+function getStatusText($x)
 {
-    switch ($grade) {
+    switch ($x) {
         case 0:
             return 'ปิด';
         case 1:
@@ -45,6 +45,28 @@ function getStatusText($grade)
             return 'ทั้งหมด';
     }
 }
+
+
+function getQuizType($x) {
+    switch ($x) {
+        case 1:
+            return 'ปรนัย';
+        case 2:
+            return 'อัตรนัย';
+        default:
+            return 'ใช่หรือไม่';
+    }
+}
+
+function getQuizSide($x) {
+    return ($x === 1) ? 'P' : 'K';
+}
+
+function getStatusTextInC($x) {
+    return ($x > 0) ? 'ถูกใช้งาน' : 'ไม่ได้ถูกใช้งาน';
+}
+
+
 
 function displayMessage($icon, $title, $text, $url)
 {

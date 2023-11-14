@@ -1,17 +1,16 @@
 <?php
 if (isset($_POST['btn_save'])) {
 
-    $check = $_POST['check'];
     $check_cs_id = $_POST['btn_save'];
     $check_ls_id = $_POST['ls_id'];
 
-    if (empty($check) || $check == 0) {
+    if (empty($_POST['check']) || $_POST['check'] == 0) {
         displayMessage("error", "Error", "โปรดเลือกอย่างน้อย 1 รายการ", "?active=course&course_lesson=$check_cs_id");
     } else {
 
         try {
 
-            foreach ($check as $key) {
+            foreach ($_POST['check'] as $key) {
                 $insert = $conn->prepare("INSERT INTO course_lesson (cs_id, ls_id) VALUES (:cs_id, :ls_id)");
                 $insert->bindParam(':cs_id',  $check_cs_id);
                 $insert->bindParam(':ls_id',  $check_ls_id[$key]);

@@ -61,11 +61,12 @@ include 'l_modal_add.inc.php';
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th style="width:5%; text-align: center; vertical-align: middle;">ลำดับ</th>
-                                        <th style="width:10%; text-align: center; vertical-align: middle;">รหัส</th>
+                                        <th style="width:8%; text-align: center; vertical-align: middle;">รหัส</th>
                                         <th style="width:25%; text-align: left; vertical-align: middle;">บทเรียน</th>
                                         <th style="width:40%; text-align: left; vertical-align: middle;">รายละเอียด</th>
-                                        <th style="width:10%; text-align: center; vertical-align: middle;">หัวข้อย่อย</th>
-                                        <th style="width:10%; text-align: center; vertical-align: middle;">จัดการ</th>
+                                        <th style="width:8%; text-align: center; vertical-align: middle;">หัวข้อย่อย</th>
+                                        <th style="width:7%; text-align: center; vertical-align: middle;">สถานะ</th>
+                                        <th style="width:7%; text-align: center; vertical-align: middle;">จัดการ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,13 +84,19 @@ include 'l_modal_add.inc.php';
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <a href="?active=lesson&lesson_sub=<?= $row['ls_id']; ?>" class="btn btn-sm btn-info waves-effect waves-themed">
                                                     <span class="fal fa-plus mr-1"></span>
-                                                    เพิ่ม (<?= $row['sls_count']; ?>)
+                                                    เพิ่ม (<?= $row['check_count_in_sls']; ?>)
                                                     </ฟ>
                                             </td>
                                             <td style="text-align: center; vertical-align: middle;">
+                                                <?php if($row['check_count_in_c'] > 0) { ?>
+                                                    <span class="chip purple lighten-5">
+                                                        <span class="badge badge-success badge-pill"><?= getStatusTextInC($row['check_count_in_c']); ?></span>
+                                                    </span>
+                                                <?php } ?>
+                                            </td>
+                                            <td style="text-align: center; vertical-align: middle;">
                                                 <button type="button" class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['ls_id']; ?>"><i class="fal fa-edit"></i></button>
-
-                                                <?php if ($row['sls_count'] < 1) { ?>
+                                                <?php if ($row['check_count_in_sls'] < 1) { ?>
                                                     <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['ls_id']; ?>"><i class="fal fa-times"></i></button>
                                                 <?php } ?>
                                             </td>
