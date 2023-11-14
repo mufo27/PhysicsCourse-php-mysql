@@ -2,11 +2,13 @@
 
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 
+$url_prefix = '?active=course&course';
+
 if (isset($_GET['btn_filter'])) {
 
     if ($_GET['fd_cs_code'] === '' && $_GET['fd_cs_name'] === '' && $_GET['fd_cs_for'] === '' && $_GET['fd_cs_pay_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_cs_status'] === '' && $_GET['fd_per_page'] === '') {
 
-        displayMessage("error", "Error", "ต้องเลือกอย่างน้อย 1 รายการ", "?active=course&course");
+        displayMessage("error", "Error", "ต้องเลือกอย่างน้อย 1 รายการ", $url_prefix);
 
     } else {
 

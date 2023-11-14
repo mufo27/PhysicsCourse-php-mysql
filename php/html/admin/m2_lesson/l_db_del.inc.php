@@ -15,9 +15,9 @@ if (isset($_POST['btn_del'])) {
         $delete_l->execute();
 
         if ($delete_cl && $delete_l) {
-            displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", "?active=lesson&lesson");
+            displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", $url_prefix);
         } else {
-            displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถลบข้อมูลได้", "?active=lesson&lesson");
+            displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถลบข้อมูลได้", $url_prefix);
         }
     } catch (PDOException $e) {
 

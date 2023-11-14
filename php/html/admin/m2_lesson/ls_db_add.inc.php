@@ -11,7 +11,6 @@ if (isset($_POST['btn_save'])) {
     $z_id          = $_POST['z_id'];
 
     $file_path = 'upload/lesson_sub/';
-    $url_prefix = '?active=lesson&lesson_sub=' . $ls_id;
 
     $check_data = $conn->prepare("SELECT count(*) FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
     $check_data->bindParam(':ls_id', $ls_id);
@@ -20,7 +19,7 @@ if (isset($_POST['btn_save'])) {
     $count_data = $check_data->fetchColumn();
  
     if ($count_data > 0) {
-        displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson_sub=$ls_id");
+        displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!",  $url_prefix);
     } else {
 
         // มาทำต่อหน้านี้

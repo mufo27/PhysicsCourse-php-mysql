@@ -6,9 +6,10 @@ if (isset($_POST['btn_del'])) {
 
     $check_id = $_POST['btn_del'];
 
+    $file_location  = "upload/lesson_sub/";
+
     try {
 
-        $file_location  = "upload/lesson_sub/";
 
         $select_f = $conn->prepare("SELECT sls_img, sls_sheet, sls_answer FROM sub_lesson WHERE sls_id = :check_id");
         $select_f->bindParam(':check_id', $check_id);
@@ -54,9 +55,9 @@ if (isset($_POST['btn_del'])) {
             $delete_sls_result = $delete_sls->execute();
 
             if ($delete_sls_result) {
-                displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", "?active=lesson&lesson_sub=$ls_id");
+                displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถลบข้อมูลได้", "?active=lesson&lesson_sub=$ls_id");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถลบข้อมูลได้", $url_prefix);
             }
         }
     } catch (PDOException $e) {

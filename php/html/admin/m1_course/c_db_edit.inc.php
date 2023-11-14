@@ -18,7 +18,6 @@ if (isset($_POST['btn_update'])) {
     $check_cs_cer  = $_POST['check_cs_cer'];
 
     $file_path  = "upload/courses/";
-    $url_prefix = '?active=course&course';
 
     $check_data = $conn->prepare("SELECT 
                                         (SELECT COUNT(*) FROM course WHERE cs_code = :cs_code) AS num_code,

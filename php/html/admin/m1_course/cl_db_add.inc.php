@@ -5,7 +5,7 @@ if (isset($_POST['btn_save'])) {
     $check_ls_id = $_POST['ls_id'];
 
     if (empty($_POST['check']) || $_POST['check'] == 0) {
-        displayMessage("error", "Error", "โปรดเลือกอย่างน้อย 1 รายการ", "?active=course&course_lesson=$check_cs_id");
+        displayMessage("error", "Error", "โปรดเลือกอย่างน้อย 1 รายการ", $url_prefix);
     } else {
 
         try {
@@ -18,9 +18,9 @@ if (isset($_POST['btn_save'])) {
             }
             
             if ($insert_cl->rowCount() > 0) {
-                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", "?active=course&course_lesson=$check_cs_id");
+                displayMessage("success", "Success", "บันทึกข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถบันทึกข้อมูลได้", "?active=course&course_lesson=$check_cs_id");
+                displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถบันทึกข้อมูลได้", $url_prefix);
             }
         } catch (PDOException $e) {
 

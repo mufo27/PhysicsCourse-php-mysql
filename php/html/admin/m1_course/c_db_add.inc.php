@@ -13,7 +13,6 @@ if (isset($_POST['btn_save'])) {
     $cs_status     = $_POST['cs_status'];
 
     $file_path = 'upload/courses/';
-    $url_prefix = '?active=course&course';
 
     $check_data = $conn->prepare("SELECT 
                                         (SELECT COUNT(*) FROM course WHERE cs_code = :cs_code) AS num_code,

@@ -5,8 +5,6 @@ if (isset($_POST['btn_save'])) {
     $ls_name   = trim($_POST['ls_name']);
     $ls_detail = $_POST['ls_detail'];
 
-    $url_prefix = '?active=lesson&lesson';
-
     $check_data = $conn->prepare("SELECT count(*) FROM lesson WHERE ls_name = :ls_name");
     $check_data->bindParam(':ls_name', $ls_name);
     $check_data->execute();

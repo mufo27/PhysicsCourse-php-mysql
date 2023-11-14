@@ -11,6 +11,8 @@ if (isset($_POST['btn_update'])) {
     $ex_id         = $_POST['ex_id'];
     $z_id          = $_POST['z_id'];
 
+    $file_location = "upload/lesson_sub/";
+
     $select = $conn->prepare("SELECT count(*) AS check_num FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
     $select->bindParam(':ls_id', $ls_id);
     $select->bindParam(':sls_name', $sls_name);
@@ -19,13 +21,12 @@ if (isset($_POST['btn_update'])) {
 
     if ($row['check_num'] > 0 && $check_sls_name !== $sls_name) {
 
-        displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", "?active=lesson&lesson_sub=$ls_id");
+        displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!", $url_prefix);
 
     } else {
 
         try {
 
-            $file_location = "upload/lesson_sub/";
 
             // ใบความรู้รูปภาพ
             if ($_FILES['sls_img']['tmp_name'] == "") {
@@ -99,9 +100,9 @@ if (isset($_POST['btn_update'])) {
             $update->execute();
 
             if ($update) {
-                displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", "?active=lesson&lesson_sub=$ls_id");
+                displayMessage("success", "Success", "แก้ไขข้อมูล เรียบร้อย...!!", $url_prefix);
             } else {
-                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", "?active=lesson&lesson_sub=$ls_id");
+                displayMessage("error", "Error", "โปรด ลองใหม่อีกครั้ง..!!", $url_prefix);
             }
         } catch (PDOException $e) {
 

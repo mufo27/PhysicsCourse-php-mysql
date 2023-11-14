@@ -10,9 +10,9 @@ if (isset($_POST['btn_del'])) {
         $result_cl = $delete_cl->execute();
 
         if ($result_cl) {
-            displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", "?active=course&course_lesson=$check_cs_id");
+            displayMessage("success", "Success", "ลบข้อมูล เรียบร้อย...!!", $url_prefix);
         } else {
-            displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถลบข้อมูลได้", "?active=course&course_lesson=$check_cs_id");
+            displayMessage("error", "Error", "โปรดตรวจสอบ..!! ไม่สามารถลบข้อมูลได้", $url_prefix);
         }
     } catch (PDOException $e) {
         echo $e->getMessage();

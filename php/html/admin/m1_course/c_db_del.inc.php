@@ -3,7 +3,6 @@ if (isset($_POST['btn_del'])) {
     $check_id = $_POST['btn_del'];
 
     $file_path = "upload/courses/";
-    $url_prefix = '?active=course&course';
 
     try {
 

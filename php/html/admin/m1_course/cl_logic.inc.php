@@ -4,20 +4,15 @@ $cs_id = $_GET['course_lesson'];
 
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 
+$url_prefix = '?active=course&course_lesson=' . $cs_id;
+
 if (isset($_GET['btn_filter'])) {
 
 
     if ($_GET['fd_ls_id'] === '' && $_GET['fd_ls_name'] === '' && $_GET['fd_per_page'] === '') {
 
-        echo '<script type="text/javascript">
-                Swal.fire({
-                icon: "error",
-                title: "ล้มเหลว",
-                text: "ต้องเลือกอย่างน้อย 1 รายการ"
-                });
-            </script>';
-        echo "<meta http-equiv=\"refresh\" content=\"2; URL=?active=course&course_lesson=$cs_id\">";
-        exit;
+        displayMessage("error", "Error", "ต้องเลือกอย่างน้อย 1 รายการ", $url_prefix);
+        
     } else {
 
         if ($_GET['fd_per_page'] !== '' && $_GET['fd_per_page'] !== 'all') {
