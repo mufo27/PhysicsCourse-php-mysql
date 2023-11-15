@@ -17,23 +17,42 @@
                 <div class="modal-body bg-faded">
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="id">รหัส : </label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="z_id2">รหัส : </label>
                         <div class="col-lg-9">
-                            <input type="text" id="" name="ls_id" class="form-control" value="<?= $row['ls_id']; ?>" readonly>
+                            <input type="text" id="z_id2" name="z_id" class="form-control" value="<?= $row['ls_id']; ?>" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">แบบทดสอบ : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="z_name2">แบบทดสอบ : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" id="" name="ls_name" class="form-control" value="<?= $row['ls_name']; ?>" required>
+                            <input type="text" id="z_name2" name="z_name" class="form-control" value="<?= $row['ls_id']; ?>" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
+                        <label class="form-label col-sm-4 col-form-label text-left text-sm-right" for="k_hour2">เวลาทำแบบทดสอบ (ชั่วโมง) : <span class="text-danger">*</span></label>
+                        <div class="col-lg-3">
+                            <input type="number" id="k_hour2" name="k_hour" class="form-control" min="0" max="999" value="<?= $row['ls_id']; ?>" required>
+                        </div>
+                  
+                        <label class="form-label col-sm-2 col-form-label text-left text-sm-right" for="k_minute2">(นาที) : <span class="text-danger">*</span></label>
+                        <div class="col-lg-3">
+                            <input type="number" id="k_minute2" name="k_minute" class="form-control" min="0" max="999" value="<?= $row['ls_id']; ?>" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="z_criteria2">เกณฑ์ผ่าน (%) : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <textarea id="editor2" class="form-control" id="" name="ls_detail" rows="3"><?= $row['ls_detail']; ?></textarea>
+                            <input type="number" id="z_criteria2" name="z_criteria" class="form-control" min="0" max="999" value="<?= $row['ls_id']; ?>"required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="editor2">รายละเอียด : </label>
+                        <div class="col-lg-9">
+                            <textarea id="editor2" class="form-control" name="z_detail" rows="3"><?= $row['ls_id']; ?></textarea>
                         </div>
                     </div>
 

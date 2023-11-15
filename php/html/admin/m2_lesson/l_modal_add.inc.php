@@ -15,16 +15,16 @@
                 <div class="modal-body bg-faded">
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">บทเรียน : <span class="text-danger">*</span></label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="ls_name">บทเรียน : <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
-                            <input type="text" id="" name="ls_name" class="form-control" value="" required>
+                            <input type="text" id="ls_name" name="ls_name" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="">รายละเอียด : </label>
+                        <label class="form-label col-sm-3 col-form-label text-left text-sm-right" for="editor1">รายละเอียด : </label>
                         <div class="col-lg-9">
-                            <textarea id="editor1" class="form-control" id="" name="ls_detail" rows="3"></textarea>
+                            <textarea id="editor1" class="form-control" name="ls_detail" rows="3"></textarea>
                         </div>
                     </div>
 
