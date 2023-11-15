@@ -11,7 +11,14 @@
 <!-- <script src="../assets/dist/js/notifications/sweetalert2/sweetalert2.bundle.js"></script> -->
 
 <script>
+
+    'use strict';
+
+    var classHolder = document.getElementsByTagName("BODY")[0]
     
+</script>
+
+<script>
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");

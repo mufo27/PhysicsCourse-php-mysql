@@ -9,7 +9,7 @@ if (isset($_POST['btn_save'])) {
     $ls_id         = $_POST['ls_id'];
     $ex_id         = $_POST['ex_id'];
     $z_id          = $_POST['z_id'];
-
+ 
     $file_path = 'upload/lesson_sub/';
 
     $check_data = $conn->prepare("SELECT count(*) FROM sub_lesson WHERE ls_id=:ls_id AND sls_name=:sls_name");
@@ -22,7 +22,7 @@ if (isset($_POST['btn_save'])) {
         displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!",  $url_prefix);
     } else {
 
-        // มาทำต่อหน้านี้
+        // มาทำต่อหน้านี้ ok
         try {
 
             if (!empty($_FILES['sls_img']['tmp_name'])) {
