@@ -44,17 +44,17 @@ include 'ls_modal_add.inc.php';
 
                     <!-- START Button Add-->
                     <div class="row mt-5">
-                        <div class="col-sm-12 col-md-2">
+                        <div class="col-sm-12 col-md-2 mb-3">
                             <a href="?active=lesson&lesson" class="btn btn-light btn-block waves-effect waves-themed">
                                 <span class="fal fa-step-backward mr-1"></span> ย้อนกลับ
                             </a>
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-3 mb-3">
                             <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
                                 <span class="fal fa-plus mr-1"></span> เพิ่มหัวข้อย่อยในบทเรียน
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-7">
+                        <div class="col-sm-12 col-md-7 mb-3">
                             <h4 class="text-right">แสดง <?= $per_page; ?> รายการ</h4>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ include 'ls_modal_add.inc.php';
                     <!-- START Table  -->
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <table id="dt-basic-example" class="table table-bordered table-striped w-100">
+                            <table id="dt-basic-example" class="table table-bordered table-striped table-responsive w-100">
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th style="width:5%; text-align: center; vertical-align: middle;">No.</th>
@@ -89,18 +89,18 @@ include 'ls_modal_add.inc.php';
                                             <td style="text-align: left; vertical-align: middle;">
                                                 <?= $row['sls_name']; ?>
                                                 <hr>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show1-modal<?= $row['sls_id']; ?>"><i class="fal fa-image"></i> รูปภาพ</button>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show2-modal<?= $row['sls_id']; ?>"><i class="fal fa-video"></i> คลิปวิดิโอ</button>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show3-modal<?= $row['sls_id']; ?>"><i class="fal fa-file-pdf"></i> ไฟล์แบบฝึกหัด</button>
-                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed" data-toggle="modal" data-target="#show4-modal<?= $row['sls_id']; ?>"><i class="fal fa-file-check"></i> ไฟล์เฉลย</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed mb-2" data-toggle="modal" data-target="#show1-modal<?= $row['sls_id']; ?>"><i class="fal fa-image"></i> รูปภาพ</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed mb-2" data-toggle="modal" data-target="#show2-modal<?= $row['sls_id']; ?>"><i class="fal fa-video"></i> คลิปวิดิโอ</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed mb-2" data-toggle="modal" data-target="#show3-modal<?= $row['sls_id']; ?>"><i class="fal fa-file-pdf"></i> ไฟล์แบบฝึกหัด</button>
+                                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect waves-themed mb-2" data-toggle="modal" data-target="#show4-modal<?= $row['sls_id']; ?>"><i class="fal fa-file-check"></i> ไฟล์เฉลย</button>
                                             </td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['sls_detail']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['sls_refer']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['exe_name']; ?></td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['qz_name']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['sls_id']; ?>"><i class="fal fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['sls_id']; ?>"><i class="fal fa-times"></i></button>
+                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed mb-2" data-toggle="modal" data-target="#edit-modal<?= $row['sls_id']; ?>"><i class="fal fa-edit"></i></button>
+                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed mb-2" data-toggle="modal" data-target="#del-modal<?= $row['sls_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
 

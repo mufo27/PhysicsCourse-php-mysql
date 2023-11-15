@@ -43,17 +43,17 @@ include 'cl_modal_add.inc.php';
 
                     <!-- START Button Add-->
                     <div class="row mt-5">
-                        <div class="col-sm-12 col-md-2">
+                        <div class="col-sm-12 col-md-2 mb-3">
                             <a href="?active=course&course" class="btn btn-light btn-block waves-effect waves-themed">
                                 <span class="fal fa-step-backward mr-1"></span> ย้อนกลับ
                             </a>
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-3 mb-3">
                             <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
                                 <span class="fal fa-plus mr-1"></span> เพิ่มบทเรียนลงในคอร์เรียน
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-7">
+                        <div class="col-sm-12 col-md-7 mb-3">
                             <h4 class="text-right">แสดง <?= $per_page; ?> รายการ</h4>
                         </div>
                     </div>
@@ -62,7 +62,8 @@ include 'cl_modal_add.inc.php';
                     <!-- START Table  -->
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <table id="" class="table table-bordered table-striped w-100">
+                        <th style="width:10%; text-align: center; vertical-align: middle;">จัดการ</th>
+                            <table id="dt-basic-example" class="table table-bordered table-striped  w-100">
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th style="width:5%; text-align: center; vertical-align: middle;">ลำดับ</th>

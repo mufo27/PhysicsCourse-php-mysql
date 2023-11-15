@@ -44,12 +44,12 @@ include 'c_modal_add.inc.php';
 
                     <!-- START Button Add-->
                     <div class="row mt-5">
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-3 mb-3">
                             <button type="button" class="btn btn-primary btn-block waves-effect waves-themed" data-toggle="modal" data-target="#add-modal">
                                 <span class="fal fa-plus mr-1"></span> เพิ่มคอร์สเรียน
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-9">
+                        <div class="col-sm-12 col-md-9 mb-3">
                             <h4 class="text-right">แสดง <?= $per_page; ?> รายการ</h4>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ include 'c_modal_add.inc.php';
                     <!-- START Table  -->
                     <div class="row mt-3">
                         <div class="col-sm-12">
-                            <table id="dt-basic-example" class="table table-bordered table-striped w-100">
+                            <table id="dt-basic-example" class="table table-bordered table-striped table-responsive w-100">
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th style="width:5%; text-align: center; vertical-align: middle;">ลำดับ</th>
@@ -87,12 +87,12 @@ include 'c_modal_add.inc.php';
                                             <td style="text-align: left; vertical-align: middle;">
                                                 <?= $row['cs_name']; ?>
                                                 <hr>
-                                                <button type="button" class="btn btn-outline-primary btn-sm waves-effect waves-themed" data-toggle="modal" data-target="#img-modal<?= $row['cs_id']; ?>"><i class="fal fa-image"></i> รูปภาพ</button>
-                                                <button type="button" class="btn btn-outline-primary btn-sm waves-effect waves-themed" data-toggle="modal" data-target="#cer-modal<?= $row['cs_id']; ?>"><i class="fal fa-certificate"></i> ใบเกียรติบัตร</button>
+                                                <button type="button" class="btn btn-outline-primary btn-sm waves-effect waves-themed mb-2" data-toggle="modal" data-target="#img-modal<?= $row['cs_id']; ?>"><i class="fal fa-image"></i> รูปภาพ</button>
+                                                <button type="button" class="btn btn-outline-primary btn-sm waves-effect waves-themed mb-2" data-toggle="modal" data-target="#cer-modal<?= $row['cs_id']; ?>"><i class="fal fa-certificate"></i> ใบเกียรติบัตร</button>
                                             </td>
                                             <td style="text-align: left; vertical-align: middle;"><?= $row['cs_detail']; ?></td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="?active=course&course_lesson=<?= $row['cs_id']; ?>" class="btn btn-outline-info btn-sm waves-effect waves-themed">
+                                                <a href="?active=course&course_lesson=<?= $row['cs_id']; ?>" class="btn btn-outline-info btn-sm waves-effect waves-themed mb-2">
                                                     <span class="fal fa-plus mr-1"></span>
                                                     เพิ่ม (<?= $row['check_count_in_cl']; ?>)
                                                     </ฟ>
@@ -128,8 +128,8 @@ include 'c_modal_add.inc.php';
                                                 <?php } ?>
                                             </td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#edit-modal<?= $row['cs_id']; ?>"><i class="fal fa-edit"></i></button>
-                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="modal" data-target="#del-modal<?= $row['cs_id']; ?>"><i class="fal fa-times"></i></button>
+                                                <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed mb-2" data-toggle="modal" data-target="#edit-modal<?= $row['cs_id']; ?>"><i class="fal fa-edit"></i></button>
+                                                <button type="button" class="btn btn-outline-danger btn-sm btn-icon waves-effect waves-themed mb-2" data-toggle="modal" data-target="#del-modal<?= $row['cs_id']; ?>"><i class="fal fa-times"></i></button>
                                             </td>
                                         </tr>
 
