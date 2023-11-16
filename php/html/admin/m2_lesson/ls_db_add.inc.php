@@ -22,7 +22,7 @@ if (isset($_POST['btn_save'])) {
         displayMessage("error", "Error", "**ซ้ำ** มีชื่อหัวข้อย่อยในบทเรียนอยู่ในระบบแล้ว..!!",  $url_prefix);
     } else {
 
-        // มาทำต่อหน้านี้ ok
+        // มาทำต่อหน้านี้  ok
         try {
 
             if (!empty($_FILES['sls_img']['tmp_name'])) {

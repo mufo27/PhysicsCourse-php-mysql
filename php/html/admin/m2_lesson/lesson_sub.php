@@ -25,7 +25,7 @@ include 'ls_modal_add.inc.php';
         <div id="panel-1" class="panel">
 
             <div class="panel-hdr">
-                <h1>รายการหัวข้อย่อยใน <span class="fw-300 text-info"><i>บทเรียน<?= $row_ls_name['ls_name']; ?></li></i></span></h1>
+                <h2>รายการหัวข้อย่อยใน <span class="fw-300 text-info"><i>บทเรียน<?= $row_ls_name['ls_name']; ?></li></i></span></h1>
                 <div class="panel-toolbar"></div>
             </div>
 
@@ -54,8 +54,8 @@ include 'ls_modal_add.inc.php';
                                 <span class="fal fa-plus mr-1"></span> เพิ่มหัวข้อย่อยในบทเรียน
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-7 mb-3">
-                            <h4 class="text-right">แสดง <?= $per_page; ?> รายการ</h4>
+                        <div class="col-sm-12 col-md-7 mb-3 mt-3">
+                            <h5 class="text-right">แสดง <?= $per_page; ?> รายการ</h5>
                         </div>
                     </div>
                     <!-- END Button Add-->

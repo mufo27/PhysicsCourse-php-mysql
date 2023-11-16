@@ -38,26 +38,35 @@ require_once 'include' . DIRECTORY_SEPARATOR . 'function.inc.php';
                         case (empty($_GET) || isset($_GET['main'])):
                             include 'r1_main/main.php';
                             break;
+
                         case isset($_GET['course']):
                             include 'm1_course/course.php';
                             break;
                         case isset($_GET['course_lesson']):
                             include 'm1_course/course_lesson.php';
                             break;
+
                         case isset($_GET['lesson']):
                             include 'm2_lesson/lesson.php';
                             break;
                         case isset($_GET['lesson_sub']):
                             include 'm2_lesson/lesson_sub.php';
                             break;
+
                         case isset($_GET['quiz']):
                             include 'm3_quiz/quiz.php';
+                            break;
+                        case isset($_GET['manage_quiz']):
+                            include 'm3_quiz/manage_quiz.php';
                             break;
 
                         case isset($_GET['exe']):
                             include 'm4_exe/exe.php';
                             break;
-
+                        case isset($_GET['manage_exe']):
+                            include 'm3_exe/manage_exe.php';
+                            break;
+                            
                         case isset($_GET['class_room']):
                             include 'm5_class_room/class_room.php';
                             break;

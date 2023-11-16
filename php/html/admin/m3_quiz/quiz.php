@@ -92,7 +92,7 @@ include 'q_modal_add.inc.php';
                                                 <?php } ?>
                                             </td>
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <a href="?active=lesson&lesson_sub=<?= $row['ls_id']; ?>" class="btn btn-outline-info btn-sm btn-icon waves-effect waves-themed mb-2">
+                                                <a href="?active=quiz&manage_quiz=<?= $row['ls_id']; ?>" class="btn btn-outline-info btn-sm btn-icon waves-effect waves-themed mb-2">
                                                     <i class="fal fa-plus"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-outline-warning btn-sm btn-icon waves-effect waves-themed mb-2" data-toggle="modal" data-target="#edit-modal<?= $row['ls_id']; ?>"><i class="fal fa-edit"></i></button>

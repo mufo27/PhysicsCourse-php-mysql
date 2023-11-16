@@ -24,7 +24,7 @@ include 'cl_modal_add.inc.php';
         <div id="panel-1" class="panel">
 
             <div class="panel-hdr">
-                <h1>รายการบทเรียนใน <span class="fw-300 text-info"><i>คอร์สเรียน<?= $row_cs_name['cs_name']; ?></li></i></span></h1>
+                <h2>รายการบทเรียนใน <span class="fw-300 text-info"><i>คอร์สเรียน<?= $row_cs_name['cs_name']; ?></li></i></span></h1>
                 <div class="panel-toolbar"></div>
             </div>
 
@@ -53,8 +53,8 @@ include 'cl_modal_add.inc.php';
                                 <span class="fal fa-plus mr-1"></span> เพิ่มบทเรียนลงในคอร์เรียน
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-7 mb-3">
-                            <h4 class="text-right">แสดง <?= $per_page; ?> รายการ</h4>
+                        <div class="col-sm-12 col-md-7 mb-3 mt-3">
+                            <h5 class="text-right">แสดง <?= $per_page; ?> รายการ</h5>
                         </div>
                     </div>
                     <!-- END Button Add-->

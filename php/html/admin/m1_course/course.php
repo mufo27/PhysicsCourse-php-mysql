@@ -25,7 +25,7 @@ include 'c_modal_add.inc.php';
         <div id="panel-1" class="panel">
 
             <div class="panel-hdr">
-                <h1>รายการคอร์สเรียน</h1>
+                <h2>รายการคอร์สเรียน</h2>
                 <div class="panel-toolbar"></div>
             </div>
 
@@ -49,8 +49,8 @@ include 'c_modal_add.inc.php';
                                 <span class="fal fa-plus mr-1"></span> เพิ่มคอร์สเรียน
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-9 mb-3">
-                            <h4 class="text-right">แสดง <?= $per_page; ?> รายการ</h4>
+                        <div class="col-sm-12 col-md-9 mb-3 mt-3">
+                            <h5 class="text-right">แสดง <?= $per_page; ?> รายการ</h5>
                         </div>
                     </div>
                     <!-- END Button Add-->
